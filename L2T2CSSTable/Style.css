@@ -1,0 +1,24 @@
+﻿table {
+    border-collapse: collapse;
+    font-family: Calibri;
+    table-layout: auto;
+    font-size: 17px;
+}
+
+table,th, td {
+    border: 1px solid #dddddd;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #eeeeee;
+}
+
+thead {
+    background-color: #3498db;
+    color: #fefeff;
+}
+
+th, td {
+    padding: 0.47em ;
+    padding-right: 2.8em;
+}
