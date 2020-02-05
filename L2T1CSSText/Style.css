@@ -1,0 +1,40 @@
+﻿body {
+    background-color: #feeed6;
+}
+
+p, h1, div {
+
+ color: #676565;
+}
+   
+h1 {
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin-top: 0.5em; 
+    font-size: 15px; 
+    line-height: 22px;
+    text-indent: 1.1em; 
+    text-align: justify;
+    margin-bottom: 0.6em;
+}
+
+div {
+    font-size: 16px;
+    margin-top: 0.7em;
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: normal;
+}
+
+.small-header {
+    color: #3d90b3;
+    font-weight: bold;
+}
+
+* {
+    font-family: Arial, sans-serif;
+}
