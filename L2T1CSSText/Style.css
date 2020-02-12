@@ -1,40 +1,59 @@
-﻿body {
+﻿.example {
+    width: 845px;
+    height: 462px;
+    position: fixed;
+    z-index: -1;
+    display: none; /*картинка для подбора параметров страницы*/
+}
+
+body {
     background-color: #feeed6;
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    color: #676565;
 }
 
-p, h1, div {
-
- color: #676565;
-}
-   
-h1 {
-    margin-bottom: 0.5em;
+.ad {
+    padding-left: 11px;
+    padding-top: 6px;
+    max-width: 900px;
 }
 
-p {
-    margin-top: 0.5em; 
-    font-size: 15px; 
-    line-height: 22px;
-    text-indent: 1.1em; 
+.header {
+    margin-bottom: 0.59em;
+    padding-left: 0px;
+    letter-spacing: 0.04em;
+    line-height: 1.14;
+    font-size: 30px;
+}
+
+.condition {
+    margin-top: 15px;
+    letter-spacing: 0.033em;
+    font-size: 18px;
+}
+
+.info-container {
+    margin-top: 18px;
+    max-width: 820px;
+}
+
+    .info-container .small-header {
+        letter-spacing: 0.037em;
+        font-size: 18px;
+    }
+
+.info {
+    margin-top: 10px;
+    text-indent: 1.0em;
     text-align: justify;
-    margin-bottom: 0.6em;
-}
-
-div {
-    font-size: 16px;
-    margin-top: 0.7em;
-}
-
-h1 {
-    font-size: 26px;
-    font-weight: normal;
+    letter-spacing: 0.01em;
+    line-height: 1.45;
+    word-spacing: 1px;
+    padding-bottom: 2px;
 }
 
 .small-header {
     color: #3d90b3;
     font-weight: bold;
-}
-
-* {
-    font-family: Arial, sans-serif;
 }
