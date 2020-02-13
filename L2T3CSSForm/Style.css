@@ -1,17 +1,42 @@
-﻿* {
-    font-family: Arial;
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
     color: #676565;
+    font-size: 16px;
 }
 
-.all-block {
-    max-width: 835px;
+.sample-image {
+    width: 840px;
+    height: 576px;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    display: none; /*Возможность добавлять на экран для сравнения. Нужно закоментить свойство*/
+}
+
+.user-form-head {
+    font-size: 33px;
+    box-sizing: border-box;
+    height: 42px;
+    padding-top: 8px;
+    padding-left: 21px;
+    letter-spacing: 0.02ex;
+    margin-bottom: 5px;
+}
+
+.working-area {
+    max-width: 840px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
 }
 
-form {
+.user-info-form {
+    padding-left: 20px;
+    padding-top: 19px;
+    padding-right: 20px;
     background-color: #feeed6;
-    padding: 20px;
+    /*background-color: transparent;*/ /*Возможность добавлять на экран для сравнения. Нужно раскоментить свойство*/
+    box-sizing: border-box;
 }
 
 .form-inner-part {
@@ -24,64 +49,64 @@ form {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
+    padding: 11px 10px 9px 14px;
     font-size: 16px;
-    padding: 11px 15px 11px 15px;
-    margin-bottom: 19px;
+    margin-bottom: 21px;
+    /*background-color: transparent;*/ /*Возможность добавлять на экран для сравнения. Нужно раскоментить свойство*/
 }
 
-label {
-    margin-bottom: 6px;
-    display: inline-block;
-}
+    .input-text.comment-area {
+        padding: 8px 10px 9px 14px;
+        letter-spacing: 0.07ex;
+        font-size: 18px;
+        margin-bottom: 17px;
+        max-width: 800px;
+        font-family: Arial Narrow, Arial;
+    }
 
-h1 {
-    font-weight: normal;
-    margin-bottom: 5px;
-}
-
-label {
+.caption {
+    margin-bottom: 9px;
+    display: block;
     font-weight: bold;
 }
 
-textarea {
+.comment-area {
     height: 130px;
 }
 
-input::-webkit-input-placeholder {
+.input-text::-webkit-input-placeholder {
     color: #ababab;
 }
 
-input::-moz-placeholder {
+.input-text::-moz-placeholder {
     color: #ababab;
 }
 
-textarea::-webkit-input-placeholder {
-    color: #ababab;
-}
-
-textarea::-moz-placeholder {
-    color: #ababab;
+.note {
+    display: inline-block;
+    margin-bottom: 68px;
 }
 
 .submit-button {
     background-color: #378db2;
     color: #fff;
     font-weight: bold;
-    border-width: 1px;
-    
     font-size: 16px;
-    width: 170px;
-    height: 38px;
-
+    width: 169px;
+    height: 37px;
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 16px;
+    right: 20px;
+    border: 0;
+    float: right;
 }
 
-.note {
-    display:inline-block;
-    margin-bottom: 60px; 
-}
+    .submit-button:hover {
+        background-color: #225971;
+        cursor: pointer;
+    }
 
-
+    .submit-button:active {
+        background-color: #00a2e8;
+        cursor: pointer;
+    }

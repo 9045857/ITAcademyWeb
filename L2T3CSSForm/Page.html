@@ -2,30 +2,31 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Reset.css">
     <link rel="stylesheet" type="text/css" href="Style.css">
     <title>Задача «CSS Форма»</title>
 </head>
 <body>
-    <div class="all-block">
-        <h1>Отправить заявку</h1>
-        <form action="/handler.php" method="post">
-            <div class="form-inner-part">
-                <label>Ваше имя</label><br />
-                <input type="text" class="input-text" name="name" placeholder="Ваше имя *"><br />
+    <div class="working-area">
+        <img class="sample-image" src="Images\FormSample.png">
 
-                <label>Ваш номер телефона</label><br />
-                <input type="text" class="input-text" name="phone-number" placeholder="Ваш номер телефона *"><br />
+        <h1 class="user-form-head">Отправить заявку</h1>
+        <form class="user-info-form" action="/handler.php" method="post">
+            <label class="caption">Ваше имя</label>
+            <input type="text" class="input-text" required name="name" placeholder="Ваше имя *">
 
-                <label>Ваш email или VK</label><br />
-                <input type="text" class="input-text" name="mail-vk" placeholder="Ваш email или VK *"><br />
+            <label class="caption">Ваш номер телефона</label>
+            <input type="text" class="input-text" required name="phone-number" placeholder="Ваш номер телефона *">
 
-                <label>Комментарий</label><br />
-                <textarea name="comment" class="input-text" placeholder="Комментарий (не обязательно)"></textarea><br />
+            <label class="caption">Ваш email или VK</label>
+            <input type="text" class="input-text" required name="mail-vk" placeholder="Ваш email или VK *">
 
-                <span class="note">Заполните и отправьте форму, и мы перезвоним Вам по указанному номеру</span><br />
+            <label class="caption">Комментарий</label>
+            <textarea name="comment" class="input-text comment-area" placeholder="Комментарий (не обязательно)"></textarea>
 
-                <button type="submit" class="submit-button">Отправить заявку</button>
-            </div>
+            <span class="note">Заполните и отправьте форму, и мы перезвоним Вам по указанному номеру</span>
+
+            <button type="submit" class="submit-button">Отправить заявку</button>
         </form>
     </div>
 </body>

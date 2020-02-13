@@ -93,8 +93,8 @@
 
 /* для ползунка:
 
-        <form onsubmit="return false" oninput="level.value = flevel.valueAsNumber">
-<input name="flevel" id="flying" type="range" min="20" max="10000" value="20" step="10">
+        <form onsubmit="return false" oninput-text="level.value = flevel.valueAsNumber">
+<input-text name="flevel" id="flying" type="range" min="20" max="10000" value="20" step="10">
 <output for="flying" name="level">20</output>
 </form>
 
