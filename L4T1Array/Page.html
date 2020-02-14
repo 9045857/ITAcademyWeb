@@ -1,11 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Задача «Работа с массивами»</title>
+</head>
+<body>
+    <!--
+        Создайте массив чисел
+        Отсортируйте его по убыванию
+        Получите подмассив из первых 5 элементов и
+        подмассив из последних 5 элементов
 
-namespace L4T1Array
-{
-    public class Page
-    {
-    }
-}
+        Найдите сумму элементов массива, которые являются
+        четными числами
+
+        Создайте массив чисел от 1 до 100, в таком порядке
+
+        Получите список квадратов четных чисел из этого
+        массива
+
+        Результаты пусть печатаются в консоль, console.log
+
+        Оформите код в виде функций
+        -->
+
+    <script>
+        function sortArray(array) {
+            array.sort(function (a, b) {
+                return a - b;
+            });
+            console.log("Отсортированный по возрастанию массив: " + array);
+        }
+
+        function printArrayFirstFiveElements(array) {
+            var fromIndex = 0;
+            var beforeIndex = 5;
+
+            var firstFiveNumbers = array.slice(fromIndex, beforeIndex);
+            console.log("Первые пять элементов массива: " + firstFiveNumbers);
+        }
+
+        function printArrayLastFiveElements(array) {
+            var printElementsCount = 5;
+            var fromIndex = array.length - printElementsCount;
+            var beforeIndex = array.length;
+
+            var lastFiveNumbers = numberArray.slice(fromIndex, beforeIndex);
+            console.log("Последние пять элементов массива: " + lastFiveNumbers);
+        }
+
+        function printSumEvenArrayNumbers(array) {
+            var sum = 0;
+            for (var i = 0; i < array.length; i++) {
+                if (array[i] % 2 === 0) {
+                    sum += array[i];
+                }
+            }
+
+            console.log("Сумма четных чисел массива: " + sum);
+        }
+
+        function createArrayAndPrintEvenNumbersSquareSum() {
+            var array = [];
+            var firstElement = 1;
+            var elementsCount = 100;
+
+            for (var i = 0; i < elementsCount; i++) {
+                array[i] = firstElement + i;
+            }
+
+            var evenNumbersSquareSum = 0;
+            array.forEach(element => {
+                if (element % 2 === 0) {
+                    evenNumbersSquareSum += Math.pow(element, 2);
+                }
+            });
+
+            console.log("Сумма квадратов четных чисел от 1 до 100: " + evenNumbersSquareSum);
+        }
+
+        var numberArray = [2, 4, 6, 5, 1, 3, 7, 0, 8, 10];
+
+        sortArray(numberArray);
+        printArrayFirstFiveElements(numberArray);
+        printArrayLastFiveElements(numberArray);
+        printSumEvenArrayNumbers(numberArray);
+        createArrayAndPrintEvenNumbersSquareSum();
+
+    </script>
+</body>
+</html>
