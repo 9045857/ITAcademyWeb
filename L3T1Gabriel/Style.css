@@ -12,7 +12,7 @@
     width: 1004px;
     height: 753px;
     z-index: -1;
-     /*display: none;*/
+    /*display: none;*/
 }
 
 .working-area {
@@ -186,18 +186,18 @@
 .hr-line {
     border: none;
     border-top: 1px solid #dcdcdc;
-    margin: 4px 11px 1px 6px;
+    margin: 4px 11px 0px 6px;
 }
 
 .applications {
-    height: 300px;
+    height: 230px;
     overflow-y: scroll;
-    margin: 10px 10px 0;
+    margin: 2px 9px 0 10px;
 }
 
 .app-table {
     width: 100%;
-    /*border: 1px solid blue;*/
+    margin-top: 7px;
 }
 
     .app-table td {
@@ -231,7 +231,7 @@
     font-size: 17px;
     text-align: center;
     color: #777;
-    font-weight: bold;
+    font-weight: 800;
 }
 
 .col5-app-table {
@@ -244,7 +244,6 @@
 
     .col5-app-table input {
         width: 198px;
-        
     }
 
 .col6-app-table {
@@ -266,13 +265,31 @@
 
 .col7-app-table {
     padding-left: 7px;
-  
 }
+
     .col7-app-table .comment {
-        width: 191px;
-        height: 14px;
+        box-sizing: border-box;
+        width: 195px;
+        height: 19px;
         font-size: 12px;
+        padding-left: 10px;
+        border: 1px solid #c8c8c8;
     }
+
+        .col7-app-table .comment::-moz-placeholder {
+            font-size: 9px;
+            color: #727272;
+            }
+
+        .col7-app-table .comment::-webkit-input-placeholder {
+            font-size: 9px;
+            color: #727272;
+        }
+
+        .col7-app-table .comment:-ms-input-placeholder {
+            font-size: 9px;
+            color: #727272;
+        }
 
 
 

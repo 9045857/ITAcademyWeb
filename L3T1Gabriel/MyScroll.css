@@ -1,0 +1,24 @@
+﻿
+.applications::-webkit-scrollbar {
+    width: 12px;
+    padding-top: 0;
+}
+
+.applications::-webkit-scrollbar-track {
+    background: linear-gradient(to right, #f7f8f8, #d7d7d7);
+    border: 4px solid transparent;
+    background-clip: content-box;
+}
+
+.applications::-webkit-scrollbar-thumb {
+    border: 1px solid #b8b8b8;
+    background: conic-gradient( #cdcdcd, #9d9d9d, #808080, 
+                                #bcbcbc, #c4c4c4, #e6e6e6, 
+                                #dddddd, #a1a1a1, #7f7f7f, 
+                                #8b8b8b, #bfbfbf, #e3e3e3, 
+                                #d2d2d2, #a6a6a6, #858585, 
+                                #8d8d8d, #c0c0c0, #e5e5e5, 
+                                #d6d6d6, #9e9e9e, #828282, 
+                                #8f8f8f, #bdbdbd, #e3e3e3, #cdcdcd) content-box;
+    border-radius: 6px;
+}

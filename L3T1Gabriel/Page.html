@@ -5,6 +5,8 @@
     <link rel="stylesheet" type="text/css" href="Reset.css">
     <link rel="stylesheet" type="text/css" href="Style.css">
     <link rel="stylesheet" type="text/css" href="MyRange.css">
+    <link rel="stylesheet" type="text/css" href="MyScroll.css">
+
     <title>Задача «Gabriel»</title>
 </head>
 <body>
@@ -57,17 +59,17 @@
                                 <td class="col3-app-table">Moldova, Chisinau. str. Alexanrd cel Bun. 98 </td>
                                 <td class="col4-app-table">35</td>
                                 <td class="col5-app-table"><input type="range" class="slider"></td>
-                                <td class="col6-app-table"><input type="text" class="range-data"name="value-1" value="100"/></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" value="100" /></td>
                                 <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
                             </tr>
 
                             <tr>
-                                <td class="col1-app-table">421-7176-1</td>
+                                <td class="col1-app-table">421-3476-1</td>
                                 <td class="col2-app-table"></td>
                                 <td class="col3-app-table">…г.Кишинев, бульвар Штефан чел Маре, 3</td>
                                 <td class="col4-app-table">50</td>
                                 <td class="col5-app-table"><input type="range" class="slider"></td>
-                                <td class="col6-app-table"><input type="text"class="range-data" name="value-1" /></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" /></td>
                                 <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
                             </tr>
 
@@ -77,7 +79,7 @@
                                 <td class="col3-app-table">РФ, г.Москва, ул.Усиевича, д.22, корп. 1</td>
                                 <td class="col4-app-table">70</td>
                                 <td class="col5-app-table"><input type="range" class="slider"></td>
-                                <td class="col6-app-table"><input type="text"class="range-data" name="value-1" /></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" /></td>
                                 <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
                             </tr>
 
@@ -87,7 +89,7 @@
                                 <td class="col3-app-table">Moldova, Chisinau. str. Alexanrd cel Bun. 98</td>
                                 <td class="col4-app-table">75</td>
                                 <td class="col5-app-table"><input type="range" class="slider"></td>
-                                <td class="col6-app-table"><input type="text"class="range-data" name="value-1" /></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" /></td>
                                 <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
                             </tr>
 
@@ -97,11 +99,69 @@
                                 <td class="col3-app-table">…г.Кишинев, бульвар Штефан чел Маре, 3</td>
                                 <td class="col4-app-table">100</td>
                                 <td class="col5-app-table"><input type="range" class="slider"></td>
-                                <td class="col6-app-table"><input type="text"class="range-data" name="value-1" /></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" /></td>
+                                <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
+                            </tr>
+                            <!--добавляем строк для наглядности скролла-->
+                            <tr>
+                                <td class="col1-app-table ">421-7176-1</td>
+                                <td class="col2-app-table">А</td>
+                                <td class="col3-app-table">РФ, г.Москва, ул.Усиевича, д.22, корп. 1</td>
+                                <td class="col4-app-table">10</td>
+                                <td class="col5-app-table"><input type="range" class="slider" /></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" /></td>
                                 <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
                             </tr>
 
+                            <tr>
+                                <td class="col1-app-table">421-7736-1</td>
+                                <td class="col2-app-table">А</td>
+                                <td class="col3-app-table">Moldova, Chisinau. str. Alexanrd cel Bun. 98 </td>
+                                <td class="col4-app-table">35</td>
+                                <td class="col5-app-table"><input type="range" class="slider"></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" value="100" /></td>
+                                <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
+                            </tr>
 
+                            <tr>
+                                <td class="col1-app-table">421-3476-1</td>
+                                <td class="col2-app-table"></td>
+                                <td class="col3-app-table">…г.Кишинев, бульвар Штефан чел Маре, 3</td>
+                                <td class="col4-app-table">50</td>
+                                <td class="col5-app-table"><input type="range" class="slider"></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" /></td>
+                                <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
+                            </tr>
+
+                            <tr>
+                                <td class="col1-app-table">421-7176-1</td>
+                                <td class="col2-app-table">А</td>
+                                <td class="col3-app-table">РФ, г.Москва, ул.Усиевича, д.22, корп. 1</td>
+                                <td class="col4-app-table">70</td>
+                                <td class="col5-app-table"><input type="range" class="slider"></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" /></td>
+                                <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
+                            </tr>
+
+                            <tr>
+                                <td class="col1-app-table">421-7736-1</td>
+                                <td class="col2-app-table">А</td>
+                                <td class="col3-app-table">Moldova, Chisinau. str. Alexanrd cel Bun. 98</td>
+                                <td class="col4-app-table">75</td>
+                                <td class="col5-app-table"><input type="range" class="slider"></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" /></td>
+                                <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
+                            </tr>
+
+                            <tr>
+                                <td class="col1-app-table">421-3476-1</td>
+                                <td class="col2-app-table">А</td>
+                                <td class="col3-app-table">…г.Кишинев, бульвар Штефан чел Маре, 3</td>
+                                <td class="col4-app-table">100</td>
+                                <td class="col5-app-table"><input type="range" class="slider"></td>
+                                <td class="col6-app-table"><input type="text" class="range-data" name="value-1" /></td>
+                                <td class="col7-app-table"><input type="text" class="comment" placeholder="Какой-то комментарий" /></td>
+                            </tr>
 
                         </table>
 
