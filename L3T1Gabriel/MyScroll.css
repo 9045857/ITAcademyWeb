@@ -1,18 +1,33 @@
 ﻿
-.applications::-webkit-scrollbar {
+.applications::-webkit-scrollbar, .previous-applications-body-area::-webkit-scrollbar {
     width: 12px;
     padding-top: 0;
 }
 
-.applications::-webkit-scrollbar-track {
+.applications::-webkit-scrollbar-track, .previous-applications-body-area::-webkit-scrollbar-track {
     background: linear-gradient(to right, #f7f8f8, #d7d7d7);
     border: 4px solid transparent;
     background-clip: content-box;
 }
 
-.applications::-webkit-scrollbar-thumb {
+.applications::-webkit-scrollbar-thumb, .previous-applications-body-area::-webkit-scrollbar-thumb {
     border: 1px solid #b8b8b8;
     background: conic-gradient( #f9f9f9, #e7e8e9, #c2c2c2, #c2c2c2, #e7e8e9, #f9f9f9, #f9f9f9, #e7e8e9, #c2c2c2, #c2c2c2, #e7e8e9, #f9f9f9, #f9f9f9, #e7e8e9, #c2c2c2, #c2c2c2, #e7e8e9, #f9f9f9, #f9f9f9, #e7e8e9, #c2c2c2,#c2c2c2,#e7e8e9, #f9f9f9) content-box;
     /*background: conic-gradient( #cbccce,#efeff0,#e9e9e9,#eaebec,#e2e2e2,#d7d8d9,#b5b6b8,#c6c7c9,#e5e6e7,#ddddde,#cfcfd1,#cfcfd1,#f9f9f9,#f3f3f3,#e5e5e6,#d2d3d4) content-box;*/
     border-radius: 6px;
+}
+ .previous-applications-body-area::-webkit-scrollbar {
+    width: 8px;
+    padding-top: 0;
+}
+ .previous-applications-body-area::-webkit-scrollbar-thumb {
+    border: 1px solid #b8b8b8;
+    background: conic-gradient( #f9f9f9, #e7e8e9, #c2c2c2, #c2c2c2, #e7e8e9, #f9f9f9, #f9f9f9, #e7e8e9, #c2c2c2, #c2c2c2, #e7e8e9, #f9f9f9, #f9f9f9, #e7e8e9, #c2c2c2, #c2c2c2, #e7e8e9, #f9f9f9, #f9f9f9, #e7e8e9, #c2c2c2,#c2c2c2,#e7e8e9, #f9f9f9) content-box;
+    /*background: conic-gradient( #cbccce,#efeff0,#e9e9e9,#eaebec,#e2e2e2,#d7d8d9,#b5b6b8,#c6c7c9,#e5e6e7,#ddddde,#cfcfd1,#cfcfd1,#f9f9f9,#f3f3f3,#e5e5e6,#d2d3d4) content-box;*/
+    border-radius: 4px;
+}
+ .previous-applications-body-area::-webkit-scrollbar-track {
+    background: linear-gradient(to right, #f7f8f8, #d7d7d7);
+    border: 2px solid transparent;
+    background-clip: content-box;
 }

@@ -6,15 +6,6 @@
     z-index: -3;
 }
 
-.sample-image {
-    position: absolute;
-    top: 0;
-    width: 1004px;
-    height: 753px;
-    z-index: -1;
-    /*display: none;*/
-}
-
 .working-area {
     width: 1004px; /*Ширина образцовой картинки Габриэль*/
     margin: 0 auto;
@@ -29,36 +20,27 @@
 }
 
 .form-area {
-    /*background: linear-gradient(to bottom, #fcfdfd, #dbdbdd);*/
     margin-left: 58px;
     width: 889px;
     height: 632px;
     box-shadow: 0 0 0 1px #8eacb9;
     border: 1px solid #ffffff;
     border-radius: 4px;
-    /*position: relative;*/
 }
 
 .upper-header {
     background: linear-gradient(to bottom, #ffd308, #fdd82f);
-    /* background-color: rgba(0, 0, 0, 0.3);
-  */
     height: 60px;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, .5);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    /*position: absolute;*/
-    /*position: relative;*/
 }
-
-/*.upper-header::after {
-        content: "";
-        display: table;
-        clear: both;
-    }*/
 
 .sections.sec-1 {
     width: 129px;
+    color: #df370e;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 .sections.sec-2 {
@@ -89,16 +71,11 @@
 
 .sections {
     border-right: 1px solid #caaa15;
-    /*width: 100%;*/
-    /*#847010*/
-    /*#846f0d*/
-    /*#df370d - red*/
-    /*#d4b214 - light*/
     margin-top: 19px;
     width: 120px;
     height: 28px;
     text-align: center;
-    font-family: Arial Narrow;
+    font-family: Arial Narrow,Arial;
     font-size: 20px;
     display: inline-block;
     float: left;
@@ -120,11 +97,10 @@
     font-size: 12px;
 }
 
-
 .main-area {
     width: 100%;
     height: 572px;
-    /*background: linear-gradient(to bottom, #fcfdfd, #dbdbdd);*/
+    background: linear-gradient(to bottom, #fcfdfd, #dbdbdd);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     padding: 0;
@@ -133,8 +109,6 @@
 }
 
 .header-first-table {
-    /*width: 100%;*/
-    /*background-color: rgba(120,30,200,0.1);*/
     height: 25px;
 }
 
@@ -261,7 +235,6 @@
         font-weight: bold;
     }
 
-
 .col7-app-table {
     padding-left: 7px;
 }
@@ -289,7 +262,6 @@
             font-size: 9px;
             color: #727272;
         }
-
 
 .button {
     box-sizing: border-box;
@@ -372,7 +344,6 @@
     height: 45px;
     margin-top: 35px;
     width: 100%;
-    /*background-color: rgba(1, 1, 1, 0.2);*/
     position: relative;
     display: flex;
     align-items: center;
@@ -413,15 +384,3 @@
         .second-title-line .refresh-button:focus {
             outline: none;
         }
-
-
-
-
-/* для ползунка:
-
-        <form onsubmit="return false" oninput-text="level.value = flevel.valueAsNumber">
-<input-text name="flevel" id="flying" type="range" min="20" max="10000" value="20" step="10">
-<output for="flying" name="level">20</output>
-</form>
-
-    */
