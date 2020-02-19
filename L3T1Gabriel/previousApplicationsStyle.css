@@ -115,7 +115,6 @@
     background-color: #b3d2f7;
 }
 
-.previous-applications-
-body button[review-status="accepted"] {
+.previous-applications-body button[review-status="accepted"] {
     display: none;
 }

@@ -14,11 +14,6 @@
     z-index: -2;
 }
 
-.text {
-    background-color: black;
-    color: white;
-}
-
 .form-area {
     margin-left: 58px;
     width: 889px;
@@ -31,7 +26,7 @@
 .upper-header {
     background: linear-gradient(to bottom, #ffd308, #fdd82f);
     height: 60px;
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.5);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 }
@@ -159,7 +154,7 @@
 .hr-line {
     border: none;
     border-top: 1px solid #dcdcdc;
-    margin: 4px 11px 0px 6px;
+    margin: 4px 11px 0 6px;
 }
 
 .applications {
@@ -266,7 +261,6 @@
 .button {
     box-sizing: border-box;
     margin-top: 26.5px;
-    /*margin-top: 40px;*/
     height: 40px;
     width: 168px;
     font-size: 16px;
@@ -308,7 +302,6 @@
     border-left: 1px solid #ffffff;
     border-bottom: 1px solid #c8c8c8;
     border-right: 1px solid #e5e5e5;
-    /*background: transparent;*/
     color: #979797;
 }
 
