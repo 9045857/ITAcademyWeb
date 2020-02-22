@@ -5,54 +5,45 @@
 }
 
 .working-area {
-    width: 875px;
+    max-width: 875px;
     height: auto;
     margin: 0 auto;
     padding-top: 20px;
     position: relative;
 }
 
-.sample-image {
-    width: 875px;
-    height: 310px;
-    position: absolute;
-    z-index: -1;
-    display: none; /*Возможность добавлять на экран для сравнения. Нужно закоментить свойство*/
-}
-
 .people-table {
     border-collapse: collapse;
     width: 100%;
-    border: 2px solid #cccccc;
+    border: 1px solid #cccccc;
 }
 
 .column-1 {
-    width: 156px;
+    max-width: 156px;
 }
 
 .column-2 {
-    width: 153px;
+    max-width: 153px;
 }
 
 .column-3 {
-    width: 292px;
+    max-width: 292px;
 }
 
 .people-table td {
-    padding: 1.05ex 0 1.17ex 0.8ex;
-    letter-spacing: -0.01em;
-    border: 2px solid #cccccc;
+    padding: 14px 10px 12px;
+    border: 1px solid #cccccc;
 }
 
-.thead th {
+.people-table thead th {
     text-align: left;
-    padding: 0.52em 0.43em 0.52em;
-    letter-spacing: -0.01em;
+    padding: 14px 10px 12px;
     color: #fefeff;
-    border: 2px solid #cccccc;
+    border: 1px solid #cccccc;
+    /*font-weight: bold;*/
     background-color: #3498db;
 }
 
-.tbody tr:nth-child(odd) {
+.people-table tbody tr:nth-child(odd) {
     background-color: #eeeeee;
 }
