@@ -4,13 +4,11 @@
     font-size: 16px;
 }
 
-.sample-image {
-    width: 840px;
-    height: 576px;
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    display: none; /*Возможность добавлять на экран для сравнения. Нужно закоментить свойство*/
+.working-area {
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
 
 .user-form-head {
@@ -23,19 +21,11 @@
     margin-bottom: 5px;
 }
 
-.working-area {
-    max-width: 840px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-}
-
 .user-info-form {
     padding-left: 20px;
     padding-top: 19px;
     padding-right: 20px;
     background-color: #feeed6;
-    /*background-color: transparent;*/ /*Возможность добавлять на экран для сравнения. Нужно раскоментить свойство*/
     box-sizing: border-box;
 }
 
@@ -43,7 +33,7 @@
     position: relative;
 }
 
-.input-text {
+.user-info-form .input-text {
     border: none;
     width: 100%;
     -webkit-box-sizing: border-box;
@@ -51,18 +41,15 @@
     box-sizing: border-box;
     padding: 11px 10px 9px 14px;
     font-size: 16px;
+    font-family: Arial,Helvetica, sans-serif;
     margin-bottom: 21px;
-    /*background-color: transparent;*/ /*Возможность добавлять на экран для сравнения. Нужно раскоментить свойство*/
 }
 
-    .input-text.comment-area {
-        padding: 8px 10px 9px 14px;
-        letter-spacing: 0.07ex;
-        font-size: 18px;
-        margin-bottom: 17px;
-        max-width: 800px;
-        font-family: Arial Narrow, Arial;
-    }
+.input-text.comment-area {
+    margin-bottom: 17px;
+    max-width: 800px;
+    min-width: 800px;
+}
 
 .caption {
     margin-bottom: 9px;
