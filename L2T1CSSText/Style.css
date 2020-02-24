@@ -1,35 +1,26 @@
-﻿.example {
-    width: 845px;
-    height: 462px;
-    position: fixed;
-    z-index: -1;
-    display: none; /*картинка для подбора параметров страницы*/
-}
-
-body {
+﻿body {
     background-color: #feeed6;
     font-family: Arial, sans-serif;
     font-size: 17px;
     color: #676565;
 }
 
-.ad {
+.working-area {
     padding-left: 11px;
     padding-top: 6px;
     max-width: 900px;
+    margin-right: 11px;
 }
 
 .header {
     margin-bottom: 0.59em;
-    padding-left: 0px;
-    letter-spacing: 0.04em;
+    padding-left: 0;
     line-height: 1.14;
     font-size: 30px;
 }
 
 .condition {
     margin-top: 15px;
-    letter-spacing: 0.033em;
     font-size: 18px;
 }
 
@@ -39,7 +30,6 @@ body {
 }
 
     .info-container .small-header {
-        letter-spacing: 0.037em;
         font-size: 18px;
     }
 
@@ -47,7 +37,6 @@ body {
     margin-top: 10px;
     text-indent: 1.0em;
     text-align: justify;
-    letter-spacing: 0.01em;
     line-height: 1.45;
     word-spacing: 1px;
     padding-bottom: 2px;
