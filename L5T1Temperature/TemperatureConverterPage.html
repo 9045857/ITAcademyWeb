@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Задача «Перевод температур»</title>
+    <link rel="stylesheet" type="text/css" href="Reset.css">
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <link rel="SHORTCUT ICON" href="Images/temp.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="area">
+        <div class="working-area">
+            <h1 class="header">Задача «Перевод температур»</h1>
+
+            <div class="converter-container">
+                <div class="input-area">
+                    <label class="input-temperature"> Введите количество градусов в Цельсия (°C): <input type="text" placeholder="температура в градусах"></label>
+                    <button class="convert-button">Конвертировать</button>
+                </div>
+
+                <h2>Результат конвертации</h2>
+                <div class="output-area">
+                    <span class="caption">в Кельвинах (K):</span><span class="output-temperature kelvin"></span><br />
+                    <span class="caption">в Фаренгейтах (°F):</span> <span class="output-temperature fahrenheit"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="TemperatureConverter.js"></script>
+</body>
+</html>
+
