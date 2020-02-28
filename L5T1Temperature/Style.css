@@ -71,7 +71,7 @@
 .output-area .caption {
     display: inline-block;
     box-sizing: border-box;
-    width: 180px;
+    width: 190px;
 }
 
 .output-area span {
@@ -81,7 +81,8 @@
 .output-temperature {
     color: #0f54e1;
     display: inline-block;
-    width: 100px;
+    box-sizing: border-box;
+    min-width: 100px;
     text-align: right;
     background-color: #f7f9e9;
 }
