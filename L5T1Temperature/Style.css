@@ -37,6 +37,29 @@
     margin-right: -31px;
 }
 
+.input-area input {
+    padding-right: 33px;
+    margin-left: 10px;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 34px;
+    width: 200px;
+    border-radius: 17px;
+    padding-left: 10px;
+    /*border: 1px solid #a1a1a1;*/
+    border: none;
+    outline: none;
+    /*background-color: #ebebeb;*/
+    box-shadow: 0 0 2px rgba(205,205,205,1);
+}
+
+    .input-area input:hover {
+        box-shadow: 0 0 2px rgba(0,0,255,1);
+    }
+
+.input-area input:focus {
+    box-shadow: 0 0 2px rgba(0,0,255,1);
+}
 .convert-button {
     height: 30px;
     width: 30px;
@@ -87,28 +110,7 @@
     clear: both;
 }
 
-.input-area input {
-    margin-left: 10px;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 34px;
-    width: 200px;
-    border-radius: 17px;
-    padding-left: 10px;
-    /*border: 1px solid #a1a1a1;*/
-    border: none;
-    outline: none;
-    /*background-color: #ebebeb;*/
-    box-shadow: 0 0 2px rgba(205,205,205,1);
-}
 
-    .input-area input:hover {
-        box-shadow: 0 0 2px rgba(0,0,255,1);
-    }
-
-.input-area input:focus {
-    box-shadow: 0 0 2px rgba(0,0,255,1);
-}
 
 .converter-container h2 {
     display: block;
