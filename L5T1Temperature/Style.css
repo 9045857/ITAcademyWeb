@@ -52,7 +52,7 @@
     align-content: center;
     padding: 1px;
     margin-top: 2px;
-    background-color: #f1f1f1;
+    background-color: #e3e3e3;
 }
 .convert-button img {
     height: 28px;
@@ -60,7 +60,6 @@
     /*padding: 0;*/
     display: block;
     border: none;
-
 
 }
 
