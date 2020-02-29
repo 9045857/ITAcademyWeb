@@ -157,6 +157,7 @@
     margin-left: 710px;
     width: 26px;
     height: 26px;
+    padding: 4px;
 }
 
 .save-correction {
@@ -169,7 +170,7 @@
     border-radius: 5px;
     border: none;
     outline: none;
-    padding: 2px;
+    padding: 1px;
     margin: auto 0;
     /*background: none;*/
     /*background-color: blue;*/
@@ -190,6 +191,7 @@
     margin-left: 670px;
     width: 26px;
     height: 26px;
+    padding: 4px;
 }
 
 .check-box {
@@ -198,6 +200,7 @@
     /*display: inline-block;*/
     width: 22px;
     height: 22px;
+    padding: 2px;
 }
 
     .check-box img, .correct img, .delete img {
@@ -224,7 +227,7 @@
     padding: 0 40px 0 10px;
     font-size: 16px;
     background-color: #ffffff;
-    box-shadow: 0 0 10px 3px rgba(100,100,100,0.2);
+    box-shadow: 0 0 5px 2px rgba(100,100,100,0.2);
 }
 
     .task:disabled {
@@ -235,3 +238,65 @@
         .task:disabled + .save-correction {
             display: none;
         }
+
+.delete-menu {
+    background-color: #fff886;
+    box-sizing: border-box;
+    width: 200px;
+    height: 100px;
+    border: none;
+    border-radius: 5px;
+    margin: 3px 50px 8px auto;
+    box-shadow: 3px 3px 5px 3px rgba(200,200,200,0.7);
+    z-index: 10000;
+    text-align: center;
+    font-size: 15px;
+}
+
+    .delete-menu p {
+        /*background-color: red;*/
+        padding: 5px 0;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-bottom: 1px solid #ffad3c;
+        font-weight: bold;
+        color: #ff0907;
+        box-shadow: 0 13px 15px -10px rgba(0, 0, 0, 0.2);/*gold;*/
+    }
+
+.delete-menu-button {
+    box-sizing: border-box;
+    width: 70px;
+    height: 35px;
+    margin: 13px 7px 7px 7px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(#ff6610,#ff0907);
+    color: #ffffff;
+    font-weight: bold;
+    outline: none;
+}
+
+    .delete-menu-button:hover {
+        border: 1px solid #bc3115;
+    }
+
+    .delete-menu-button:active {
+        background: linear-gradient(#ff0907,#ff6610);
+    }
+
+.tasks-list button:hover {
+    cursor: pointer;
+}
+
+.task-button:hover {
+    background-color: #d9dbdc;
+}
+
+.task-button:active {
+    background-color: #b6b8b9;
+}
+
+.is-delete-li {
+    background-color: #fff886;
+}
