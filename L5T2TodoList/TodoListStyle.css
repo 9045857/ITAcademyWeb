@@ -112,6 +112,11 @@
             background: linear-gradient(#ffc924,#fff614);
         }
 
+.tasks-list ul{
+    overflow-y: auto;
+    max-height: 500px;
+}
+
 .tasks-list h2 {
     font-size: 20px;
     font-weight: bold;
@@ -208,10 +213,11 @@
         width: 18px;
         margin: 0;
         padding: 0;
+        border: none;
         /*background-color: blueviolet;*/
     }
 
-    .check-box.checked img {
+    .check-box.unchecked img {
         display: none;
     }
 
@@ -297,6 +303,16 @@
     background-color: #b6b8b9;
 }
 
-.is-delete-li {
-    background-color: #fff886;
+li.is-delete-li {
+    background-color: /*#fff886*/ #fffabe;
+}
+
+.try-input-empty::-webkit-input-placeholder {
+    color: #ff0e07;
+    /*font-weight: bold;*/
+}
+
+.try-input-empty::-moz-placeholder {
+    color: #ff0e07;
+    /*font-weight: bold;*/
 }
