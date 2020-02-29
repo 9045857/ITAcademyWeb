@@ -283,7 +283,7 @@
     background-color: #b6b8b9;
 }
 
-li.is-delete-li {
+.tasks-list ul li.is-delete-li {
     background-color: #fffabe;
 }
 
