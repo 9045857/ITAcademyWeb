@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Задача «Todo List»</title>
+    <link rel="stylesheet" type="text/css" href="Reset.css">
+    <link rel="stylesheet" type="text/css" href="TodoListStyle.css">
+    <link rel="SHORTCUT ICON" href="Images/check.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="area">
+        <div class="working-area">
+            <div class="header-container">
+                <img src="Images/check.png" class="image">
+                <h1 class="header">Задача «Todo List»</h1>
+            </div>
+            
+            <div class="input-task" >
+                <input type="text" id="input-task-text" placeholder="введите задачу">
+                <button type="button" id="input-task-button">Добавить в список</button>
+            </div>
+            <div class="tasks-list">
+                <h2>ToDo List</h2>
+                <ul>
+                    <li>
+                        <button type="button" class="check-box checked"  >
+                            <img src="Images/check-box.png">
+                        </button>
+
+                        <input type="text" class="task" value="Придумать дизайн">
+
+                        <button type="button" class="save-correction">
+                            <img src="Images/save.png">
+                        </button>
+
+                        <button type="button" class="correct">
+                            <img src="Images/pencil.png">
+                        </button>
+
+                        <button type="button" class="delete">
+                            <img src="Images/delete.png">
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="check-box checked">
+                            <img src="Images/check-box.png">
+                        </button>
+
+                        <input type="text" class="task" value="Придумать дизайн" disabled="disabled">
+
+                        <button type="button" class="save-correction">
+                            <img src="Images/save.png">
+                        </button>
+
+                        <button type="button" class="correct">
+                            <img src="Images/pencil.png">
+                        </button>
+
+                        <button type="button" class="delete">
+                            <img src="Images/delete.png">
+                        </button>
+                    </li>
+
+                    <li>
+                        <button type="button" class="check-box" >
+                            <img src="Images/check-box.png">
+                        </button>
+
+                        <input type="text" class="task" value="Придумать дизайн"disabled="disabled">
+
+                        <button type="button" class="save-correction">
+                            <img src="Images/save.png">
+                        </button>
+
+                        <button type="button" class="correct">
+                            <img src="Images/pencil.png">
+                        </button>
+
+                        <button type="button" class="delete">
+                            <img src="Images/delete.png">
+                        </button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="TodoListScript.js"></script>
+</body>
+</html>

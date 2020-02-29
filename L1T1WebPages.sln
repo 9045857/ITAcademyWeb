@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L4T2Objects", "L4T2Objects\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{7FE5E8DA-D2BB-43BE-A254-04C86276968D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L5T1Temperature", "L5T1Temperature\L5T1Temperature.csproj", "{188C4421-2212-46D9-8F58-053AB095D7DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L5T1Temperature", "L5T1Temperature\L5T1Temperature.csproj", "{188C4421-2212-46D9-8F58-053AB095D7DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L5T2TodoList", "L5T2TodoList\L5T2TodoList.csproj", "{0FFB7666-04C8-47AB-B598-FFFFA4210E34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{188C4421-2212-46D9-8F58-053AB095D7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{188C4421-2212-46D9-8F58-053AB095D7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{188C4421-2212-46D9-8F58-053AB095D7DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FFB7666-04C8-47AB-B598-FFFFA4210E34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFB7666-04C8-47AB-B598-FFFFA4210E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FFB7666-04C8-47AB-B598-FFFFA4210E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FFB7666-04C8-47AB-B598-FFFFA4210E34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
