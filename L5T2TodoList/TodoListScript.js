@@ -13,21 +13,6 @@
 
         var li = document.createElement("li");
 
-
-
-        //li.innerHTML = "<button type='button' class='check-box'><img src='Images / check - box.png'></button>" +
-        //    "<input type='text' class='task'>" +
-        //    "<button type='button' class='save-correction task-button'><img src='Images/save.png'></button>" +
-        //    "<button type='button' class='correct task-button'><img src='Images/pencil.png'></button>" +
-        //    "<button type='button' class='delete task-button'><img src='Images/delete.png'></button>";
-
-        //li.innerHTML = "<button type='button' class='check-box'></button>" +
-        //    "<input type='text' class='task'>" +
-        //    "<button type='button' class='save-correction task-button'><img src='Images/save.png'></button>" +
-        //    "<button type='button' class='correct task-button'><img src='Images/pencil.png'></button>" +
-        //    "<button type='button' class='delete task-button'><img src='Images/delete.png'></button>";
-
-
         li.innerHTML = "<button type='button' class='check-box unchecked'><img src='Images/check-box.png'></button>" +
             "<input type='text' class='task' value='' disabled='disabled'>" +
             "<button type='button' class='save-correction task-button'><img src='Images/save.png'></button>" +
@@ -94,5 +79,4 @@
             newTask.removeAttribute("class");
         }
     });
-
 });

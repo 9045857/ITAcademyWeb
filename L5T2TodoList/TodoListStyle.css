@@ -22,7 +22,6 @@
 
 .header-container {
     height: 40px;
-    /*background-color: aquamarine;*/
     position: relative;
     margin-bottom: 40px;
 }
@@ -56,7 +55,6 @@
         }
 
 .input-task {
-    /*background-color: aqua;*/
     margin-bottom: 40px;
     position: relative;
     height: 40px;
@@ -101,18 +99,15 @@
     }
 
         .input-task button:hover {
-            /*background: linear-gradient(#ffc924,#fff614);*/
-            /*box-shadow: 0 0 0 1px rgba(135,80,23,1);*/
             cursor: pointer;
         }
 
         .input-task button:active {
             box-shadow: 0 0 0 1px rgba(255,203,35,1);
-            /*box-shadow: 0 0 0 1px rgba(135,80,23,1);*/
             background: linear-gradient(#ffc924,#fff614);
         }
 
-.tasks-list ul{
+.tasks-list ul {
     overflow-y: auto;
     max-height: 500px;
 }
@@ -124,7 +119,6 @@
 }
 
 .tasks-list li {
-    /*background-color: #fff614;*/
     padding: 0 10px;
     position: relative;
     height: 40px;
@@ -155,10 +149,7 @@
 }
 
 .delete {
-    /*box-shadow: 0 0 0 2px rgba(3,169,244,1);*/
-    /*background-color: #e9e9e9;*/
     background: none;
-    /*background: linear-gradient(#ffc924,#fff614);*/
     margin-left: 710px;
     width: 26px;
     height: 26px;
@@ -166,8 +157,6 @@
 }
 
 .save-correction {
-    /*background: linear-gradient(#ffc924,#fff614);*/
-    /*box-shadow: 0 0 0 2px rgba(3,169,244,1);*/
     background: none;
     box-sizing: border-box;
     width: 26px;
@@ -177,8 +166,6 @@
     outline: none;
     padding: 1px;
     margin: auto 0;
-    /*background: none;*/
-    /*background-color: blue;*/
     margin-left: 626px;
 }
 
@@ -189,9 +176,6 @@
     }
 
 .correct {
-    /*box-shadow: 0 0 0 2px rgba(3,169,244,1);*/
-    /*background: linear-gradient(#ffc924,#fff614);*/
-    /*background-color: #e9e9e9;*/
     background: none;
     margin-left: 670px;
     width: 26px;
@@ -202,7 +186,6 @@
 .check-box {
     box-shadow: 0 0 0 2px rgba(3,169,244,1);
     background-color: #fff;
-    /*display: inline-block;*/
     width: 22px;
     height: 22px;
     padding: 2px;
@@ -214,7 +197,6 @@
         margin: 0;
         padding: 0;
         border: none;
-        /*background-color: blueviolet;*/
     }
 
     .check-box.unchecked img {
@@ -228,7 +210,6 @@
     border-radius: 5px;
     border: none;
     outline: none;
-    /*background-color: aquamarine;*/
     margin: 0 5px 0 35px;
     padding: 0 40px 0 10px;
     font-size: 16px;
@@ -260,14 +241,13 @@
 }
 
     .delete-menu p {
-        /*background-color: red;*/
         padding: 5px 0;
         margin-left: 10px;
         margin-right: 10px;
         border-bottom: 1px solid #ffad3c;
         font-weight: bold;
         color: #ff0907;
-        box-shadow: 0 13px 15px -10px rgba(0, 0, 0, 0.2);/*gold;*/
+        box-shadow: 0 13px 15px -10px rgba(0, 0, 0, 0.2); /*gold;*/
     }
 
 .delete-menu-button {
@@ -304,15 +284,13 @@
 }
 
 li.is-delete-li {
-    background-color: /*#fff886*/ #fffabe;
+    background-color: #fffabe;
 }
 
 .try-input-empty::-webkit-input-placeholder {
     color: #ff0e07;
-    /*font-weight: bold;*/
 }
 
 .try-input-empty::-moz-placeholder {
     color: #ff0e07;
-    /*font-weight: bold;*/
 }
