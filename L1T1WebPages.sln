@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L5T1Temperature", "L5T1Temp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L5T2TodoList", "L5T2TodoList\L5T2TodoList.csproj", "{0FFB7666-04C8-47AB-B598-FFFFA4210E34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L6T1TodoListJQuery", "L6T1TodoListJQuery\L6T1TodoListJQuery.csproj", "{BC2D62CA-C313-405F-93B9-B0A5A14B1D2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{0FFB7666-04C8-47AB-B598-FFFFA4210E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FFB7666-04C8-47AB-B598-FFFFA4210E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FFB7666-04C8-47AB-B598-FFFFA4210E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC2D62CA-C313-405F-93B9-B0A5A14B1D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2D62CA-C313-405F-93B9-B0A5A14B1D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2D62CA-C313-405F-93B9-B0A5A14B1D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2D62CA-C313-405F-93B9-B0A5A14B1D2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -51,7 +51,7 @@
     }
 
         .header-container h1:first-letter {
-            color: #1d69cf;
+            color: #8a9417;
         }
 
 .input-task {
@@ -123,7 +123,7 @@
     position: relative;
     height: 40px;
     margin: 0 10px;
-    border-radius: 10px;
+    border-radius: 20px;
     width: 735px;
 }
 
@@ -140,7 +140,6 @@
 
 .check-box, .correct, .delete {
     box-sizing: border-box;
-    border-radius: 5px;
     border: none;
     outline: none;
     padding: 2px;
@@ -154,6 +153,7 @@
     width: 26px;
     height: 26px;
     padding: 4px;
+    border-radius: 13px;
 }
 
 .save-correction {
@@ -181,14 +181,16 @@
     width: 26px;
     height: 26px;
     padding: 4px;
+    border-radius: 13px;
 }
 
 .check-box {
-    box-shadow: 0 0 0 2px rgba(29,105,207,1) /*rgba(3,169,244,1)*/;
+    box-shadow: 0 0 0 2px rgba(138,148,23,1) /*rgba(44,160,44,1)*/;
     background-color: #fff;
     width: 22px;
     height: 22px;
     padding: 2px;
+    border-radius: 11px;
 }
 
     .check-box img, .correct img, .delete img {
