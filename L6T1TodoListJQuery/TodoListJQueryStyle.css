@@ -292,14 +292,18 @@
 
 .try-input-empty::-webkit-input-placeholder {
     color: #ff0e07;
+    text-align: center;
 }
 
 .try-input-empty::-moz-placeholder {
     color: #ff0e07;
+    text-align: center;
 }
 
 .input-task input.try-input-empty {
     /*box-shadow: 0 0 3px 2px rgba(255, 0, 0, 0.3);*/
     /*box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);*/
-    background-color: #f9eceb;
+    /*background-color: #f9eceb;*/
+    background-color: #fffbd2;
+    box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.3);
 }
