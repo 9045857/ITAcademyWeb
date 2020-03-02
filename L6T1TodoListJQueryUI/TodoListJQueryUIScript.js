@@ -51,24 +51,30 @@
             if (!li.hasClass("is-delete-li")) {
                 li.addClass("is-delete-li");
 
-                $("#screen-lock").removeClass("do-not-show");
-
                 $("#dialog-confirm").dialog({
                     resizable: false,
                     height: "auto",
                     width: 300,
                     modal: true,
+                    close: function () {
+                        $("#screen-lock").addClass("do-not-show");
+
+                        if (li.hasClass("for-removing")) {
+                            li.remove();
+                        } else {
+                            li.removeClass("is-delete-li");
+                        }
+                    },
+                    open: function () {
+                        $("#screen-lock").removeClass("do-not-show");
+                    },
                     buttons: {
                         "Да": function () {
-                            li.remove();
-                            $("#screen-lock").addClass("do-not-show");
-
+                            li.addClass("for-removing");
                             $(this).dialog("close");
                         },
                         "Нет": function () {
-                            $("#screen-lock").addClass("do-not-show");
                             li.removeClass("is-delete-li");
-
                             $(this).dialog("close");
                         }
                     }
