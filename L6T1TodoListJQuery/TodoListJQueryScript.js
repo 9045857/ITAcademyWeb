@@ -8,7 +8,7 @@
         var newTaskText = newTask.val();
 
         if (newTaskText === "") {
-            var defaultPlaceholder = "Для добавлении задачи в список, введите ее в этом поле!";
+            var defaultPlaceholder = "Чтобы добавить задачу в список, введите ее в этом поле!";
             newTask.attr("placeholder", defaultPlaceholder);
 
             newTask.addClass("try-input-empty");
