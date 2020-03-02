@@ -1,82 +1,86 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
-    var tasksList = document.getElementById("tasks-list");
-    var newTask = document.getElementById("input-task-text");
+﻿$(document).ready(function () {
+    var tasksList = $("#tasks-list").eq(0);
+    var newTask = $("#input-task-text").eq(0);
+    var addNewTaskButton = $("#input-task-button").eq(0);
 
-    var addNewTaskButton = document.getElementById("input-task-button");
-    addNewTaskButton.addEventListener("click", function () {
-        var newTaskText = newTask.value;
+    addNewTaskButton.click(function (e) {
+
+        var newTaskText = newTask.val();
 
         if (newTaskText === "") {
-            newTask.setAttribute("class", "try-input-empty");
+            var defaultPlaceholder = "Для добавлении задачи в список, введите ее в этом поле!";
+            newTask.attr("placeholder", defaultPlaceholder);
+
+            newTask.addClass("try-input-empty");
             return;
         }
 
-        var li = document.createElement("li");
-
-        li.innerHTML = "<button type='button' class='check-box unchecked'><img src='Images/check-box.png'></button>" +
+        var li = $("<li>" +
+            "<button type='button' class='check-box unchecked'><img src='Images/check-box.png'></button>" +
             "<input type='text' class='task' value='' disabled='disabled'>" +
             "<button type='button' class='save-correction task-button'><img src='Images/save.png'></button>" +
             "<button type='button' class='correct task-button'><img src='Images/pencil.png'></button>" +
-            "<button type='button' class='delete task-button'><img src='Images/delete.png'></button>";
+            "<button type='button' class='delete task-button'><img src='Images/delete.png'></button></li>");
 
-        var input = li.getElementsByTagName("input")[0];
-        input.value = newTaskText;
+        var input = li.children("input").eq(0);
+        input.val(newTaskText);
 
-        tasksList.appendChild(li);
+        tasksList.append(li);
 
-        var checkButton = li.getElementsByTagName("button")[0];
-        checkButton.addEventListener("click", function () {
-            if (this.classList.contains("unchecked")) {
-                this.setAttribute("class", "check-box");
+        var checkButton = li.children("button").eq(0);
+        checkButton.click(function () {
+            if (checkButton.hasClass("unchecked")) {
+                checkButton.removeClass("unchecked");
             } else {
-                this.setAttribute("class", "check-box unchecked");
+                checkButton.addClass("unchecked");
             }
         });
 
-        var saveButton = li.getElementsByTagName("button")[1];
-        saveButton.addEventListener("click", function () {
-            input.setAttribute("disabled", "disabled");
+        var saveButton = li.children("button").eq(1);
+        saveButton.click(function () {
+            input.addClass("disabled");
         });
 
-        var correctButton = li.getElementsByTagName("button")[2];
-        correctButton.addEventListener("click", function () {
-            input.removeAttribute("disabled", "disabled");
+        var correctButton = li.children("button").eq(2);
+        correctButton.click(function () {
+            input.removeClass("disabled");
         });
 
-        var preDeleteButton = li.getElementsByTagName("button")[3];
-        preDeleteButton.addEventListener("click", function () {
-            if (!li.classList.contains("is-delete-li")) {
-                li.setAttribute("class", "is-delete-li");
+        var preDeleteButton = li.children("button").eq(3);
+        preDeleteButton.click(function () {
+            if (!li.hasClass("is-delete-li")) {
+                li.addClass("is-delete-li");
 
-                var deleteMenuHtml = document.createElement("div");
-                deleteMenuHtml.setAttribute("class", "delete-menu");
-                deleteMenuHtml.innerHTML = "<p>Вы уверены, что хотите удалить элемент?</p>" +
+                var deleteMenuHtml = $("<div class='delete-menu'>" +
+                    "<p>Вы уверены, что хотите удалить элемент?</p>" +
                     "<button type='button' class='delete-menu-button yes-delete'>Да</button>" +
-                    "<button type='button' class='delete-menu-button no-delete'>Нет</button>";
+                    "<button type='button' class='delete-menu-button no-delete'>Нет</button>" +
+                    "</div>");
 
-                var deleteButton = deleteMenuHtml.getElementsByClassName("yes-delete")[0];
-                deleteButton.addEventListener("click", function () {
-                    deleteMenuHtml.parentNode.removeChild(deleteMenuHtml);
-                    li.parentNode.removeChild(li);
+                var deleteButton = deleteMenuHtml.children(".yes-delete").eq(0);
+                deleteButton.click(function () {
+                    deleteMenuHtml.remove();
+                    li.remove();
                 });
 
-                var notDeleteButton = deleteMenuHtml.getElementsByClassName("no-delete")[0];
-                notDeleteButton.addEventListener("click", function () {
-                    var menu = notDeleteButton.parentNode;
-                    menu.parentNode.removeChild(menu);
-                    li.removeAttribute("class", "is-delete-li");
+                var notDeleteButton = deleteMenuHtml.children(".no-delete").eq(0);
+                notDeleteButton.click(function () {
+                    deleteMenuHtml.remove();
+                    li.removeClass("is-delete-li");
                 });
 
                 li.after(deleteMenuHtml);
             }
         });
 
-        newTask.value = "";
+        newTask.val("");
     });
 
-    newTask.addEventListener("focus", function (e) {
-        if (newTask.getAttribute("class") === "try-input-empty") {
-            newTask.removeAttribute("class");
+    newTask.focus(function () {
+        if (newTask.hasClass("try-input-empty")) {
+            var defaultPlaceholder = "новая задача";
+            newTask.attr("placeholder", defaultPlaceholder);
+            newTask.removeClass("try-input-empty");
         }
     });
 });

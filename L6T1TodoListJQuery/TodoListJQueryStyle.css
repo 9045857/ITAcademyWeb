@@ -125,6 +125,7 @@
     margin: 0 10px;
     border-radius: 20px;
     width: 735px;
+    list-style-type: none;
 }
 
     .tasks-list li:nth-child(odd) {
@@ -295,4 +296,8 @@
 
 .try-input-empty::-moz-placeholder {
     color: #ff0e07;
+}
+
+.input-task input.try-input-empty {
+    box-shadow: 0 0 3px 2px rgba(255, 0, 0, 0.3);
 }
