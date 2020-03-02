@@ -38,12 +38,12 @@
 
         var saveButton = li.children("button").eq(1);
         saveButton.click(function () {
-            input.addClass("disabled");
+            input.prop("disabled", true);
         });
 
         var correctButton = li.children("button").eq(2);
         correctButton.click(function () {
-            input.removeClass("disabled");
+            input.prop("disabled", false);
         });
 
         var preDeleteButton = li.children("button").eq(3);
