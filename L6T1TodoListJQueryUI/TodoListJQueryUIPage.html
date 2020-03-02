@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Задача «TodoList jQuery+UI»</title>
+    <link rel="stylesheet" type="text/css" href="Reset.css">
+    <link rel="stylesheet" type="text/css" href="TodoListJQueryUIStyle.css">
+    <link rel="stylesheet" type="text/css" href="DeleteMenu.css">
+    <link rel="SHORTCUT ICON" href="Images/check.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="area">
+        <div class="working-area">
+            <div class="header-container">
+                <img src="Images/check.png" class="image">
+                <h1 class="header">Задача «TodoList jQuery + jQuery UI»</h1>
+            </div>
+
+            <div class="input-task">
+                <input type="text" id="input-task-text" placeholder="новая задача">
+                <button type="button" id="input-task-button">Добавить в список</button>
+            </div>
+            <div class="tasks-list">
+                <h2>ToDo List</h2>
+                <ul id="tasks-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-lock" class="do-not-show"></div>
+
+    <div id="dialog-confirm" class="do-not-show" title="Удаление записи">
+        <p><span class="ui-icon ui-icon-alert"></span>Удалить без возможности восстановления?</p>
+    </div>
+
+    <script src="libs/jquery-3.4.1.js"></script>
+    <script src="libs/jquery-ui.js"></script>
+    <script src="TodoListJQueryUIScript.js"></script>
+</body>
+</html>
