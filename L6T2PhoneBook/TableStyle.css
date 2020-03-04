@@ -1,0 +1,80 @@
+﻿.phone-table {
+    /*position: absolute;*/
+    display: inline-block;
+    float: right;
+    /*margin: 50px 0 0 400px;*/
+    /*background-color: #fff614;*/
+    /*text-align: right;*/
+    margin-top: 30px;
+    width: 100%;
+}
+
+
+
+
+
+    .phone-table table table, .phone-table table th, .phone-table table td {
+        border: solid 1px #ffffff;
+    }
+
+    .phone-table table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        font-size: 16px;
+        font-family: Arial;
+        box-shadow: 0 0 15px -5px #a6a6a6;
+    }
+
+    .phone-table table button {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        margin: 5px;
+        background-color: #fff;
+        border: none;
+        outline: none;
+        box-shadow: 0 0 0 1px #a6a6a6;
+        background: url("Images/deleteItem.png");
+        background-size: contain;
+        cursor: pointer;
+        background-color: #dedede;
+    }
+
+        .phone-table table button:hover {
+            background-color: #c0c0c0;
+        }
+        .phone-table table button:active {
+            background-color: #959595;
+        }
+
+.phone-table table input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+    .phone-table table th, .phone-table table td {
+        vertical-align: middle;
+        height: 30px;
+    }
+
+    .phone-table table th {
+        color: #ffffff;
+        background-color: #4f81bd;
+        font-weight: bold;
+    }
+
+.phone-table table tr.hiden {
+    display: none;
+}
+
+    .phone-table table thead {
+        border-bottom: solid 5px #fff;
+    }
+
+    .phone-table table tbody tr:nth-child(odd) {
+        background-color: #d0d8e8;
+    }
+
+

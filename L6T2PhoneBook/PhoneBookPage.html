@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Задача «PhoneBook»</title>
+    <link rel="stylesheet" type="text/css" href="Reset.css">
+    <link rel="stylesheet" type="text/css" href="PhoneBookStyle.css">
+    <link rel="stylesheet" type="text/css" href="TableStyle.css">
+    <link rel="SHORTCUT ICON" href="Images/phoneBook.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="header-area">
+        <div class="header-logo">
+            <img src="Images/phoneBook.png" class="phone-image">
+            <h1 class="header-name">Задача <br />«PhoneBook»</h1>
+        </div>
+        <div class="input-phone-data-area">
+            <h2>Ввод данных</h2>
+            <label class="input-name"><span>Имя</span> <input type="text" id="input-name"></label>
+            <label class="input-surname"><span>Фамилия</span><input type="text" id="input-surname"></label>
+            <label class="input-phone"><span>Номер телефона</span> <input type="text" id="input-phone"></label>
+            <button type="button" id="input-button"><img src="Images/add-user.png"><span>Добавить контакт</span></button>
+        </div>
+    </div>
+
+
+
+    <div class="middle-container">
+        <div class="upper-part-middle">
+            <div class="check-uncheck-delete-buttons-block">
+                <button id="check-all-button" class="check-uncheck-delete-buttons"><img src="Images/manyCheck.png"></button>
+                <button id="uncheck-all-button" class="check-uncheck-delete-buttons"><img src="Images/manyUncheck.png"></button>
+                <button id="delete-all-checked-button" class="check-uncheck-delete-buttons"><img src="Images/deleteChecked.png"></button>
+            </div>
+            
+            <!--<div class="search-area">-->
+                <button id="search-input-button" class="search-clear-buttons"><img src="Images/search.png"></button>
+                <button id="clear-input-button" class="search-clear-buttons"><img src="Images/clear.png"></button>
+                <input type="text" id="search-input" class="search-input">
+                
+
+            <!--</div>-->
+            
+        </div>
+
+
+
+
+        <div class="phone-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>№</th>
+                        <th>Фамилия</th>
+                        <th>Имя</th>
+                        <th>Номер</th>
+                        <th>удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hiden">
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td>Для скрытия</td>
+                        <td>ДлиноеИмя</td>
+                        <td>+7 913 925 58 57</td>
+                        <td><button type="button"></button></td>
+
+                    </tr>
+                    <tr class="hiden">
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td>второй для скрытия</td>
+                        <td>ДлиноеИмя</td>
+                        <td>+7 913 925 58 57</td>
+                        <td><button type="button"></button></td>
+
+                    </tr>
+                <tr >
+                    <td><input type="checkbox"></td>
+                    <td>1</td>
+                    <td>ДлинаяФамилия</td>
+                    <td>ДлиноеИмя</td>
+                    <td>+7 913 925 58 57</td>
+                    <td><button type="button"></button></td>
+                </tr>
+                <tr >
+                    <td><input type="checkbox"></td>
+                    <td>1</td>
+                    <td>ДлинаяФамилия</td>
+                    <td>ДлиноеИмя</td>
+                    <td>+7 913 925 58 57</td>
+                    <td><button type="button"></button></td>
+
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>1</td>
+                    <td>ДлинаяФамилия</td>
+                    <td>ДлиноеИмя</td>
+                    <td>+7 913 925 58 57</td>
+                    <td><button type="button"></button></td>
+
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>1</td>
+                    <td>ДлинаяФамилия</td>
+                    <td>ДлиноеИмя</td>
+                    <td>+7 913 925 58 57</td>
+                    <td><button type="button"></button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="addition-right-area"></div>
+
+
+    </div>
+
+
+
+
+
+    <!--<div class="area">
+        <div class="working-area">
+            <div class="header-container">
+
+            </div>
+
+            <div class="input-task">
+                <input type="text" id="input-task-text" placeholder="новая задача">
+                <button type="button" id="input-task-button">Добавить в список</button>
+            </div>
+            <div class="tasks-list">
+                <h2>ToDo List</h2>
+                <ul id="tasks-list"></ul>
+            </div>
+        </div>
+    </div>-->
+
+
+
+    <script src="libs/jquery-3.4.1.js"></script>
+    <script src="libs/jquery-ui.js"></script>
+    <script src="PhoneBookScript.js"></script>
+</body>
+</html>
