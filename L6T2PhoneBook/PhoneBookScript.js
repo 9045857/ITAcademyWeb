@@ -1,95 +1,129 @@
 ﻿$(document).ready(function () {
-    var tasksList = $("#tasks-list").eq(0);
-    var newTask = $("#input-task-text").eq(0);
-    var addNewTaskButton = $("#input-task-button").eq(0);
+    function Contact(name, surname, phoneNumber) {
+        this.name = name;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+    }
 
-    addNewTaskButton.click(function (e) {
+    function createContact() {
+        var name = $("#input-name").val();
+        var surname = $("#input-surname").val();
+        var phoneNumber = $("#input-phone").val();
 
-        var newTaskText = newTask.val();
+        return new Contact(name, surname, phoneNumber);
+    }
 
-        if (newTaskText === "") {
-            var defaultPlaceholder = "Чтобы добавить задачу в список, введите ее в этом поле!";
-            newTask.attr("placeholder", defaultPlaceholder);
+    function createNewTr() {
+        return $("<tr>" +
+            "<td><input type='checkbox'></td>" +
+            "<td></td>" +
+            "<td></td>" +
+            "<td></td>" +
+            "<td></td>" +
+            "<td><button type='button'></button></td>" +
+            "</tr>)");
+    }
 
-            newTask.addClass("try-input-empty");
-            return;
-        }
+    function setTrOrder(table) {
+        var trs = table.children("tbody").eq(0).children("tr").not(".hidden");
 
-        var li = $("<li>" +
-            "<button type='button' class='check-box unchecked'><img src='Images/check-box.png'></button>" +
-            "<input type='text' class='task' value='' disabled='disabled'>" +
-            "<button type='button' class='save-correction task-button'><img src='Images/save.png'></button>" +
-            "<button type='button' class='correct task-button'><img src='Images/pencil.png'></button>" +
-            "<button type='button' class='delete task-button'><img src='Images/delete.png'></button></li>");
+        trs.each(function (index) {
+            var numberColumnIndex = 1;
+            var correctionCount = 1;
+            $(this).children("td").eq(numberColumnIndex).text((index + correctionCount).toString());
+        });
+    }
 
-        var input = li.children("input").eq(0);
-        input.val(newTaskText);
+    function setAllCheck(table, flag) {
+        var tbody = table.find("tbody").eq(0);
+        var visibleTrs = tbody.find("tr").not(".hidden");
 
-        tasksList.append(li);
+        console.log(visibleTrs);
 
-        var checkButton = li.children("button").eq(0);
-        checkButton.click(function () {
-            if (checkButton.hasClass("unchecked")) {
-                checkButton.removeClass("unchecked");
-            } else {
-                checkButton.addClass("unchecked");
-            }
+        visibleTrs.each(function () {
+            $(this).find("input:checkbox").prop("checked", flag);
+        });
+    }
+
+    function addContactInTable(table, contact) {
+        var newTr = createNewTr();
+        var tds = newTr.children("td");
+
+        var trsCount = table.children("tbody").eq(0).children("tr").length;
+        var correctionCount = 1;
+        tds.eq(1).text((trsCount - correctionCount).toString());
+
+        tds.eq(2).text(contact.name);
+        tds.eq(3).text(contact.surname);
+        tds.eq(4).text(contact.phoneNumber);
+
+        var deleteButton = tds.eq(5).children("button").eq(0);
+        deleteButton.click(function () {
+            var tr = $(this).closest("tr");
+            tr.remove();
+
+            setTrOrder(table);
         });
 
-        var saveButton = li.children("button").eq(1);
-        saveButton.click(function () {
-            input.prop("disabled", true);
+        table.children("tbody").append(newTr);
+    }
+
+    function deleteCheckedTrs(table) {
+        var checkboxes = table.find("input:checkbox:checked");
+
+        $.each(checkboxes, function (index, value) {
+            value.closest("tr").remove();
+        });
+    }
+
+    function clearSearch(input, table) {
+        input.val("");
+
+        var tbody = table.children("tbody").eq(0);
+        var hiddenTrs = tbody.find("tr.hidden");
+
+        hiddenTrs.each(function () {
+            $(this).removeClass("hidden");
+        });
+    }
+
+    (function () {
+        var table = $("#contact-table");
+
+        var contactAdditionButton = $("#input-button");
+        contactAdditionButton.click(function () {
+            var contact = createContact();
+            addContactInTable(table, contact);
         });
 
-        var correctButton = li.children("button").eq(2);
-        correctButton.click(function () {
-            input.prop("disabled", false);
+        var checkAllButton = $("#check-all-button");
+        checkAllButton.click(function () {
+            setAllCheck(table, true);
         });
 
-        var preDeleteButton = li.children("button").eq(3);
-        preDeleteButton.click(function () {
-            if (!li.hasClass("is-delete-li")) {
-                li.addClass("is-delete-li");
-
-                $("#dialog-confirm").dialog({
-                    resizable: false,
-                    height: "auto",
-                    width: 300,
-                    modal: true,
-                    close: function () {
-                        $("#screen-lock").addClass("do-not-show");
-
-                        if (li.hasClass("for-removing")) {
-                            li.remove();
-                        } else {
-                            li.removeClass("is-delete-li");
-                        }
-                    },
-                    open: function () {
-                        $("#screen-lock").removeClass("do-not-show");
-                    },
-                    buttons: {
-                        "Да": function () {
-                            li.addClass("for-removing");
-                            $(this).dialog("close");
-                        },
-                        "Нет": function () {
-                            li.removeClass("is-delete-li");
-                            $(this).dialog("close");
-                        }
-                    }
-                });
-            }
+        var uncheckAllButton = $("#uncheck-all-button");
+        uncheckAllButton.click(function () {
+            setAllCheck(table, false);
         });
 
-        newTask.val("");
-    });
+        var deleteAllCheckedButton = $("#delete-all-checked-button");
+        deleteAllCheckedButton.click(function () {
+            deleteCheckedTrs(table);
+            setTrOrder(table);
+        });
 
-    newTask.focus(function () {
-        if (newTask.hasClass("try-input-empty")) {
-            var defaultPlaceholder = "новая задача";
-            newTask.attr("placeholder", defaultPlaceholder);
-            newTask.removeClass("try-input-empty");
-        }
-    });
+
+        var inputClearingButton = $("#clear-input-button");
+        var searchInput = $("#search-input");
+        inputClearingButton.click(function () {
+            clearSearch(searchInput, table);
+        });
+
+
+
+
+
+    }());
+
+
 });

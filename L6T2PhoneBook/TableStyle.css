@@ -23,7 +23,6 @@
         text-align: center;
         font-size: 16px;
         font-family: Arial;
-        box-shadow: 0 0 15px -5px #a6a6a6;
     }
 
     .phone-table table button {
@@ -52,6 +51,7 @@
     width: 20px;
     height: 20px;
     margin: 0;
+    cursor: pointer;
 }
 
     .phone-table table th, .phone-table table td {
@@ -63,9 +63,13 @@
         color: #ffffff;
         background-color: #4f81bd;
         font-weight: bold;
+        border: none;
+        vertical-align: top;
+        height: 5px;
+        padding-top: 3px;
     }
 
-.phone-table table tr.hiden {
+.phone-table table tr.hidden {
     display: none;
 }
 
@@ -77,4 +81,23 @@
         background-color: #d0d8e8;
     }
 
+.phone-table table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
 
+    .phone-table thead img {
+        height: 20px;
+        margin: 0 0 5px 0;
+    }
+
+.phone-table .column-0,  .phone-table .column-5{
+    width: 40px;
+    padding-top: 0;
+}
+
+.phone-table {
+    background-color: #4f81bd;
+    border-radius: 10px;
+    padding: 10px 0;
+    box-shadow: 0 0 15px -5px #a6a6a6;
+}

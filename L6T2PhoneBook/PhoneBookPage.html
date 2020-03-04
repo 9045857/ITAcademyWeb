@@ -28,38 +28,38 @@
     <div class="middle-container">
         <div class="upper-part-middle">
             <div class="check-uncheck-delete-buttons-block">
-                <button id="check-all-button" class="check-uncheck-delete-buttons"><img src="Images/manyCheck.png"></button>
-                <button id="uncheck-all-button" class="check-uncheck-delete-buttons"><img src="Images/manyUncheck.png"></button>
+                <!--<button id="check-all-button" class="check-uncheck-delete-buttons"><img src="Images/manyCheck.png"></button>
+                <button id="uncheck-all-button" class="check-uncheck-delete-buttons"><img src="Images/manyUncheck.png"></button>-->
                 <button id="delete-all-checked-button" class="check-uncheck-delete-buttons"><img src="Images/deleteChecked.png"></button>
             </div>
-            
+
             <!--<div class="search-area">-->
-                <button id="search-input-button" class="search-clear-buttons"><img src="Images/search.png"></button>
-                <button id="clear-input-button" class="search-clear-buttons"><img src="Images/clear.png"></button>
-                <input type="text" id="search-input" class="search-input">
-                
+            <button id="search-input-button" class="search-clear-buttons"><img src="Images/search.png"></button>
+            <button id="clear-input-button" class="search-clear-buttons"><img src="Images/clear.png"></button>
+            <input type="text" id="search-input" class="search-input">
+
 
             <!--</div>-->
-            
+
         </div>
 
 
 
 
         <div class="phone-table">
-            <table>
+            <table id="contact-table">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th class="column-0"><input type="checkbox"><!--<img src="Images/one_check.png" class="check">--></th>
                         <th>№</th>
                         <th>Фамилия</th>
                         <th>Имя</th>
                         <th>Номер</th>
-                        <th>удалить</th>
+                        <th class="column-5"><img src="Images/bin.png" class="bin"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="hiden">
+                    <tr class="hidden">
                         <td><input type="checkbox"></td>
                         <td>1</td>
                         <td>Для скрытия</td>
@@ -68,7 +68,7 @@
                         <td><button type="button"></button></td>
 
                     </tr>
-                    <tr class="hiden">
+                    <tr class="hidden">
                         <td><input type="checkbox"></td>
                         <td>1</td>
                         <td>второй для скрытия</td>
@@ -77,45 +77,48 @@
                         <td><button type="button"></button></td>
 
                     </tr>
-                <tr >
-                    <td><input type="checkbox"></td>
-                    <td>1</td>
-                    <td>ДлинаяФамилия</td>
-                    <td>ДлиноеИмя</td>
-                    <td>+7 913 925 58 57</td>
-                    <td><button type="button"></button></td>
-                </tr>
-                <tr >
-                    <td><input type="checkbox"></td>
-                    <td>1</td>
-                    <td>ДлинаяФамилия</td>
-                    <td>ДлиноеИмя</td>
-                    <td>+7 913 925 58 57</td>
-                    <td><button type="button"></button></td>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td>ДлинаяФамилия</td>
+                        <td>ДлиноеИмя</td>
+                        <td>+7 913 925 58 57</td>
+                        <td><button type="button"></button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td>ДлинаяФамилия</td>
+                        <td>ДлиноеИмя</td>
+                        <td>+7 913 925 58 57</td>
+                        <td><button type="button"></button></td>
 
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>1</td>
-                    <td>ДлинаяФамилия</td>
-                    <td>ДлиноеИмя</td>
-                    <td>+7 913 925 58 57</td>
-                    <td><button type="button"></button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td>ДлинаяФамилия</td>
+                        <td>ДлиноеИмя</td>
+                        <td>+7 913 925 58 57</td>
+                        <td><button type="button"></button></td>
 
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>1</td>
-                    <td>ДлинаяФамилия</td>
-                    <td>ДлиноеИмя</td>
-                    <td>+7 913 925 58 57</td>
-                    <td><button type="button"></button></td>
-                </tr>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td>ДлинаяФамилия</td>
+                        <td>ДлиноеИмя</td>
+                        <td>+7 913 925 58 57</td>
+                        <td><button type="button"></button></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-        
+
         <div class="addition-right-area"></div>
+        
+        <div id="screen-lock"></div>
+        <div id="delete-menu"></div>
 
 
     </div>
