@@ -23,7 +23,7 @@
     /*margin: 20px;*/
     /*display: inline-block;
     float: left;*/
-    margin: 30px 0 10px 30px;
+    margin: 20px 0 20px 30px;
     box-sizing: border-box;
     height: 100px;
     width: 300px;
@@ -71,7 +71,7 @@
     box-sizing: border-box;
     margin: 0 auto;
     border-radius: 10px;
-    box-shadow: 6px 6px 10px -5px rgba(180, 180, 180, 0.6);
+    box-shadow: 0 0 20px -10px #414141;
     font-family: Arial;
     padding: 20px;
 }
@@ -298,7 +298,7 @@ input.search-input, .search-clear-buttons {
     padding: 0;
     border: none;
     outline: none;
-    box-shadow: 0 0 0 2px #dee1e6;
+    box-shadow: 0 0 0 3px #d3d0c9;
     background-color: #4f81bd;
     cursor: pointer;
 }
@@ -306,6 +306,8 @@ input.search-input, .search-clear-buttons {
     #delete-all-checked-button:active {
         background-color: #1672b7;
     }
+
+
 
 
 
@@ -326,6 +328,3 @@ input.search-input, .search-clear-buttons {
     box-shadow: -5px 0 5px 1px rgba(100, 100, 100, 0.1);
 }
 
-
-.footer {
-}

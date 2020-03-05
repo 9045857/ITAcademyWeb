@@ -9,11 +9,7 @@
     width: 100%;
 }
 
-
-
-
-
-    .phone-table table table, .phone-table table th, .phone-table table td {
+.phone-table td {
         border: solid 1px #ffffff;
     }
 
@@ -77,23 +73,24 @@
         border-bottom: solid 5px #fff;
     }
 
-    .phone-table table tbody tr:nth-child(odd) {
-        background-color: #d0d8e8;
-    }
+        .phone-table table tbody tr.grey-fon {
+            background-color: #d0d8e8;
+            
+        }
 
-.phone-table table tbody tr:nth-child(even) {
-    background-color: #ffffff;
-}
+        .phone-table table tbody tr {
+            background-color: #ffffff;
+        }
 
     .phone-table thead img {
         height: 20px;
         margin: 0 0 5px 0;
     }
 
-.phone-table .column-0,  .phone-table .column-5{
-    width: 40px;
-    padding-top: 0;
-}
+    .phone-table .column-0, .phone-table .column-1, .phone-table .column-5 {
+        width: 40px;
+        padding-top: 0;
+    }
 
 .phone-table {
     background-color: #4f81bd;

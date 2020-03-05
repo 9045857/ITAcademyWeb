@@ -157,14 +157,35 @@
         });
     }
 
+    function colorizeTable(table) {
+        var colorClass = "grey-fon";
+        var hiddenClassName = "hidden";
+
+        var showedTr = table.children("tbody").eq(0).children("tr").filter(function() {
+            return !$(this).hasClass(hiddenClassName);
+        }); 
+
+        showedTr.each(function (index) {
+            if (index % 2 === 0) {
+                return $(this).addClass(colorClass);
+            }
+            else {
+                return $(this).removeClass(colorClass);
+            }
+        });
+    }
 
     (function () {
         var table = $("#contact-table");
+
+        colorizeTable(table);
 
         var contactAdditionButton = $("#input-button");
         contactAdditionButton.click(function () {
             var contact = createContact();
             addContactInTable(table, contact);
+
+            colorizeTable(table);
         });
 
         var commonCheckbox = $("#check-uncheck");
@@ -174,6 +195,8 @@
             } else {
                 setAllCheck(table, false);
             }
+
+            colorizeTable(table);
         });
 
         var deleteAllCheckedButton = $("#delete-all-checked-button");
@@ -181,6 +204,8 @@
             deleteCheckedTrs(table);
             setTrOrder(table);
             uncheckCommonCheckbox();
+
+            colorizeTable(table);
         });
 
 
@@ -190,6 +215,8 @@
         inputClearingButton.click(function () {
             clearSearch(searchInput, table);
             setTrOrder(table);
+
+            colorizeTable(table);
         });
 
         var searchButton = $("#search-input-button");
@@ -197,7 +224,8 @@
             var searchingInputText = $("#search-input").val().toString();
             //showSearchedTrExactText(searchingInputText, table);
             showSearchedTr(searchingInputText, table);
-
+            setTrOrder(table);
+            colorizeTable(table);
         });
 
 

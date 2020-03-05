@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L6T1TodoListJQuery", "L6T1T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L6T1TodoListJQueryUI", "L6T1TodoListJQueryUI\L6T1TodoListJQueryUI.csproj", "{E6FCF872-4AFF-4ABF-BEDB-5E4196EAF586}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L6T2PhoneBook", "L6T2PhoneBook\L6T2PhoneBook.csproj", "{5CBBD0FC-E0B2-470C-8719-0B253F742EF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L6T2PhoneBook", "L6T2PhoneBook\L6T2PhoneBook.csproj", "{5CBBD0FC-E0B2-470C-8719-0B253F742EF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
