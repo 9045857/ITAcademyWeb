@@ -178,7 +178,7 @@
     height: 36px;
     /*width: 400px;*/
     box-sizing: border-box;
-    width: 70%;
+    width: 80%;
     min-width: 300px;
     border-radius: 18px;
     border: none;
@@ -197,19 +197,19 @@
 }
 
 input.search-input:focus {
-            box-shadow: 0 0 0 2px rgba(69,175,227, 1);
-        }
+    box-shadow: 0 0 0 2px rgba(69,175,227, 1);
+}
 
 input.search-input, .search-clear-buttons {
     display: inline-block;
     float: right;
 }
 
-.search-clear-buttons img {
-    height: 32px;
-    width: 32px;
-    border-radius: 16px;
-}
+    .search-clear-buttons img {
+        height: 32px;
+        width: 32px;
+        border-radius: 16px;
+    }
 
 .search-clear-buttons {
     background-color: #ffffff;
@@ -225,9 +225,7 @@ input.search-input, .search-clear-buttons {
     border-radius: 16px;
     cursor: pointer;
     margin-top: 2px;
-
     /*margin-left: -35px;*/
-
 }
 
     .search-clear-buttons:hover {
@@ -257,9 +255,7 @@ input.search-input, .search-clear-buttons {
     z-index: -1;
     padding: 0 70px 0 50px;
     /*padding-left: 300px;*/
-
     box-sizing: border-box;
-
     /*padding-left: 30px;*/
     /*position: fixed;*/
     position: absolute;
@@ -273,7 +269,6 @@ input.search-input, .search-clear-buttons {
     display: inline-block;
     float: left;
     /*margin-left: 50px;*/
-
     /*background-color: #276786;*/
 }
 
@@ -289,53 +284,28 @@ input.search-input, .search-clear-buttons {
         background-color: #dee1e6;
     }
 
-#check-all-button, #uncheck-all-button {
-    height: 36px;
-    width: 40px;
-    border: none;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(180, 180, 180, 0.6);
-}
-
-#check-all-button {
-    padding: 8px 6px 8px 14px;
-}
-
-#uncheck-all-button {
-    padding: 8px 14px 8px 6px;
-    /*border-left: solid 1px blue;*/
-    margin-right: 10px;
-}
-
-    #check-all-button img, #uncheck-all-button img, #delete-all-checked-button img, #delete-all-checked-button img {
-        height: 20px;
-        width: 20px;
-    }
-
-
-#check-all-button {
-    border-bottom-left-radius: 18px;
-    border-top-left-radius: 18px;
-}
-
-
-#uncheck-all-button {
-    border-bottom-right-radius: 18px;
-    border-top-right-radius: 18px;
-}
 
 
 
-#delete-all-checked-button {
+
+#delete-all-checked-button img, #delete-all-checked-button {
     height: 36px;
     width: 36px;
     border-radius: 18px;
+}
+
+#delete-all-checked-button {
     padding: 0;
     border: none;
     outline: none;
-    padding: 8px;
-    box-shadow: 0 0 0 2px rgba(180, 180, 180, 0.6);
+    box-shadow: 0 0 0 2px #dee1e6;
+    background-color: #4f81bd;
+    cursor: pointer;
 }
+
+    #delete-all-checked-button:active {
+        background-color: #1672b7;
+    }
 
 
 

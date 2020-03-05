@@ -38,20 +38,47 @@
         var tbody = table.find("tbody").eq(0);
         var visibleTrs = tbody.find("tr").not(".hidden");
 
-        console.log(visibleTrs);
-
         visibleTrs.each(function () {
             $(this).find("input:checkbox").prop("checked", flag);
         });
+    }
+
+    function uncheckCommonCheckbox() {
+        $("#check-uncheck").prop("checked", false);
+    }
+
+    function checkCommonCheckbox() {
+        $("#check-uncheck").prop("checked", true);
+    }
+
+    function areAllShownTdChecked(table) {
+        var tbody = table.children("tbody").eq(0);
+        var shownTrCount = tbody.children("tr").not(".hidden").length;
+        var checkedTdCount = tbody.find("input:checkbox:checked").length;
+
+        return shownTrCount === checkedTdCount;
     }
 
     function addContactInTable(table, contact) {
         var newTr = createNewTr();
         var tds = newTr.children("td");
 
-        var trsCount = table.children("tbody").eq(0).children("tr").length;
+        var checkbox = tds.eq(0).children("input:checkbox").eq(0);
+        checkbox.click(function () {
+            if (checkbox.prop("checked")) {
+
+                if (areAllShownTdChecked(table)) {
+                    checkCommonCheckbox();
+                }
+            } else {
+                uncheckCommonCheckbox();
+            }
+        });
+
+        var trsCount = table.children("tbody").eq(0).children("tr").not(".hidden").length;
+
         var correctionCount = 1;
-        tds.eq(1).text((trsCount - correctionCount).toString());
+        tds.eq(1).text((trsCount + correctionCount).toString());
 
         tds.eq(2).text(contact.name);
         tds.eq(3).text(contact.surname);
@@ -66,10 +93,12 @@
         });
 
         table.children("tbody").append(newTr);
+        uncheckCommonCheckbox();
     }
 
     function deleteCheckedTrs(table) {
-        var checkboxes = table.find("input:checkbox:checked");
+        var tbody = table.children("tbody").eq(0);
+        var checkboxes = tbody.find("input:checkbox:checked");
 
         $.each(checkboxes, function (index, value) {
             value.closest("tr").remove();
@@ -82,10 +111,52 @@
         var tbody = table.children("tbody").eq(0);
         var hiddenTrs = tbody.find("tr.hidden");
 
-        hiddenTrs.each(function () {
-            $(this).removeClass("hidden");
+        if (hiddenTrs.length > 0) {
+            hiddenTrs.each(function () {
+                $(this).removeClass("hidden");
+            });
+            uncheckCommonCheckbox();
+        }
+    }
+    //альтернативый вариант функции для поиска с учетом регистра
+    function showSearchedTrExactText(searchedText, table) {
+        var hiddenClassName = "hidden";
+
+        table.children("tbody").eq(0).children("tr").map(function () {
+
+            if ($(this).is(":contains(" + searchedText + ")")) {
+                return $(this).removeClass(hiddenClassName);
+            } else {
+                return $(this).addClass(hiddenClassName);
+            }
         });
     }
+
+    function isTextInTr(tr, text) {
+        var searchingArray = [];
+
+        tr.children("td").each(function () {
+            searchingArray.push($(this).text().toLowerCase());
+        });
+
+        return searchingArray.some(function (currentString) {
+            return currentString.includes(text.toLowerCase());
+        });
+    }
+
+    function showSearchedTr(searchedText, table) {
+        var hiddenClassName = "hidden";
+
+        table.children("tbody").eq(0).children("tr").map(function () {
+            if (isTextInTr($(this), searchedText)) {
+                return $(this).removeClass(hiddenClassName);
+            }
+            else {
+                return $(this).addClass(hiddenClassName);
+            }
+        });
+    }
+
 
     (function () {
         var table = $("#contact-table");
@@ -96,31 +167,38 @@
             addContactInTable(table, contact);
         });
 
-        var checkAllButton = $("#check-all-button");
-        checkAllButton.click(function () {
-            setAllCheck(table, true);
-        });
-
-        var uncheckAllButton = $("#uncheck-all-button");
-        uncheckAllButton.click(function () {
-            setAllCheck(table, false);
+        var commonCheckbox = $("#check-uncheck");
+        commonCheckbox.click(function () {
+            if ($(this).prop("checked")) {
+                setAllCheck(table, true);
+            } else {
+                setAllCheck(table, false);
+            }
         });
 
         var deleteAllCheckedButton = $("#delete-all-checked-button");
         deleteAllCheckedButton.click(function () {
             deleteCheckedTrs(table);
             setTrOrder(table);
+            uncheckCommonCheckbox();
         });
 
+
+        var searchInput = $("#search-input");
 
         var inputClearingButton = $("#clear-input-button");
-        var searchInput = $("#search-input");
         inputClearingButton.click(function () {
             clearSearch(searchInput, table);
+            setTrOrder(table);
         });
 
+        var searchButton = $("#search-input-button");
+        searchButton.click(function () {
+            var searchingInputText = $("#search-input").val().toString();
+            //showSearchedTrExactText(searchingInputText, table);
+            showSearchedTr(searchingInputText, table);
 
-
+        });
 
 
     }());
