@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="Reset.css">
     <link rel="stylesheet" type="text/css" href="PhoneBookStyle.css">
     <link rel="stylesheet" type="text/css" href="TableStyle.css">
+    <link rel="stylesheet" type="text/css" href="DeleteMenu.css">
     <link rel="SHORTCUT ICON" href="Images/phoneBook.ico" type="image/x-icon">
 </head>
 <body>
@@ -43,9 +44,9 @@
                     <tr>
                         <th class="column-0"><input type="checkbox" id="check-uncheck"></th>
                         <th class="column-1">№</th>
-                        <th>Фамилия</th>
-                        <th>Имя</th>
-                        <th>Номер</th>
+                        <th class="column-2">Фамилия</th>
+                        <th class="column-3">Имя</th>
+                        <th class="column-4">Номер</th>
                         <th class="column-5"><img src="Images/bin.png" class="bin"></th>
                     </tr>
                 </thead>
@@ -107,21 +108,20 @@
         </div>
 
         <div class="addition-right-area"></div>
-        
-        <div id="screen-lock"></div>
-        <div id="delete-menu"></div>
-
-
     </div>
 
 
+    <div id="screen-lock" class="do-not-show"></div>
 
-
+    <div id="dialog-confirm" class="do-not-show" title="Удаление записи">
+        <p><span class="ui-icon ui-icon-alert"></span>Удалить без возможности восстановления?</p>
+    </div>
 
 
 
     <script src="libs/jquery-3.4.1.js"></script>
     <script src="libs/jquery-ui.js"></script>
     <script src="PhoneBookScript.js"></script>
+
 </body>
 </html>

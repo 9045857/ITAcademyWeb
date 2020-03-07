@@ -1,4 +1,66 @@
 ﻿$(document).ready(function () {
+
+    function getDeletePhrase(deletedContactsCount) {
+        var divisionRemainderFirstNumber = deletedContactsCount % (10);
+        var divisionRemainderSecondNumber = Math.trunc(deletedContactsCount % 100 / 10);
+
+        if (divisionRemainderSecondNumber === 1) {
+            return "контактов";
+
+        } else if (divisionRemainderFirstNumber === 1) {
+            return "контакта";
+
+        } else {
+            return "контактов";
+        }
+    }
+
+    function showDeleteMenu(table, trs, commonCheckbox) {
+        var deletedContactsCount = trs.length;
+
+        if (deletedContactsCount === 0) {
+            return;
+        }
+
+        var newTitle = "Удаление " + deletedContactsCount.toString() + " " + getDeletePhrase(deletedContactsCount);
+
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            height: "auto",
+            width: 300,
+            modal: true,
+            title: newTitle,
+            close: function () {
+                $("#screen-lock").addClass("do-not-show");
+
+                if (trs.hasClass("for-removing")) {
+                    trs.remove();
+                    setTrOrder(table);
+                    colorizeTable(table);
+
+                    //uncheckCommonCheckbox();
+                    setCommonCheckboxChecked(table, commonCheckbox);
+                } else {
+                    trs.removeClass("is-delete-li");
+                }
+            },
+            open: function () {
+                $("#screen-lock").removeClass("do-not-show");
+            },
+            buttons: {
+                "Да": function () {
+                    trs.addClass("for-removing");
+                    $(this).dialog("close");
+                },
+                "Нет": function () {
+                    trs.removeClass("is-delete-li");
+                    $(this).dialog("close");
+                }
+            }
+        });
+    }
+
+
     function Contact(name, surname, phoneNumber) {
         this.name = name;
         this.surname = surname;
@@ -43,36 +105,31 @@
         });
     }
 
-    function uncheckCommonCheckbox() {
-        $("#check-uncheck").prop("checked", false);
+    function setCommonCheckboxChecked(table, commonCheckbox) {
+        commonCheckbox.prop("checked", areAllShownTdChecked(table));
     }
 
-    function checkCommonCheckbox() {
-        $("#check-uncheck").prop("checked", true);
-    }
+    //function checkCommonCheckbox() {
+    //    $("#check-uncheck").prop("checked", true);
+    //}
 
     function areAllShownTdChecked(table) {
         var tbody = table.children("tbody").eq(0);
-        var shownTrCount = tbody.children("tr").not(".hidden").length;
-        var checkedTdCount = tbody.find("input:checkbox:checked").length;
+        var shownTrs = tbody.children("tr").not(".hidden");
+        var shownTrCount = shownTrs.length;
+        var checkedTdCount = shownTrs.find("input:checkbox:checked").length;
 
-        return shownTrCount === checkedTdCount;
+        var emptyTableTrCount = 0;
+        return (shownTrCount === checkedTdCount) && (shownTrCount !== emptyTableTrCount);
     }
 
-    function addContactInTable(table, contact) {
+    function addContactInTable(table, contact, commonCheckbox) {
         var newTr = createNewTr();
         var tds = newTr.children("td");
 
         var checkbox = tds.eq(0).children("input:checkbox").eq(0);
         checkbox.click(function () {
-            if (checkbox.prop("checked")) {
-
-                if (areAllShownTdChecked(table)) {
-                    checkCommonCheckbox();
-                }
-            } else {
-                uncheckCommonCheckbox();
-            }
+            setCommonCheckboxChecked(table, commonCheckbox);
         });
 
         var trsCount = table.children("tbody").eq(0).children("tr").not(".hidden").length;
@@ -87,25 +144,22 @@
         var deleteButton = tds.eq(5).children("button").eq(0);
         deleteButton.click(function () {
             var tr = $(this).closest("tr");
-            tr.remove();
-
-            setTrOrder(table);
+            showDeleteMenu(table, tr, commonCheckbox);
+            //tr.remove();
         });
 
         table.children("tbody").append(newTr);
-        uncheckCommonCheckbox();
+        setCommonCheckboxChecked(table, commonCheckbox);
     }
 
-    function deleteCheckedTrs(table) {
+    function deleteCheckedTrs(table, commonCheckbox) {
         var tbody = table.children("tbody").eq(0);
-        var checkboxes = tbody.find("input:checkbox:checked");
+        var checkedTrs = tbody.find("input:checkbox:checked").closest("tr");
 
-        $.each(checkboxes, function (index, value) {
-            value.closest("tr").remove();
-        });
+        showDeleteMenu(table, checkedTrs, commonCheckbox);
     }
 
-    function clearSearch(input, table) {
+    function clearSearch(input, table, commonCheckbox) {
         input.val("");
 
         var tbody = table.children("tbody").eq(0);
@@ -115,7 +169,7 @@
             hiddenTrs.each(function () {
                 $(this).removeClass("hidden");
             });
-            uncheckCommonCheckbox();
+            setCommonCheckboxChecked(table, commonCheckbox);
         }
     }
     //альтернативый вариант функции для поиска с учетом регистра
@@ -161,9 +215,9 @@
         var colorClass = "grey-fon";
         var hiddenClassName = "hidden";
 
-        var showedTr = table.children("tbody").eq(0).children("tr").filter(function() {
+        var showedTr = table.children("tbody").eq(0).children("tr").filter(function () {
             return !$(this).hasClass(hiddenClassName);
-        }); 
+        });
 
         showedTr.each(function (index) {
             if (index % 2 === 0) {
@@ -175,18 +229,25 @@
         });
     }
 
+    function deleteSymbolsFromText(text, symbols) {
+        for (var i = 0; i < symbols.length; i++) {
+            text = text.replace();
+
+
+        }
+    }
+
+    function parsePhoneNumber(phoneNumberText) {
+
+
+
+
+    }
+
     (function () {
         var table = $("#contact-table");
 
         colorizeTable(table);
-
-        var contactAdditionButton = $("#input-button");
-        contactAdditionButton.click(function () {
-            var contact = createContact();
-            addContactInTable(table, contact);
-
-            colorizeTable(table);
-        });
 
         var commonCheckbox = $("#check-uncheck");
         commonCheckbox.click(function () {
@@ -199,13 +260,19 @@
             colorizeTable(table);
         });
 
-        var deleteAllCheckedButton = $("#delete-all-checked-button");
-        deleteAllCheckedButton.click(function () {
-            deleteCheckedTrs(table);
-            setTrOrder(table);
-            uncheckCommonCheckbox();
+        var contactAdditionButton = $("#input-button");
+        contactAdditionButton.click(function () {
+            var contact = createContact();
+            addContactInTable(table, contact, commonCheckbox);
 
             colorizeTable(table);
+        });
+
+
+
+        var deleteAllCheckedButton = $("#delete-all-checked-button");
+        deleteAllCheckedButton.click(function () {
+            deleteCheckedTrs(table, commonCheckbox);
         });
 
 
@@ -213,9 +280,9 @@
 
         var inputClearingButton = $("#clear-input-button");
         inputClearingButton.click(function () {
-            clearSearch(searchInput, table);
-            setTrOrder(table);
+            clearSearch(searchInput, table, commonCheckbox);
 
+            setTrOrder(table);
             colorizeTable(table);
         });
 
@@ -224,6 +291,7 @@
             var searchingInputText = $("#search-input").val().toString();
             //showSearchedTrExactText(searchingInputText, table);
             showSearchedTr(searchingInputText, table);
+
             setTrOrder(table);
             colorizeTable(table);
         });

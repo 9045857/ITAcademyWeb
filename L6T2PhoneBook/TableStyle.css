@@ -19,6 +19,8 @@
         text-align: center;
         font-size: 16px;
         font-family: Arial;
+
+        table-layout: fixed; 
     }
 
     .phone-table table button {
@@ -50,10 +52,15 @@
     cursor: pointer;
 }
 
-    .phone-table table th, .phone-table table td {
-        vertical-align: middle;
-        height: 40px;
-    }
+        .phone-table table th, .phone-table table td {
+            vertical-align: middle;
+            height: 40px;
+            box-sizing: border-box;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
     .phone-table table th {
         color: #ffffff;
@@ -91,6 +98,22 @@
         width: 40px;
         padding-top: 0;
     }
+
+.phone-table .column-4 {
+        width: 150px;
+        
+    }
+
+
+
+
+    /*.phone-table .column-2, .phone-table .column-3, .phone-table .column-4 {
+        max-width: 200px;
+        
+    }*/
+
+
+
 
 .phone-table {
     background-color: #4f81bd;
