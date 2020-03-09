@@ -5,26 +5,38 @@
     <title>Задача «Перевод температур»</title>
     <link rel="stylesheet" type="text/css" href="Reset.css">
     <link rel="stylesheet" type="text/css" href="Style.css">
-    <link rel="SHORTCUT ICON" href="Images/temp.ico" type="image/x-icon">
+    <link rel="SHORTCUT ICON" href="Images\temp.ico" type="image/x-icon">
 </head>
 <body>
-    <div class="area">
-        <div class="working-area">
-            <h1 class="header">Задача «Перевод температур»</h1>
+    <div class="working-area">
+        <div class="containers-area">
+            <div class="header-container">
+                <h1 class="header">Задача «Перевод температур»</h1>
+            </div>
 
-            <div class="converter-container">
+            <div class="input-container">
+                <h2>Ввод в градусах Цельсия (°C)</h2>
                 <div class="input-area">
-                    <label class="input-temperature"> Введите количество градусов в Цельсия (°C): <input type="text" placeholder="температура в градусах"></label>
-                    <button type="button" class="convert-button"><img src="Images\convertButton2.png"></button>
-                </div>
-
-                <h2>Результат конвертации</h2>
-                <div class="output-area">
                     <div>
-                        <span class="caption">в Кельвинах (K):</span><span class="output-temperature kelvin"></span>
+                        <input type="text" placeholder="значение температуры">
                     </div>
                     <div>
-                        <span class="caption">в Фаренгейтах (°F):</span><span class="output-temperature fahrenheit"></span>
+                        <button type="button" id="convert-button"><span>Конвертировать</span><img src="Images\convertButton2.png"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="output-container">
+                <h2>Результат конвертации</h2>
+                <div class="output-area">
+                    <div class="caption">в Кельвинах (K):</div>
+                    <div class="output-temperature">
+                        <span id="kelvin"></span>
+                    </div>
+
+                    <div class="caption">в Фаренгейтах (°F):</div>
+                    <div class="output-temperature">
+                        <span id="fahrenheit"></span>
                     </div>
                 </div>
             </div>
