@@ -1,54 +1,68 @@
-﻿//4. (?) В функции printArrayLastFiveElements есть обращение к переменной numberArray, которой может не существовать в контексте вызова этой функции
+﻿document.addEventListener("DOMContentLoaded", function () {
+    function sortFromBigToSmall(a, b) {
+        return b - a;
+    }
 
-function sortArray(array) {
-    array.sort(function (a, b) {
-        return a - b;
-    });
-}
+    function getArrayFirstFiveElements(array) {
+        var fromIndex = 0;
+        var beforeIndex = 5;
 
-function arrayFirstFiveElements(array) {
-    var fromIndex = 0;
-    var beforeIndex = 5;
+        return array.slice(fromIndex, beforeIndex);
+    }
 
-    return array.slice(fromIndex, beforeIndex);
-}
+    function getArrayLastFiveElements(array) {
+        var printElementsCount = 5;
+        var fromIndex = array.length - printElementsCount;
 
-function arrayLastFiveElements(array) {
-    var printElementsCount = 5;
-    var fromIndex = array.length - printElementsCount;
+        if (fromIndex <= 0) {
+            return [];
+        } else {
+            return array.slice(fromIndex);
+        }
+    }
 
-    return numberArray.slice(fromIndex);
-}
+    function getArrayEvenNumbersSum(array) {
+        return array.filter(function (item) {
+            return item % 2 === 0;
+        }).reduce(function (sum, current) {
+            return sum + current;
+        }, 0);
+    }
 
-function arrayEvenNumbersSum(array) {
-    return array.filter(function (item) {
-        return item % 2 === 0;
-    }).reduce(function (sum, current) { return sum + current }, 0);
-}
+    function isEven(value) {
+        return value % 2 === 0;
+    }
 
-function getEvenNumbersSquareSumArray(array) {
-    var exponent = 2;
+    function squaring(value) {
+        var exponent = 2;
+        return Math.pow(value, exponent);
+    }
 
-    return array.filter(function (item) {
-        return item % 2 === 0;
-    }).reduce(function (sum, current) { return sum + Math.pow(current, exponent) }, 0);
-}
+    function getEvenNumbersSquareArray(array) {
+        return array.filter(isEven).map(squaring);
+    }
 
-var numberArray = [2, 4, 6, 5, 1, 3, 7, 0, 8, 10];
-console.log("Массив: " + numberArray);
+    function getFrom1To100Array() {
+        var elementsCount = 100;
+        var array = [];
 
-sortArray(numberArray);
-console.log("Отсортированный массив: " + numberArray);
+        for (var i = 1; i <= elementsCount; i++) {
+            array.push(i);
+        }
+        return array;
+    }
 
-console.log("Первые пять элементов массива: " + arrayFirstFiveElements(numberArray));
-console.log("Последние пять элементов массива: " + arrayLastFiveElements(numberArray));
-console.log("Сумма четных чисел массива: " + arrayEvenNumbersSum(numberArray));
+    (function () {
+        var numbersArray = [2, 4, 6, 5, 1, 3, 7, 0, 8, 10];
+        console.log("Массив: " + numbersArray);
 
-var elementsCount = 100;
-var array = [];
+        numbersArray.sort(sortFromBigToSmall);
+        console.log("Отсортированный массив: " + numbersArray);
 
-for (var i = 1; i <= elementsCount; i++) {
-    array.push(i);
-}
+        console.log("Первые пять элементов массива: " + getArrayFirstFiveElements(numbersArray));
+        console.log("Последние пять элементов массива: " + getArrayLastFiveElements(numbersArray));
+        console.log("Сумма четных чисел массива: " + getArrayEvenNumbersSum(numbersArray));
 
-console.log("Сумма квадратов четных чисел от 1 до 100: " + getEvenNumbersSquareSumArray(array));
+        console.log("Сумма квадратов четных чисел от 1 до 100: " + getEvenNumbersSquareArray(getFrom1To100Array()));
+    }());
+});
