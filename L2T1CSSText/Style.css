@@ -9,14 +9,9 @@ body {
     color: #676565;
 }
 
-.working-area, .info-container {
-    max-width: 820px;
-}
-
 .working-area {
-    padding-left: 11px;
-    padding-top: 6px;
-    margin-right: 11px;
+    padding: 6px 11px 0 11px;
+    max-width: 831px;
 }
 
 .header {
@@ -33,6 +28,7 @@ body {
 
 .info-container {
     margin-top: 18px;
+    width: 100%;
 }
 
     .info-container .small-header {
