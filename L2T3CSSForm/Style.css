@@ -49,8 +49,7 @@ body {
 
 .input-text.comment-area {
     margin-bottom: 17px;
-    max-width: 100%;
-    min-width: 100%;
+    resize: vertical;
 }
 
 .user-info-form label {
