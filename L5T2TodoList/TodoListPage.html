@@ -8,33 +8,20 @@
     <link rel="SHORTCUT ICON" href="Images/check.ico" type="image/x-icon">
 </head>
 <body>
-    <div class="area">
-        <div class="working-area">
-            <div class="header-container">
-                <img src="Images/check.png" class="image">
-                <h1 class="header">Задача «Todo List»</h1>
-            </div>
+    <div class="working-area">
+        <div class="header-container">
+            <img src="Images/check.png" class="image">
+            <h1 class="header">Задача «Todo List»</h1>
+        </div>
 
-            <div class="input-task">
-                <input type="text" id="input-task-text" placeholder="введите задачу">
-                <button type="button" id="input-task-button">Добавить в список</button>
-            </div>
+        <div class="input-task">
+            <input type="text" id="input-task-text" placeholder="введите задачу">
+            <button type="button" id="input-task-button">Добавить в список</button>
+        </div>
 
-            <div class="tasks-list">
-                <h2>ToDo List</h2>
-                <ul id="tasks-list">
-                    <li>
-                        <button type="button" title="Отметка о выполнении задачи"class="check-box unchecked"><img src="Images/check-box.png"></button>
-                        <input type="text" class="task" value="" >
-
-                        <button type="button" title="Сохранить изменения" class="save-correction task-button"><img src="Images/save.png"></button>
-                        <button type="button" title="Не сохранять изменения" class="not-save-correction task-button"><img src="Images/notSave.png"></button>
-
-                        <button type="button" title="Редактировать задачу" class="correct task-button"><img src="Images/pencil.png"></button>
-                        <button type="button" title="Удалить задачу" class="delete task-button"><img src="Images/delete.png"></button>
-                    </li>
-                </ul>
-            </div>
+        <div class="tasks-list">
+            <h2>ToDo List</h2>
+            <ul id="tasks-list"></ul>
         </div>
     </div>
     <script src="TodoListScript.js"></script>
