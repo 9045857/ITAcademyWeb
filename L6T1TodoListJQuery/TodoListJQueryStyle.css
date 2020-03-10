@@ -6,19 +6,27 @@
     font-size: 20px;
 }
 
-.area {
-    max-width: 800px;
+.central-part {
+    width: 840px;
     margin: 0 auto;
+    height: 100%;
+    z-index: -2;
 }
 
-    .area div.working-area {
-        height: 100%;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        width: 800px;
-        position: fixed;
-        background-color: #fff;
-        padding: 20px;
-    }
+.white-area {
+    width: 840px;
+    background-color: #fff;
+    height: 100%;
+    position: fixed;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+.working-area {
+    margin: 0 auto;
+    width: 800px;
+    padding: 20px;
+}
 
 .header-container {
     height: 40px;
@@ -107,11 +115,6 @@
             background: linear-gradient(#ffc924,#fff614);
         }
 
-.tasks-list ul {
-    overflow-y: auto;
-    max-height: 500px;
-}
-
 .tasks-list h2 {
     font-size: 20px;
     font-weight: bold;
@@ -132,12 +135,11 @@
         background-color: #f8f8f8;
     }
 
-.check-box, .task, .save-correction, .correct, .delete {
+.check-box, .task, .save-correction, .not-save-correction, .correct, .delete {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
-
 
 .check-box, .correct, .delete {
     box-sizing: border-box;
@@ -157,7 +159,7 @@
     border-radius: 13px;
 }
 
-.save-correction {
+.save-correction, .not-save-correction {
     background: none;
     box-sizing: border-box;
     width: 26px;
@@ -170,7 +172,11 @@
     margin-left: 626px;
 }
 
-    .save-correction img {
+.save-correction {
+    margin-left: 600px;
+}
+
+    .save-correction img, .not-save-correction img {
         width: 24px;
         height: 24px;
         border-radius: 5px;
@@ -186,7 +192,7 @@
 }
 
 .check-box {
-    box-shadow: 0 0 0 2px rgba(138,148,23,1) /*rgba(44,160,44,1)*/;
+    box-shadow: 0 0 0 2px rgba(138,148,23,1);
     background-color: #fff;
     width: 22px;
     height: 22px;
@@ -206,6 +212,10 @@
         display: none;
     }
 
+.check-box:not(.unchecked)+input {
+    text-decoration: line-through;
+}
+
 .task {
     width: 620px;
     box-sizing: border-box;
@@ -214,7 +224,7 @@
     border: none;
     outline: none;
     margin: 0 5px 0 35px;
-    padding: 0 40px 0 10px;
+    padding: 0 65px 0 10px;
     font-size: 16px;
     background-color: #ffffff;
     box-shadow: 0 0 5px 2px rgba(100,100,100,0.2);
@@ -225,7 +235,7 @@
         box-shadow: none;
     }
 
-        .task:disabled + .save-correction {
+        .task:disabled + .save-correction, .task:disabled ~ .not-save-correction {
             display: none;
         }
 
@@ -250,7 +260,7 @@
         border-bottom: 1px solid #ffad3c;
         font-weight: bold;
         color: #ff0907;
-        box-shadow: 0 13px 15px -10px rgba(0, 0, 0, 0.2); /*gold;*/
+        box-shadow: 0 13px 15px -10px rgba(0, 0, 0, 0.2);
     }
 
 .delete-menu-button {
@@ -301,9 +311,6 @@
 }
 
 .input-task input.try-input-empty {
-    /*box-shadow: 0 0 3px 2px rgba(255, 0, 0, 0.3);*/
-    /*box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);*/
-    /*background-color: #f9eceb;*/
     background-color: #fffbd2;
     box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.3);
 }

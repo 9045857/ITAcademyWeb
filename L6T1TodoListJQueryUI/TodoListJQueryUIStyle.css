@@ -6,12 +6,12 @@
     font-size: 20px;
 }
 
-.area {
+.white-area {
     max-width: 800px;
     margin: 0 auto;
 }
 
-    .area div.working-area {
+    .white-area div.working-area {
         height: 100%;
         box-shadow: 0 0 10px rgba(0,0,0,0.5);
         width: 800px;

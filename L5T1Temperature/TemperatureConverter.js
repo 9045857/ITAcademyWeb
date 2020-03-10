@@ -28,7 +28,7 @@
     (function () {
         var kelvinSpan = document.querySelector("#kelvin");
         var fahrenheitSpan = document.querySelector("#fahrenheit");
-        var inputCelsius = document.querySelector(".input-area input");
+        var inputCelsius = document.querySelector(".input-white-area input");
 
         var button = document.querySelector("#convert-button");
         button.addEventListener("click", function () {

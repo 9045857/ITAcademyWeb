@@ -12,7 +12,7 @@
     box-shadow: -10px 0 20px 5px rgba(0, 0, 0, 0.4);
 }
 
-/*.header-area:last-child {
+/*.header-white-area:last-child {
         content: "";
         display: block;
         clear: both;
@@ -173,7 +173,7 @@
     clear: both;*/
 }
 
-/*div.search-area input*/
+/*div.search-white-area input*/
 .search-input {
     height: 36px;
     /*width: 400px;*/
@@ -237,7 +237,7 @@ input.search-input, .search-clear-buttons {
     }
 
 
-/*.search-area:last-child {
+/*.search-white-area:last-child {
         display: inline-block;
         content: "";
         clear: both;

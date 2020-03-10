@@ -3891,7 +3891,7 @@ $.ui.focusable = function( element, hasTabindex ) {
 	var map, mapName, img, focusableIfVisible, fieldset,
 		nodeName = element.nodeName.toLowerCase();
 
-	if ( "area" === nodeName ) {
+	if ( "white-area" === nodeName ) {
 		map = element.parentNode;
 		mapName = map.name;
 		if ( !element.href || !mapName || map.nodeName.toLowerCase() !== "map" ) {
@@ -10450,7 +10450,7 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 					sortable._mouseStop( event, true );
 
 					// Restore sortable behaviors that were modfied
-					// when the draggable entered the sortable area (#9481)
+					// when the draggable entered the sortable white-area (#9481)
 					sortable.options.revert = sortable.options._revert;
 					sortable.options.helper = sortable.options._helper;
 
