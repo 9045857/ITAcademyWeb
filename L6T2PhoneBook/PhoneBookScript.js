@@ -311,6 +311,11 @@
 
             addContactInTable(table, contact, commonCheckbox);
             colorizeTable(table);
+
+             nameInput.val("");
+             surnameInput.val("");
+             phoneNumberInput.val("+7 ");
+
             return true;
         });
 
