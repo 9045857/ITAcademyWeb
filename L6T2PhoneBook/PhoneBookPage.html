@@ -10,6 +10,7 @@
     <link rel="SHORTCUT ICON" href="Images/phoneBook.ico" type="image/x-icon">
 </head>
 <body>
+    <div class="header-fixed-area"> </div>
     <div class="header-area">
         <div class="header-logo">
             <img src="Images/phoneBook.png" class="phone-image">
@@ -17,32 +18,35 @@
         </div>
         <div class="input-phone-data-area">
             <h2>Ввод данных</h2>
-            <label class="input-name"><span>Фамилия</span> <input type="text" id="input-name"></label>
-            <label class="input-surname"><span>Имя</span><input type="text" id="input-surname"></label>
-            <label class="input-phone"><span>Номер телефона</span> <input type="text" id="input-phone"></label>
+            <p id="warningSurname" class="warning"><span>Введите фамилию.</span></p>
+            <label class="input-surname"><span>Фамилия</span> <input type="text" id="input-surname"></label>
+            <p id="warningName" class="warning"><span>Введите имя.</span></p>
+            <label class="input-name"><span>Имя</span><input type="text" id="input-name"></label>
+            <p id="warningPhone" class="warning"><span>Введите телефон.</span></p>
+            <label class="input-phone"><span>Номер телефона</span> <input type="text" id="input-phone" value="+7 "></label>
             <button type="button" id="input-button"><img src="Images/add-user.png"><span>Добавить контакт</span></button>
         </div>
     </div>
 
-
+    <div class="white-middle-area">
+    </div>
 
     <div class="middle-container">
         <div class="upper-part-middle">
             <div class="check-uncheck-delete-buttons-block">
-                <button id="delete-all-checked-button" class="check-uncheck-delete-buttons"><img src="Images/deleteChecked.png"></button>
+                <button id="delete-all-checked-button" class="check-uncheck-delete-buttons" title="Удалить все выделенное."><img src="Images/deleteChecked.png"></button>
             </div>
 
-            <button id="search-input-button" class="search-clear-buttons"><img src="Images/search.png"></button>
-            <button id="clear-input-button" class="search-clear-buttons"><img src="Images/clear.png"></button>
-            <input type="text" id="search-input" class="search-input">
-
+            <button id="search-input-button" class="search-clear-buttons" title="Найти."><img src="Images/search.png"></button>
+            <button id="clear-input-button" class="search-clear-buttons" title="Очистить поиск."><img src="Images/clear.png"></button>
+            <input type="text" id="search-input" class="search-input" title="Ввести для поиска.">
         </div>
 
         <div class="phone-table">
             <table id="contact-table">
                 <thead>
                     <tr>
-                        <th class="column-0"><input type="checkbox" id="check-uncheck"></th>
+                        <th class="column-0"><input type="checkbox" id="check-uncheck" title="Отметить/снять все."></th>
                         <th class="column-1">№</th>
                         <th class="column-2">Фамилия</th>
                         <th class="column-3">Имя</th>
@@ -50,66 +54,10 @@
                         <th class="column-5"><img src="Images/bin.png" class="bin"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="hidden grey-fon">
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>Для скрытия</td>
-                        <td>ДлиноеИмя</td>
-                        <td>+7 913 925 58 57</td>
-                        <td><button type="button"></button></td>
-
-                    </tr>
-                    <tr class="hidden">
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>второй для скрытия</td>
-                        <td>ДлиноеИмя</td>
-                        <td>+7 913 925 58 57</td>
-                        <td><button type="button"></button></td>
-
-                    </tr>
-                    <tr class="grey-fon">
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>ДлинаяФамилия</td>
-                        <td>ДлиноеИмя</td>
-                        <td>+7 913 925 58 57</td>
-                        <td><button type="button"></button></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>ДлинаяФамилия</td>
-                        <td>ДлиноеИмя</td>
-                        <td>+7 913 925 58 57</td>
-                        <td><button type="button"></button></td>
-
-                    </tr>
-                    <tr class="grey-fon">
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>ДлинаяФамилия</td>
-                        <td>ДлиноеИмя</td>
-                        <td>+7 913 925 58 57</td>
-                        <td><button type="button"></button></td>
-
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>ДлинаяФамилия</td>
-                        <td>ДлиноеИмя</td>
-                        <td>+7 913 925 58 57</td>
-                        <td><button type="button"></button></td>
-                    </tr>
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
-
-        <div class="addition-right-area"></div>
     </div>
-
 
     <div id="screen-lock" class="do-not-show"></div>
 
@@ -117,11 +65,8 @@
         <p><span class="ui-icon ui-icon-alert"></span>Удалить без возможности восстановления?</p>
     </div>
 
-
-
     <script src="libs/jquery-3.4.1.js"></script>
     <script src="libs/jquery-ui.js"></script>
     <script src="PhoneBookScript.js"></script>
-
 </body>
 </html>

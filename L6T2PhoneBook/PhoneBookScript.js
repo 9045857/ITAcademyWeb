@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
     function getDeletePhrase(deletedContactsCount) {
         var divisionRemainderFirstNumber = deletedContactsCount % (10);
         var divisionRemainderSecondNumber = Math.trunc(deletedContactsCount % 100 / 10);
@@ -38,7 +37,6 @@
                     setTrOrder(table);
                     colorizeTable(table);
 
-                    //uncheckCommonCheckbox();
                     setCommonCheckboxChecked(table, commonCheckbox);
                 } else {
                     trs.removeClass("is-delete-li");
@@ -60,19 +58,10 @@
         });
     }
 
-
     function Contact(name, surname, phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
-    }
-
-    function createContact() {
-        var name = $("#input-name").val();
-        var surname = $("#input-surname").val();
-        var phoneNumber = $("#input-phone").val();
-
-        return new Contact(name, surname, phoneNumber);
     }
 
     function createNewTr() {
@@ -109,10 +98,6 @@
         commonCheckbox.prop("checked", areAllShownTdChecked(table));
     }
 
-    //function checkCommonCheckbox() {
-    //    $("#check-uncheck").prop("checked", true);
-    //}
-
     function areAllShownTdChecked(table) {
         var tbody = table.children("tbody").eq(0);
         var shownTrs = tbody.children("tr").not(".hidden");
@@ -145,7 +130,6 @@
         deleteButton.click(function () {
             var tr = $(this).closest("tr");
             showDeleteMenu(table, tr, commonCheckbox);
-            //tr.remove();
         });
 
         table.children("tbody").append(newTr);
@@ -171,19 +155,6 @@
             });
             setCommonCheckboxChecked(table, commonCheckbox);
         }
-    }
-    //альтернативый вариант функции для поиска с учетом регистра
-    function showSearchedTrExactText(searchedText, table) {
-        var hiddenClassName = "hidden";
-
-        table.children("tbody").eq(0).children("tr").map(function () {
-
-            if ($(this).is(":contains(" + searchedText + ")")) {
-                return $(this).removeClass(hiddenClassName);
-            } else {
-                return $(this).addClass(hiddenClassName);
-            }
-        });
     }
 
     function isTextInTr(tr, text) {
@@ -229,19 +200,55 @@
         });
     }
 
-    function deleteSymbolsFromText(text, symbols) {
-        for (var i = 0; i < symbols.length; i++) {
-            text = text.replace();
-
-
+    function addSubStr(pos, str, subStr) {
+        if (pos >= str.length) {
+            return str + subStr;
         }
+
+        var beforeSubStr = str.substring(0, pos);
+        var afterSubStr = str.substring(pos, str.length);
+
+        return beforeSubStr + subStr + afterSubStr;
     }
 
-    function parsePhoneNumber(phoneNumberText) {
+    function normalizePhoneNumber(phoneNumberText) {
+        var cleanPhoneNumber = phoneNumberText.replace(/\s+/g, "");
 
+        var maxPhoneNumberLength = 11;
+        if (cleanPhoneNumber.length > maxPhoneNumberLength) {
+            cleanPhoneNumber = cleanPhoneNumber.substring(0, maxPhoneNumberLength);
+        }
 
+        var spacesPosition = [2, 6, 10, 13];
+        for (var i = 0; i < spacesPosition.length; i++) {
+            if (cleanPhoneNumber.length < spacesPosition[i]) {
+                break;
+            }
 
+            cleanPhoneNumber = addSubStr(spacesPosition[i], cleanPhoneNumber, " ");
+        }
+        return cleanPhoneNumber;
+    }
 
+    function isPhoneNumberCorrect(phoneNumber) {
+        var rightPhoneNumberLength = 16;
+        return phoneNumber.length === rightPhoneNumberLength;
+    }
+
+    function isPhoneNumberInList(phoneNumber, table) {
+        var phonesTds = table.children("tbody").children("tr").map(function () {
+            var phoneTdIndex = 4;
+            return $(this).children("td").eq(phoneTdIndex).text();
+        }).get();
+
+        return phonesTds.indexOf(phoneNumber) !== -1;
+    }
+
+    function showWarning(element) {
+        element.css("display", "block");
+        setTimeout(function () {
+            element.css("display", "none");
+        }, 1000);
     }
 
     (function () {
@@ -251,6 +258,7 @@
 
         var commonCheckbox = $("#check-uncheck");
         commonCheckbox.click(function () {
+            console.log("kj");
             if ($(this).prop("checked")) {
                 setAllCheck(table, true);
             } else {
@@ -260,21 +268,56 @@
             colorizeTable(table);
         });
 
+        var nameInput = $("#input-name");
+        var surnameInput = $("#input-surname");
+        var phoneNumberInput = $("#input-phone");
+
+        var warningSurname = $("#warningSurname");
+        var warningName = $("#warningName");
+        var warningPhone = $("#warningPhone");
+        var warningPhoneSpan = $("#warningPhone").children("span");
+
         var contactAdditionButton = $("#input-button");
         contactAdditionButton.click(function () {
-            var contact = createContact();
+            var surname = surnameInput.val();
+            if (surname.length === 0) {
+                showWarning(warningSurname);
+                return false;
+            }
+
+            var name = nameInput.val();
+            if (name.length === 0) {
+                showWarning(warningName);
+                return false;
+            }
+
+            var warningEmptyPhoneInput = "Введите телефон.";
+            var warningContactInPhoneList = "Этот телефон уже в базе.";
+
+            var phoneNumber = phoneNumberInput.val();
+            if (!isPhoneNumberCorrect(phoneNumber)) {
+                warningPhoneSpan.text(warningEmptyPhoneInput);
+                showWarning(warningPhone);
+                return false;
+            }
+
+            if (isPhoneNumberInList(phoneNumber, table)) {
+                warningPhoneSpan.text(warningContactInPhoneList);
+                showWarning(warningPhone);
+                return false;
+            }
+
+            var contact = new Contact(name, surname, phoneNumber);
+
             addContactInTable(table, contact, commonCheckbox);
-
             colorizeTable(table);
+            return true;
         });
-
-
 
         var deleteAllCheckedButton = $("#delete-all-checked-button");
         deleteAllCheckedButton.click(function () {
             deleteCheckedTrs(table, commonCheckbox);
         });
-
 
         var searchInput = $("#search-input");
 
@@ -289,15 +332,46 @@
         var searchButton = $("#search-input-button");
         searchButton.click(function () {
             var searchingInputText = $("#search-input").val().toString();
-            //showSearchedTrExactText(searchingInputText, table);
             showSearchedTr(searchingInputText, table);
 
             setTrOrder(table);
             colorizeTable(table);
         });
 
+        phoneNumberInput.click(function () {
 
+            var fixedNumberPart = "+7 ";
+            var positionNextNumber = fixedNumberPart.length;// + 1;
+
+            if (this.selectionStart < positionNextNumber) {
+                this.setSelectionRange(positionNextNumber, positionNextNumber);
+            }
+        });
+
+        phoneNumberInput.keydown(function (e) {
+            if (e.which !== 8 && e.which !== 46 &&
+                e.which !== 37 && e.which !== 39 &&
+                (e.which < 48 || e.which > 57) &&
+                (e.which < 96 || e.which > 105)) {
+                return false;
+            }
+
+            var fixedNumberPart = "+7 ";
+            var positionNextNumber = fixedNumberPart.length + 1;
+
+            if ((e.which === 37 || e.which === 39 || e.which === 8) && (this.selectionStart < positionNextNumber)) {
+                if (this.value.length <= positionNextNumber) {
+                    $(this).val(fixedNumberPart + " ");
+                }
+                this.setSelectionRange(positionNextNumber, positionNextNumber);
+            }
+
+            if ((e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105)) {
+                var inputText = $(this).val();
+                inputText = normalizePhoneNumber(inputText);
+                $(this).val(inputText);
+            }
+            return true;
+        });
     }());
-
-
 });
