@@ -71,7 +71,7 @@
             "<td></td>" +
             "<td></td>" +
             "<td></td>" +
-            "<td><button type='button'></button></td>" +
+            "<td><button type='button' title='Удалить контакт'></button></td>" +
             "</tr>)");
     }
 
