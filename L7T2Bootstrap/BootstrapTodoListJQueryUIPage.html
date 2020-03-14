@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Задача «Bootstrap»</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="BootstrapReset.css">
+    <link rel="stylesheet" type="text/css" href="BootstrapTodoListJQueryUIStyle.css">
+    <link rel="stylesheet" type="text/css" href="BootstrapDeleteMenu.css">
+    <link rel="SHORTCUT ICON" href="Images/check.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="white-area">
+        <div class="working-area">
+            <div class="header-container">
+                <img src="Images/check.png" class="image">
+                <h1 class="header">Задача «Bootstrap» <br><span>на примере «TodoList jQuery + jQuery UI»</span></h1>
+            </div>
+
+            <div class="input-task">
+                <input type="text" id="input-task-text" placeholder="новая задача">
+                <button type="button" id="input-task-button">Добавить в список</button>
+            </div>
+            <div class="tasks-list">
+                <h2>ToDo List</h2>
+                <ul id="tasks-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-lock" class="do-not-show"></div>
+
+    <div id="dialog-confirm" class="do-not-show" title="Удаление записи">
+        <p><span class="ui-icon ui-icon-alert"></span>Удалить без возможности восстановления?</p>
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+
+    <script src="libs/jquery-ui.js"></script><!--Как подключить модуль?-->
+
+
+
+
+    <script src="BootstrapTodoListJQueryUIScript.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
