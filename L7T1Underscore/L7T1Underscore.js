@@ -18,7 +18,6 @@
     }
 
     function setFullName(people) {
-
         return _.each(people, function(person) {
             person.fullName = person.lastName + " " + person.name;
         });
