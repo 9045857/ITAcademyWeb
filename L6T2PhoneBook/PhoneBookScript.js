@@ -235,6 +235,11 @@
         return phoneNumber.length === rightPhoneNumberLength;
     }
 
+    function isEnteredAnyNumbers(phoneNumber) {
+        var defaultNumbersCount = 3;
+        return phoneNumber.length > defaultNumbersCount;
+    }
+
     function isPhoneNumberInList(phoneNumber, table) {
         var phonesTds = table.children("tbody").children("tr").map(function () {
             var phoneTdIndex = 4;
@@ -293,10 +298,16 @@
 
             var warningEmptyPhoneInput = "Введите телефон.";
             var warningContactInPhoneList = "Этот телефон уже в базе.";
+            var warningFewNumbers = "Введите все цифры.";
 
             var phoneNumber = phoneNumberInput.val();
-            if (!isPhoneNumberCorrect(phoneNumber)) {
+
+            if (!isEnteredAnyNumbers(phoneNumber)) {
                 warningPhoneSpan.text(warningEmptyPhoneInput);
+                showWarning(warningPhone);
+                return false;
+            } else if (isEnteredAnyNumbers(phoneNumber) && !isPhoneNumberCorrect(phoneNumber)) {
+                warningPhoneSpan.text(warningFewNumbers);
                 showWarning(warningPhone);
                 return false;
             }
@@ -312,9 +323,9 @@
             addContactInTable(table, contact, commonCheckbox);
             colorizeTable(table);
 
-             nameInput.val("");
-             surnameInput.val("");
-             phoneNumberInput.val("+7 ");
+            nameInput.val("");
+            surnameInput.val("");
+            phoneNumberInput.val("+7 ");
 
             return true;
         });
