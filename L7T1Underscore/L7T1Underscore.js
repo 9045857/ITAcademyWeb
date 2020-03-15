@@ -39,7 +39,7 @@
         console.log("список людей с возрастом от 20 до 30 включительно, по возрастанию возраста:");
         console.log(getPeopleFrom20To30Age(people));
 
-        console.log("Средний возраст людей: ");
+        console.log("Список объектов с добавленным полным именем: ");
         console.log(setFullName(people));
     }());
 });
