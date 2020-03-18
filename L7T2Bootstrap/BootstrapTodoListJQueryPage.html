@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Задача «Bootstrap»</title>
+    <link rel="stylesheet" type="text/css" href="BootstrapReset.css">
+    <link rel="stylesheet" type="text/css" href="BootstrapTodoListJQueryStyle.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="SHORTCUT ICON" href="Images/check.ico" type="image/x-icon">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
+</head>
+<body>
+    <div class="modal fade" id="deleteMenu" tabindex="-1" role="dialog" aria-labelledby="deleteMenu" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle"><i class="fas fa-trash-alt text-danger"></i> Удаление записи</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Удалить без возможности восстановления?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-danger">Удалить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="total-background"></div>
+    <div class="container-md">
+        <div class="media header-container">
+            <img src="Images/check.png" class="mr-3 logo-check-image">
+            <div class="media-body">
+                <h2 class="mt-0">Задача «Bootstrap»</h2>
+                на примере «TodoList jQuery»
+            </div>
+        </div>
+
+        <div>
+            <div class="input-container input-group mb-3">
+                <input type="text" id="input-new-task" class="form-control" placeholder="Новая задача" aria-label="Новая задача" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="button" id="input-task-button">Добавить в список</button><!--btn-outline-secondary-->
+                </div>
+            </div>
+            <span id="warning-empty-task" class="text-danger hidden">
+                Нельзя добавлять пустую задачу! Введите текст в поле ввода.
+            </span>
+        </div>
+
+        <div class=" tasks-list">
+            <h5>ToDo List</h5>
+            <ul id="tasks-list" class="w-auto list-group-flush "></ul>
+        </div>
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="BootstrapTodoListJQueryScript.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
