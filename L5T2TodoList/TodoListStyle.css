@@ -214,9 +214,13 @@
         box-shadow: none;
     }
 
-        .task:disabled + .save-correction, .task:disabled ~ .not-save-correction {
-            display: none;
-        }
+    .task.checked {
+        text-decoration: line-through;
+    }
+
+    .task:disabled + .save-correction, .task:disabled ~ .not-save-correction {
+        display: none;
+    }
 
 .delete-menu {
     background-color: #fff886;

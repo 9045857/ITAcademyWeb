@@ -7,7 +7,7 @@
         var newTaskText = newTask.value;
 
         if (newTaskText === "") {
-            newTask.setAttribute("class", "try-input-empty");
+            newTask.classList.add("try-input-empty");
             return;
         }
 
@@ -29,11 +29,15 @@
         var liButtons = li.getElementsByTagName("button");
 
         var checkButton = liButtons[0];
-        checkButton.isChecked = false;
+        var saveButton = liButtons[1];
+        var notSaveButton = liButtons[2];
+        var correctButton = liButtons[3];
+        var preDeleteButton = liButtons[4];
 
         var checkImg = checkButton.getElementsByTagName("img")[0];
         checkImg.style.display = "none";
 
+        checkButton.isChecked = false;
         checkButton.addEventListener("click", function () {
             checkButton.isChecked = !checkButton.isChecked;
 
@@ -42,28 +46,28 @@
             } else {
                 checkImg.style.display = "none";
             }
+
+            var checkedClass = "checked";
+            input.classList.toggle(checkedClass);
         });
 
         var taskTextBeforeCorrection = newTaskText;
 
-        var correctButton = liButtons[3];
         correctButton.addEventListener("click", function () {
             input.disabled = false;
             taskTextBeforeCorrection = input.value;
+            input.focus();
         });
 
-        var saveButton = liButtons[1];
         saveButton.addEventListener("click", function () {
             input.disabled = true;
         });
 
-        var notSaveButton = liButtons[2];
         notSaveButton.addEventListener("click", function () {
             input.value = taskTextBeforeCorrection;
             input.disabled = true;
         });
 
-        var preDeleteButton = liButtons[4];
         preDeleteButton.isPressed = false;
         preDeleteButton.addEventListener("click", function () {
             if (preDeleteButton.isPressed) {
@@ -75,7 +79,7 @@
             li.style.backgroundColor = "#fffabe";
 
             var deleteMenuHtml = document.createElement("div");
-            deleteMenuHtml.setAttribute("class", "delete-menu");
+            deleteMenuHtml.classList.add("delete-menu");
             deleteMenuHtml.innerHTML = "<p>Вы уверены, что хотите удалить элемент?</p>" +
                 "<button type='button' class='delete-menu-button yes-delete'>Да</button>" +
                 "<button type='button' class='delete-menu-button no-delete'>Нет</button>";
@@ -104,8 +108,8 @@
     });
 
     newTask.addEventListener("focus", function () {
-        if (newTask.getAttribute("class") === "try-input-empty") {
-            newTask.removeAttribute("class");
+        if (newTask.classList.contains("try-input-empty")) {
+            newTask.classList.remove("class");
         }
     });
 });
