@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Задача «Перевод температур»</title>
     <link rel="stylesheet" type="text/css" href="Reset.css">
-    <link rel="stylesheet" type="text/css" href="Style.css">
-    <link rel="SHORTCUT ICON" href="Images/temp.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="TemperatureConverter.css">
+    <link rel="SHORTCUT ICON" href="Images/convert.ico" type="image/x-icon">
 </head>
 <body>
     <div class="working-area">
@@ -17,10 +17,11 @@
             <div class="input-container">
                 <h2>Ввод в градусах Цельсия (°C)</h2>
                 <div class="input-area">
-                    <div>
-                        <input type="text" placeholder="значение температуры">
+                    <div class="input">
+                        <input type="text" id="input-celsius" placeholder="значение температуры">
                     </div>
-                    <div>
+                    <p id="warning-massage">введите температуру</p>
+                    <div class="button">
                         <button type="button" id="convert-button"><span>Конвертировать</span><img src="Images/convertButton2.png"></button>
                     </div>
                 </div>

@@ -66,9 +66,24 @@ body {
     display: flex;
 }
 
-.input-area div {
-    margin: 40px 0 20px 0;
+.input-area .input {
+    margin: 43px 0 3px 0;
 }
+
+.input-area .button {
+    margin: 30px 0 9px 0;
+}
+
+.input-area p {
+    text-align: left;
+    font-size: 14px;
+    padding-left: 10px;
+    color: #ff0000;
+}
+
+    .input-area p:not(.try-not-correct-input) {
+        visibility: hidden;
+    }
 
 .containers-area h2 {
     font-weight: bold;
@@ -87,6 +102,12 @@ body {
     width: 100%;
     font-size: 16px;
 }
+
+    .input-area input.try-not-correct-input {
+        box-shadow: 0 0 3px 0 #ff0000;
+    }
+
+
 
 .input-container input:hover, .input-container input:focus {
     box-shadow: 0 0 2px #0f54e1;
