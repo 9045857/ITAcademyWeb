@@ -14,10 +14,10 @@
             "</div>" +
             "<input type='text' class='form-control' disabled='disabled' aria-label='Text input with checkbox'>" +
             "<div class='input-group-append'>" +
-            "<button  type='button' class='btn btn-outline-secondary btn-light display-none' data-toggle='tooltip' title='Отменить редактирование'><i class='fas fa-remove-format'></i></button>" +
-            "<button  type='button' class='btn btn-outline-secondary btn-light display-none' data-toggle='tooltip' title='Сохранить редактирование'><i class='fas fa-save'></i></button>" +
-            "<button  type='button' class='btn btn-outline-secondary btn-light' data-toggle='tooltip'  title='Редактирование'><i class='far fa-edit'></i></button>" +
-            "<button  type='button' class='btn btn-outline-secondary btn-light' data-toggle='tooltip'  title='Удалить'><i class='fas fa-trash-alt'></i></button>" +
+            "<button class='btn btn-outline-secondary btn-light display-none' type='button'><span class='mdi mdi-pencil-off'></span></button>" +
+            "<button class='btn btn-outline-secondary btn-light display-none' type='button'><span class='mdi mdi-content-save-edit-outline'></span></button>" +
+            "<button class='btn btn-outline-secondary btn-light' type='button'><span class='mdi mdi-pencil'></span></button>" +
+            "<button class='btn btn-outline-secondary btn-light' type='button'><span class='mdi mdi-delete-forever'></span></button>" +
             "</div>" +
             "</div>" +
             "</li>"
@@ -148,8 +148,6 @@
         });
 
         newTaskInput.val("");
-
-        $("[data-toggle='tooltip']").tooltip();
     });
 
     newTaskInput.focus(function () {
