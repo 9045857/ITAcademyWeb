@@ -109,7 +109,7 @@
 
     newTask.addEventListener("focus", function () {
         if (newTask.classList.contains("try-input-empty")) {
-            newTask.classList.remove("class");
+            newTask.classList.remove("try-input-empty");
         }
     });
 });
