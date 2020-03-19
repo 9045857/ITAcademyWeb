@@ -94,6 +94,8 @@
         var correctButton = buttons.eq(2);
         var preDeleteButton = buttons.eq(3);
 
+        buttons.tooltip();
+
         saveButton.click(function () {
             closeSaveNotSaveButtons(saveButton,
                 notSaveButton,
@@ -148,8 +150,6 @@
         });
 
         newTaskInput.val("");
-
-        $("[data-toggle='tooltip']").tooltip();
     });
 
     newTaskInput.focus(function () {
