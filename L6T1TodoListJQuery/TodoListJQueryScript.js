@@ -8,7 +8,7 @@
 
         if (newTaskText === "") {
             var warningPlaceholder = "Чтобы добавить задачу в список, введите ее в этом поле!";
-            newTask.attr("placeholder", warningPlaceholder);
+            newTask.prop("placeholder", warningPlaceholder);
             newTask.addClass("try-input-empty");
             return;
         }
