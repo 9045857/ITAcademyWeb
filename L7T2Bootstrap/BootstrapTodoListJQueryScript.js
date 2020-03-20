@@ -9,14 +9,14 @@
             "<div class='input-group mb-3'>" +
             "<div class='input-group-prepend'>" +
             "<div class='input-group-text'>" +
-            "<input type='checkbox' aria-label='Checkbox for following text input'>" +
+            "<input type='checkbox' data-toggle='tooltip' title='Отметить выполнение задачи'>" +
             "</div>" +
             "</div>" +
             "<input type='text' class='form-control' disabled='disabled' aria-label='Text input with checkbox'>" +
             "<div class='input-group-append'>" +
             "<button  type='button' class='btn btn-outline-secondary btn-light display-none' data-toggle='tooltip' title='Отменить редактирование'><i class='fas fa-remove-format'></i></button>" +
             "<button  type='button' class='btn btn-outline-secondary btn-light display-none' data-toggle='tooltip' title='Сохранить редактирование'><i class='fas fa-save'></i></button>" +
-            "<button  type='button' class='btn btn-outline-secondary btn-light' data-toggle='tooltip'  title='Редактирование'><i class='far fa-edit'></i></button>" +
+            "<button  type='button' class='btn btn-outline-secondary btn-light' data-toggle='tooltip'  title='Редактировать'><i class='far fa-edit'></i></button>" +
             "<button  type='button' class='btn btn-outline-secondary btn-light' data-toggle='tooltip'  title='Удалить'><i class='fas fa-trash-alt'></i></button>" +
             "</div>" +
             "</div>" +
@@ -87,6 +87,7 @@
                 liTextInput.removeClass(lineThroughClass);
             }
         });
+        checkBox.tooltip();
 
         var buttons = li.find("button");
         var notSaveButton = buttons.eq(0);
