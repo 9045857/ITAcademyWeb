@@ -5,62 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Задача «TodoList Vue»</title>
     <link rel="stylesheet" type="text/css" href="Reset.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="SHORTCUT ICON" href="Images/vue-logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="node_modules/@mdi/font/css/materialdesignicons.min.css">
     <link rel="stylesheet" type="text/css" href="VueTodoListStyle.css">
 </head>
 <body>
-    <div class="modal fade" id="deleteMenu" tabindex="-1" role="dialog" aria-labelledby="deleteMenu" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle"><span class="text-danger mr-3 mdi mdi-delete-forever"></span>Удаление записи</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    <div id="app" v-cloak>
+
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteMenu" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle"><span class="text-danger mr-3 mdi mdi-delete-forever"></span>Удаление записи</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Удалить без возможности восстановления?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-danger" @click="closeDeleteMenu">Удалить</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    Удалить без возможности восстановления?
+            </div>
+        </div>
+
+
+        <div class="total-background"></div>
+
+        <div class="container-md">
+            <div class="media header-container">
+                <img src="Images/vue-logo.png" class="mr-3 logo-check-image">
+                <div class="media-body">
+                    <h2 class="mt-0">Задача «TodoList Vue»</h2>
+                    с использование jQuery, Bootstrap и шрифтов materialdesignicons.com
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-danger">Удалить</button>
-                </div>
+            </div>
+
+            <add-form @add-todo="addTask"></add-form>
+
+            <div class=" tasks-list">
+                <h5>ToDo List</h5>
+                <ul>
+                    <todo-item v-for="item in items"
+                               :item="item"
+                               @delete-item="deleteTodo"
+                               @edit-item="correctTodo"
+                               @save-corrections="saveTodo"
+                               @not-save-corrections="notSaveTodo"
+                               :key="item.id" />
+
+                </ul>
             </div>
         </div>
     </div>
 
-    <div class="total-background"></div>
-    <div class="container-md">
-        <div class="media header-container">
-            <img src="Images/vue-logo.png" class="mr-3 logo-check-image">
-            <div class="media-body">
-                <h2 class="mt-0">Задача «TodoList Vue»</h2>
-                с использование jQuery, Bootstrap и шрифтов materialdesignicons.com
-            </div>
-        </div>
 
-        <div>
+    <script id="add-form-template" type="text/x-template">
+        <form class="input-form needs-validation" novalidate>
             <div class="input-container input-group mb-3">
-                <input type="text" id="input-new-task" class="form-control" placeholder="Новая задача" aria-label="Новая задача" aria-describedby="button-addon2">
+                <input type="text" v-model="newTask" v-on:click="focusInput" class="form-control" v-bind:class="{'is-invalid':isEmptyInput}" placeholder="Новая задача" aria-label="Новая задача" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-success" type="button" id="input-task-button">Добавить в список</button><!--btn-outline-secondary-->
+                    <button type="button" @click="addTask" class="btn btn-success">Добавить в список</button>
                 </div>
             </div>
-            <span id="warning-empty-task" class="text-danger hidden">
+            <div class="text-danger warning-empty-task" v-bind:class="{'hidden':isEmptyInput}">
                 Нельзя добавлять пустую задачу! Введите текст в поле ввода.
-            </span>
-        </div>
+            </div>
+        </form>
+    </script>
 
-        <div class=" tasks-list">
-            <h5>ToDo List</h5>
-            <ul id="tasks-list" class="w-auto list-group-flush "></ul>
+    <script type="text/x-template" id="todo-item-template" v-bind:key="item.id">
+        <li class="d-flex bd-highlight">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" v-model="item.isDone" data-toggle="tooltip" title="Отметить выполнение задачи">
+                    </div>
+                </div>
+                <input type="text" v-model="item.text" class="form-control" v-bind:disabled="item.isViewMode">
+                <div class="input-group-append">
+                    <button type="button" @click="notSaveCorrections" class="btn btn-outline-secondary btn-light" v-bind:class="{'display-none':item.isViewMode}" data-toggle="tooltip" title="Отменить редактирование"><i class="mdi mdi-pencil-off"></i></button>
+                    <button type="button" @click="saveCorrections" class="btn btn-outline-secondary btn-light" v-bind:class="{'display-none':item.isViewMode}" data-toggle="tooltip" title="Сохранить редактирование"><i class="mdi mdi-content-save-edit-outline"></i></button>
+                    <button type="button" @click="editItem" class="btn btn-outline-secondary btn-light" v-bind:disabled="item.isCorrectMode" data-toggle="tooltip" title="Редактировать"><i class="mdi mdi-pencil"></i></button>
+                    <button type="button" @click="deleteItem" class="btn btn-outline-danger btn-light" data-toggle="modal" data-target="#myModal" title="Удалить"><i class="mdi mdi-delete-forever"></i></button>
+                </div>
+            </div>
+        </li>
+    </script>
+
+    <script type="text/x-template" id="todo-list-template">
+        <div class="tasks-list">
+            <todo-item v-on:edit-item="correctItem"
+                       v-on:remove-item="removeItem"
+                       v-on:save-corrections="saveItem"
+                       v-on:not-save-corrections="notSaveItem"
+                       v-bind:item="item"
+                       v-for="item in items" :key="item.id">
+            </todo-item>
         </div>
-    </div>
+    </script>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="node_modules/vue/dist/vue.js"></script>
     <script src="VueTodoListScript.js"></script>
 </body>
 </html>
