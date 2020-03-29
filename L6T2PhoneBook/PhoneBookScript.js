@@ -1,12 +1,14 @@
 ﻿$(document).ready(function () {
     function getDeletePhrase(deletedContactsCount) {
-        var divisionRemainderFirstNumber = deletedContactsCount % (10);
-        var divisionRemainderSecondNumber = Math.trunc(deletedContactsCount % 100 / 10);
+        var lastDigit = deletedContactsCount % 10;
 
-        if (divisionRemainderSecondNumber === 1) {
+        var penultimateDigit = deletedContactsCount % 100 / 10;
+        penultimateDigit = penultimateDigit - (penultimateDigit % 1);
+
+        if (penultimateDigit === 1) {
             return "контактов";
 
-        } else if (divisionRemainderFirstNumber === 1) {
+        } else if (lastDigit === 1) {
             return "контакта";
 
         } else {
@@ -14,8 +16,8 @@
         }
     }
 
-    function showDeleteMenu(table, trs, commonCheckbox) {
-        var deletedContactsCount = trs.length;
+    function showDeleteMenu(table, rows, commonCheckbox) {
+        var deletedContactsCount = rows.length;
 
         if (deletedContactsCount === 0) {
             return;
@@ -32,14 +34,14 @@
             close: function () {
                 $("#screen-lock").addClass("do-not-show");
 
-                if (trs.hasClass("for-removing")) {
-                    trs.remove();
-                    setTrOrder(table);
+                if (rows.hasClass("for-removing")) {
+                    rows.remove();
+                    setRowOrder(table);
                     colorizeTable(table);
 
                     setCommonCheckboxChecked(table, commonCheckbox);
                 } else {
-                    trs.removeClass("is-delete-li");
+                    rows.removeClass("is-delete-li");
                 }
             },
             open: function () {
@@ -47,11 +49,11 @@
             },
             buttons: {
                 "Да": function () {
-                    trs.addClass("for-removing");
+                    rows.addClass("for-removing");
                     $(this).dialog("close");
                 },
                 "Нет": function () {
-                    trs.removeClass("is-delete-li");
+                    rows.removeClass("is-delete-li");
                     $(this).dialog("close");
                 }
             }
@@ -64,7 +66,7 @@
         this.phoneNumber = phoneNumber;
     }
 
-    function createNewTr() {
+    function createNewRow() {
         return $("<tr>" +
             "<td><input type='checkbox'></td>" +
             "<td></td>" +
@@ -75,10 +77,10 @@
             "</tr>)");
     }
 
-    function setTrOrder(table) {
-        var trs = table.children("tbody").eq(0).children("tr").not(".hidden");
+    function setRowOrder(table) {
+        var rows = table.children("tbody").eq(0).children("tr").not(".hidden");
 
-        trs.each(function (index) {
+        rows.each(function (index) {
             var numberColumnIndex = 1;
             var correctionCount = 1;
             $(this).children("td").eq(numberColumnIndex).text((index + correctionCount).toString());
@@ -87,110 +89,106 @@
 
     function setAllCheck(table, flag) {
         var tbody = table.find("tbody").eq(0);
-        var visibleTrs = tbody.find("tr").not(".hidden");
+        var visibleRows = tbody.find("tr").not(".hidden");
 
-        visibleTrs.each(function () {
+        visibleRows.each(function () {
             $(this).find("input:checkbox").prop("checked", flag);
         });
     }
 
     function setCommonCheckboxChecked(table, commonCheckbox) {
-        commonCheckbox.prop("checked", areAllShownTdChecked(table));
+        commonCheckbox.prop("checked", areAllShownCellChecked(table));
     }
 
-    function areAllShownTdChecked(table) {
+    function areAllShownCellChecked(table) {
         var tbody = table.children("tbody").eq(0);
-        var shownTrs = tbody.children("tr").not(".hidden");
-        var shownTrCount = shownTrs.length;
-        var checkedTdCount = shownTrs.find("input:checkbox:checked").length;
+        var shownRows = tbody.children("tr").not(".hidden");
+        var shownRowCount = shownRows.length;
+        var checkedCellsCount = shownRows.find("input:checkbox:checked").length;
 
         var emptyTableTrCount = 0;
-        return (shownTrCount === checkedTdCount) && (shownTrCount !== emptyTableTrCount);
+        return (shownRowCount === checkedCellsCount) && (shownRowCount !== emptyTableTrCount);
     }
 
     function addContactInTable(table, contact, commonCheckbox) {
-        var newTr = createNewTr();
-        var tds = newTr.children("td");
+        var newRow = createNewRow();
+        var cells = newRow.children("td");
 
-        var checkbox = tds.eq(0).children("input:checkbox").eq(0);
+        var checkbox = cells.eq(0).children("input:checkbox").eq(0);
         checkbox.click(function () {
             setCommonCheckboxChecked(table, commonCheckbox);
         });
 
-        var trsCount = table.children("tbody").eq(0).children("tr").not(".hidden").length;
+        var rowsCount = table.children("tbody").eq(0).children("tr").not(".hidden").length;
 
         var correctionCount = 1;
-        tds.eq(1).text((trsCount + correctionCount).toString());
+        cells.eq(1).text((rowsCount + correctionCount).toString());
 
-        tds.eq(2).text(contact.name);
-        tds.eq(3).text(contact.surname);
-        tds.eq(4).text(contact.phoneNumber);
+        cells.eq(2).text(contact.name);
+        cells.eq(3).text(contact.surname);
+        cells.eq(4).text(contact.phoneNumber);
 
-        var deleteButton = tds.eq(5).children("button").eq(0);
+        var deleteButton = cells.eq(5).children("button").eq(0);
         deleteButton.click(function () {
             var tr = $(this).closest("tr");
             showDeleteMenu(table, tr, commonCheckbox);
         });
 
-        table.children("tbody").append(newTr);
+        table.children("tbody").append(newRow);
         setCommonCheckboxChecked(table, commonCheckbox);
     }
 
-    function deleteCheckedTrs(table, commonCheckbox) {
+    function deleteCheckedRows(table, commonCheckbox) {
         var tbody = table.children("tbody").eq(0);
-        var checkedTrs = tbody.find("input:checkbox:checked").closest("tr");
+        var checkedRows = tbody.find("input:checkbox:checked").closest("tr");
 
-        showDeleteMenu(table, checkedTrs, commonCheckbox);
+        showDeleteMenu(table, checkedRows, commonCheckbox);
     }
 
     function clearSearch(input, table, commonCheckbox) {
         input.val("");
 
         var tbody = table.children("tbody").eq(0);
-        var hiddenTrs = tbody.find("tr.hidden");
+        var hiddenRows = tbody.find("tr.hidden");
 
-        if (hiddenTrs.length > 0) {
-            hiddenTrs.each(function () {
-                $(this).removeClass("hidden");
-            });
+        if (hiddenRows.length > 0) {
+            hiddenRows.removeClass("hidden");
             setCommonCheckboxChecked(table, commonCheckbox);
         }
     }
 
-    function isTextInTr(tr, text) {
+    function isTextInRow(row, text) {
         var searchingArray = [];
 
-        tr.children("td").each(function () {
+        row.children("td").each(function () {
             searchingArray.push($(this).text().toLowerCase());
         });
 
         return searchingArray.some(function (currentString) {
-            return currentString.includes(text.toLowerCase());
+            return currentString.indexOf(text.toLowerCase()) !== -1;
         });
     }
 
-    function showSearchedTr(searchedText, table) {
+    function showSearchedRow(searchedText, table) {
         var hiddenClassName = "hidden";
 
         table.children("tbody").eq(0).children("tr").map(function () {
-            if (isTextInTr($(this), searchedText)) {
+            if (isTextInRow($(this), searchedText)) {
                 return $(this).removeClass(hiddenClassName);
             }
-            else {
-                return $(this).addClass(hiddenClassName);
-            }
+            return $(this).addClass(hiddenClassName);
         });
     }
 
     function colorizeTable(table) {
-        var colorClass = "grey-fon";
+        var colorClass = "grey-background";
         var hiddenClassName = "hidden";
 
-        var showedTr = table.children("tbody").eq(0).children("tr").filter(function () {
+        var showedRow = table.children("tbody").eq(0).children("tr").filter(function () {
             return !$(this).hasClass(hiddenClassName);
         });
 
-        showedTr.each(function (index) {
+        showedRow.each(function (index) {
             if (index % 2 === 0) {
                 return $(this).addClass(colorClass);
             }
@@ -241,12 +239,12 @@
     }
 
     function isPhoneNumberInList(phoneNumber, table) {
-        var phonesTds = table.children("tbody").children("tr").map(function () {
-            var phoneTdIndex = 4;
-            return $(this).children("td").eq(phoneTdIndex).text();
+        var phonesCells = table.children("tbody").children("tr").map(function () {
+            var phoneCellIndex = 4;
+            return $(this).children("td").eq(phoneCellIndex).text();
         }).get();
 
-        return phonesTds.indexOf(phoneNumber) !== -1;
+        return phonesCells.indexOf(phoneNumber) !== -1;
     }
 
     function showWarning(element) {
@@ -263,12 +261,7 @@
 
         var commonCheckbox = $("#check-uncheck");
         commonCheckbox.click(function () {
-            console.log("kj");
-            if ($(this).prop("checked")) {
-                setAllCheck(table, true);
-            } else {
-                setAllCheck(table, false);
-            }
+            setAllCheck(table, $(this).prop("checked"));
 
             colorizeTable(table);
         });
@@ -332,7 +325,7 @@
 
         var deleteAllCheckedButton = $("#delete-all-checked-button");
         deleteAllCheckedButton.click(function () {
-            deleteCheckedTrs(table, commonCheckbox);
+            deleteCheckedRows(table, commonCheckbox);
         });
 
         var searchInput = $("#search-input");
@@ -341,21 +334,20 @@
         inputClearingButton.click(function () {
             clearSearch(searchInput, table, commonCheckbox);
 
-            setTrOrder(table);
+            setRowOrder(table);
             colorizeTable(table);
         });
 
         var searchButton = $("#search-input-button");
         searchButton.click(function () {
             var searchingInputText = $("#search-input").val().toString();
-            showSearchedTr(searchingInputText, table);
+            showSearchedRow(searchingInputText, table);
 
-            setTrOrder(table);
+            setRowOrder(table);
             colorizeTable(table);
         });
 
         phoneNumberInput.click(function () {
-
             var fixedNumberPart = "+7 ";
             var positionNextNumber = fixedNumberPart.length;// + 1;
 

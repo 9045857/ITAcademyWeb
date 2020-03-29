@@ -1,15 +1,11 @@
 ﻿.phone-table {
-    /*position: absolute;*/
     display: inline-block;
     float: right;
-    /*margin: 50px 0 0 400px;*/
-    /*background-color: #fff614;*/
-    /*text-align: right;*/
     margin: 30px 0 50px 0;
     width: 100%;
 }
 
-.phone-table td {
+    .phone-table td {
         border: solid 1px #ffffff;
     }
 
@@ -19,70 +15,67 @@
         text-align: center;
         font-size: 16px;
         font-family: Arial;
-
-        table-layout: fixed; 
+        table-layout: fixed;
     }
 
-    .phone-table table button {
-        width: 20px;
-        height: 20px;
-        border-radius: 10px;
-        margin: 5px;
-        background-color: #fff;
-        border: none;
-        outline: none;
-        box-shadow: 0 0 0 1px #a6a6a6;
-        background: url("Images/deleteItem.png");
-        background-size: contain;
-        cursor: pointer;
-        background-color: #dedede;
-    }
-
-        .phone-table table button:hover {
-            background-color: #c0c0c0;
-        }
-        .phone-table table button:active {
-            background-color: #959595;
+        .phone-table table button {
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            margin: 5px;
+            border: none;
+            outline: none;
+            box-shadow: 0 0 0 1px #a6a6a6;
+            background: url("Images/deleteItem.png");
+            background-size: contain;
+            cursor: pointer;
+            background-color: #dedede;
         }
 
-.phone-table table input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin: 0;
-    cursor: pointer;
-}
+            .phone-table table button:hover {
+                background-color: #c0c0c0;
+            }
+
+            .phone-table table button:active {
+                background-color: #959595;
+            }
+
+        .phone-table table input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            cursor: pointer;
+        }
 
         .phone-table table th, .phone-table table td {
             vertical-align: middle;
             height: 40px;
             box-sizing: border-box;
-
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-    .phone-table table th {
-        color: #ffffff;
-        background-color: #4f81bd;
-        font-weight: bold;
-        border: none;
-        vertical-align: top;
-        height: 5px;
-        padding-top: 3px;
-    }
+        .phone-table table th {
+            color: #ffffff;
+            background-color: #4f81bd;
+            font-weight: bold;
+            border: none;
+            vertical-align: top;
+            height: 5px;
+            padding-top: 3px;
+        }
 
-.phone-table table tr.hidden {
-    display: none;
-}
+        .phone-table table tr.hidden {
+            display: none;
+        }
 
-    .phone-table table thead {
-        border-bottom: solid 5px #fff;
-    }
+        .phone-table table thead {
+            border-bottom: solid 5px #fff;
+        }
 
-        .phone-table table tbody tr.grey-fon {
+        .phone-table table tbody tr.grey-background {
             background-color: #d0d8e8;
-            
         }
 
         .phone-table table tbody tr {
@@ -99,21 +92,9 @@
         padding-top: 0;
     }
 
-.phone-table .column-4 {
+    .phone-table .column-4 {
         width: 150px;
-        
     }
-
-
-
-
-    /*.phone-table .column-2, .phone-table .column-3, .phone-table .column-4 {
-        max-width: 200px;
-        
-    }*/
-
-
-
 
 .phone-table {
     background-color: #4f81bd;

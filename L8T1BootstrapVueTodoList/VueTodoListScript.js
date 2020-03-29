@@ -82,7 +82,7 @@ var n = new Vue({
                 return t !== deletingItem;
             });
 
-            $("#myModal").modal("hide");
+            $("#myModal").modal("hide");/*собственная директива*/
         },
         correctTodo: function (item) {
             item.isViewMode = false;
