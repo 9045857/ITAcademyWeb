@@ -8,23 +8,18 @@
     }
 
     function addWarningClass(warningText, inputTemperature, warningClass) {
-        if (!warningText.classList.contains(warningClass)) {
-            warningText.classList.add(warningClass);
-        }
-
-        if (!inputTemperature.classList.contains(warningClass)) {
-            inputTemperature.classList.add(warningClass);
-        }
+        warningText.classList.add(warningClass);
+        inputTemperature.classList.add(warningClass);
     }
 
     function removeWarningClass(warningText, inputTemperature, warningClass) {
-        if (warningText.classList.contains(warningClass)) {
-            warningText.classList.remove(warningClass);
-        }
+        warningText.classList.remove(warningClass);
+        inputTemperature.classList.remove(warningClass);
+    }
 
-        if (inputTemperature.classList.contains(warningClass)) {
-            inputTemperature.classList.remove(warningClass);
-        }
+    function isNumeric(num) {
+        num = "" + num;
+        return !isNaN(num) && !isNaN(parseFloat(num));
     }
 
     function convertTemperature(kelvinSpanText, fahrenheitSpanText, inputCelsiusTemperature, warning, warningClass) {
@@ -42,14 +37,13 @@
 
         removeWarningClass(warning, inputCelsiusTemperature, warningClass);
 
-        var celsiusDegree = parseFloat(inputCelsiusTemperature.value);
+        if (isNumeric(inputCelsiusTemperature.value)) {
+            var celsiusDegree = parseFloat(inputCelsiusTemperature.value);
 
-        if (!isNaN(celsiusDegree)) {
             kelvinSpanText.textContent = convertToKelvin(celsiusDegree);
             fahrenheitSpanText.textContent = convertToFahrenheit(celsiusDegree);
-
         } else {
-            var notCorrectInputWarning = "Недопустимые символы ввода!";
+            var notCorrectInputWarning = "Используйте только цифры! (точка - разделитель)";
             warning.textContent = notCorrectInputWarning;
 
             addWarningClass(warning, inputCelsiusTemperature, warningClass);
@@ -62,7 +56,7 @@
     var kelvinSpan = document.querySelector("#kelvin");
     var fahrenheitSpan = document.querySelector("#fahrenheit");
     var inputCelsius = document.querySelector("#input-celsius");
-    var warningP = document.querySelector("#warning-massage");
+    var warningP = document.querySelector("#warning-message");
     var notCorrectInputWarningClass = "try-not-correct-input";
 
     var button = document.querySelector("#convert-button");
