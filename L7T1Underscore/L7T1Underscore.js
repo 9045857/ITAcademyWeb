@@ -16,7 +16,7 @@ function getPeopleFrom20To30Age(people) {
         .value();
 }
 
-function setFullName(people) {
+function addFullName(people) {
     _.each(people, function (person) {
         person.fullName = person.lastName + " " + person.name;
     });
@@ -37,6 +37,8 @@ function setFullName(people) {
     console.log("список людей с возрастом от 20 до 30 включительно, по возрастанию возраста:");
     console.log(getPeopleFrom20To30Age(people));
 
+    addFullName(people);
+
     console.log("Список объектов с добавленным полным именем: ");
-    console.log(setFullName(people));
+    console.log(people);
 }());
