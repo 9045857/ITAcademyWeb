@@ -31,7 +31,7 @@ function addFullName(people) {
         { age: 35, name: "Елена", lastName: "Дзюбина" }, { age: 39, name: "Юлия", lastName: "Исаева" }
     ];
 
-    console.log("Средний возраст людей: ");
+    console.log("Средний возраст людей:");
     console.log(getAveragePeopleAge(people));
 
     console.log("список людей с возрастом от 20 до 30 включительно, по возрастанию возраста:");
@@ -39,6 +39,6 @@ function addFullName(people) {
 
     addFullName(people);
 
-    console.log("Список объектов с добавленным полным именем: ");
+    console.log("Список объектов с добавленным полным именем:");
     console.log(people);
 }());
