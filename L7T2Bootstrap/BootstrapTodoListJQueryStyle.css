@@ -1,4 +1,8 @@
-﻿.total-background {
+﻿body input::-ms-clear {
+    display: none;
+}
+
+.total-background {
     position: fixed;
     top: 0;
     left: 0;
