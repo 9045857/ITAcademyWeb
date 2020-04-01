@@ -76,7 +76,7 @@
 
             preDeleteButton.isPressed = true;
 
-            li.style.backgroundColor = "#fffabe";
+            li.style.backgroundColor = "#fffabe";//TODO
 
             var deleteMenuHtml = document.createElement("div");
             deleteMenuHtml.classList.add("delete-menu");
@@ -108,8 +108,6 @@
     });
 
     newTask.addEventListener("focus", function () {
-        if (newTask.classList.contains("try-input-empty")) {
-            newTask.classList.remove("try-input-empty");
-        }
+        newTask.classList.remove("try-input-empty");
     });
 });

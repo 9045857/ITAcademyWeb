@@ -91,6 +91,7 @@
         background: linear-gradient(#fff614,#ffc924);
         font-weight: bold;
         color: #5c3613;
+        line-height: 30px;
     }
 
         .input-task button:hover {
@@ -285,4 +286,16 @@
 
 .try-input-empty::-moz-placeholder {
     color: #ff0e07;
+}
+
+.try-input-empty:-moz-placeholder {
+    color: #ff0e07;
+}
+
+.try-input-empty:-ms-input-placeholder {
+    color: #ff0e07;
+}
+
+.working-area input::-ms-clear {
+    display: none;
 }
