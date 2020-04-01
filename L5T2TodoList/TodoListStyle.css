@@ -124,6 +124,10 @@
         background-color: #f8f8f8;
     }
 
+    .tasks-list li.pre-removal {
+        background-color: #fffabe;
+    }
+
 .check-box, .task, .save-correction, .not-save-correction, .correct, .delete {
     position: absolute;
     top: 50%;

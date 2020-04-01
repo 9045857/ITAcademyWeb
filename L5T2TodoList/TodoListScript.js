@@ -76,7 +76,7 @@
 
             preDeleteButton.isPressed = true;
 
-            li.style.backgroundColor = "#fffabe";//TODO
+            li.classList.add("pre-removal");
 
             var deleteMenuHtml = document.createElement("div");
             deleteMenuHtml.classList.add("delete-menu");
@@ -97,11 +97,12 @@
                 var menu = notDeleteButton.parentNode;
                 menu.parentNode.removeChild(menu);
 
-                li.style.backgroundColor = "";
+                li.classList.remove("pre-removal");
+
                 preDeleteButton.isPressed = false;
             });
 
-            li.after(deleteMenuHtml);
+            li.parentNode.insertBefore(deleteMenuHtml, li.nextSibling);
         });
 
         newTask.value = "";
