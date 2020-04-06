@@ -173,7 +173,7 @@
 
         newTaskInput.val("");
     });
-
+    
     newTaskInput.focus(function () {
         var borderDangerClass = "border-danger";
         if (newTaskInput.hasClass(borderDangerClass)) {
@@ -181,6 +181,14 @@
             var hiddenClass = "hidden";
 
             toggleEmptyInputWarning(newTaskInput, borderDangerClass, warningMessage, hiddenClass);
+        }
+    });
+    
+    newTaskInput.keypress(function (e) {
+        if (e.which === 13) {
+            addNewTaskButton.click();
+        } else {
+            newTaskInput.focus();
         }
     });
 });
