@@ -30,11 +30,11 @@
         margin: 10px 0;
     }
 
-.input-container.input-group.mb-3 {
-    margin-bottom: -5px !important;
+.input-container.input-group {
+    margin-bottom: -5px;
 }
 
-#warning-empty-task {
+.warning-text {
     display: inline-block;
     font-size: 12px;
     margin-top: 0;
@@ -43,9 +43,13 @@
     visibility: visible;
 }
 
-    #warning-empty-task.hidden {
-        visibility: hidden;
-    }
+.tasks-list .warning-text.hidden {
+    display: none;
+}
+
+.input-task.warning-text.hidden {
+    visibility: hidden;
+}
 
 .tasks-list .display-none {
     display: none;
@@ -69,4 +73,8 @@
 
     .tasks-list input.done {
         text-decoration: line-through;
+    }
+
+    .tasks-list li {
+        margin-top: 5px;
     }
