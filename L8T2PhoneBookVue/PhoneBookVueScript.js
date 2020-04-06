@@ -1,100 +1,67 @@
-﻿Vue.component("add-form", {
-    data: function () {
-        return {
-            newId: 1,
-            newSurname: "",
-            newName: "",
-            newPhone: "",
-            isEmptyName: false,
-            isEmptySurName: false,
-            isEmptyPhone: false,
-            isCorrectPhoneNumber: true,
-            surnameWarning: "",
-            nameWarning: "",
-            phoneWarning:""
-        };
-    },
-    template: "#add-form-template",
-    methods: {
-        addNewContact: function () {
-            //if (this.newTask === "") {
-            //    this.isEmptyInput = true;
-            //    return;
-            //}
-
-            //this.isEmptyInput = false;
-
-            this.$emit("add-contact", {
-                id: this.newId,
-
-                surname: this.newSurname,
-                name: this.newName,
-                phone: this.newPhone,
-
-                isHidden: false,
-                isSearched: true,
-                isChecked: false
-            });
-
-            this.newSurname = "";
-            this.newName = "";
-            this.newPhone = "";
-            this.newId++;
-        }
-        //,
-        //focusInput: function () {
-        //    this.isEmptyInput = false;
-        //}
-    }
-});
-
-Vue.component("contact-item", {
-    props: {
-        contact: {
-            type: Object,
-            required: true
-        }
-    },
-    template: "#contact-item-template",
-    methods: {
-        addContactItem: function () {
-            this.$emit("add-contact-item", this.contact);
-        },
-        deleteContactItem: function () {
-            this.$emit("delete-contact-item", this.contact);
-        },
-        hideContactItem: function () {
-            this.$emit("hide-contact-item", this.contact);
-        //},
-        //saveCorrections: function () {
-        //    this.$emit("save-corrections", this.item);
-        //},
-        //notSaveCorrections: function () {
-        //    this.$emit("not-save-corrections", this.item);
-        }
-    }
-});
-
-Vue.component("phone-book", {
-    
-        data: function() {
+﻿Vue.component("add-form",
+    {
+        data: function () {
             return {
-                contacts: []
+                newId: 1,
+                newTodoText: "",
+                errorMessage: null
             };
-        
-    },
-    template: "#phone-book-template",
-    methods: {
-        addContact: function (contact) {
-            this.contacts.push(contact);
         },
-        deleteContact: function (contact) {
-            this.contacts = this.contacts.filter(function (c) {
-                return c !== contact;
+        template: "#add-form-template",
+        methods: {
+            addTodo: function () {
+                this.errorMessage = null;
+
+                if (this.newTodoText === "") {
+                    this.errorMessage = "Please Enter TODO text.";
+                    return;
+                }
+
+                this.$emit("add-todo",
+                    {
+                        id: this.newId,
+                        text: this.newTodoText
+                    });
+
+                this.newTodoText = "";
+                this.newId++;
+            }
+        }
+    });
+
+Vue.component("todo-item",
+    {
+        props: {
+            item: {
+                type: Object,
+                required: true
+            }
+        },
+        template: "#todo-item-template",
+        methods: {
+            deleteItem: function () {
+                this.$emit("delete-item", this.item);
+            }
+        }
+    });
+
+var n = new Vue({
+    el: "#my-form",
+    data: {
+        items: []
+    },
+    methods: {
+        addItem: function (item) {
+            this.items.push(item);
+            console.log(this.items);
+
+
+        },
+        deleteTodo: function (item) {
+            this.items = this.items.filter(function (x) {
+                return x !== item;
             });
         }
+
     }
 });
-
-
-var n = new Vue({ el: "#app" });

@@ -98,19 +98,6 @@
         </li>
     </script>
 
-    <script type="text/x-template" id="todo-list-template">
-        <div class="tasks-list">
-            <!--? как эти события вообще работают-->
-            <todo-item v-on:edit-item="correctItem"
-                       v-on:show-delete-item-menu="showDeleteTodoMenu"
-                       v-on:save-corrections="saveItem"
-                       v-on:not-save-corrections="notSaveItem"
-                       v-bind:item="item"
-                       v-for="item in items" :key="item.id">
-            </todo-item>
-        </div>
-    </script>
-
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="node_modules/vue/dist/vue.js"></script>

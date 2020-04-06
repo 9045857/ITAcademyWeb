@@ -4,96 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Задача «PhoneBook Vue»</title>
-    <link rel="stylesheet" type="text/css" href="Reset.css">
+    <!--<link rel="stylesheet" type="text/css" href="Reset.css">-->
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="SHORTCUT ICON" href="Images/phoneBook.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="PhoneBookVueStyle.css">
 </head>
 <body>
-    <div id="app" v-cloak>
-        <div class="container-md">
-            <div class="media header-container">
-                <img src="Images/phoneBook.png" class="mr-3 logo-check-image">
-                <div class="media-body">
-                    <h2 class="mt-0">Задача «PhoneBook Vue»</h2>
-                    с использованием Bootstrap и Vue
-                </div>
-            </div>
+    <div v-cloak id="my-form">
+        <div class="container">
+            <h1>TODO List</h1>
 
-            <add-form @add-contact="addContact"></add-form>
-            <phone-book @add-contact-item="addContact" ></phone-book>
+            <add-form @add-todo="addItem" />
+
+            <ul>
+                <todo-item v-for="item in items"
+                           :item="item"
+                           @delete-item="deleteTodo"
+                           :key="item.id" />
+            </ul>
         </div>
     </div>
 
     <script id="add-form-template" type="text/x-template">
-        <form class="new-contact-form">
-            <div class="new-surname">
-                <input type="text">
-                <div class="warning" v-text="surnameWarning">
-                </div>
-            </div>
-
-            <div class="new-name">
-                <input type="text">
-                <div class="warning" v-text="nameWarning">
-                </div>
-            </div>
-
-            <div class="new-phone">
-                <input type="text">
-                <div class="warning" v-text="phoneWarning">
-                </div>
-            </div>
-
-            <button type="button" @click="addNewContact">Добавить контакт</button>
-        </form>
+        <div>
+            <form class="form-inline">
+                <input type="text" v-model="newTodoText" class="form-control mb-2 mr-sm-2" placeholder="Enter TODO">
+                <button class="btn btn-primary mb-2" @click="addTodo" type="button">Add</button>
+            </form>
+            <div v-if="errorMessage" v-text="errorMessage" class="error-message"></div>
+        </div>
     </script>
 
-    <script type="text/x-template" id="contact-item-template"  @add-contact="addContactItem" v-bind:key="contact.id">
-        <tr>
-            <td>
-                <input type="checkbox">
-            </td>
-            <td v-text="contact.surname">
-            </td>
-            <td v-text="contact.name">
-            </td>
-            <td v-text="contact.phone">
-            </td>
-            <td>
-                <button type="button">x</button>
-            </td>
-        </tr>
-    </script>
-
-<script type="text/x-template" id="phone-book-template">
-        <table >
-            <thead>
-                <tr>
-                    <th>
-                        <input type="checkbox">
-                    </th>
-                    <th>
-                        Имя
-                    </th>
-                    <th>
-                        Фамилия
-                    </th>
-                    <th>
-                        Телефон
-                    </th>
-                    <th>
-                        Х
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr-contact @add-contact-item="addContact" 
-                            :contact="contact"
-                            v-for="contact in contacts" :key="contact.id">
-                </tr-contact>
-            </tbody>
-        </table>
+    <script id="todo-item-template" type="text/x-template">
+        <li class="mb-2">
+            <span v-text="item.text"></span>
+            <button @click="deleteItem" class="ml-2 btn btn-danger" type="button">&times;</button>
+        </li>
     </script>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>

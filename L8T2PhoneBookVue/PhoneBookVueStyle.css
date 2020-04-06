@@ -2,6 +2,11 @@
     display: none;
 }
 
+.error-message {
+    color: red;
+}
+
+
 .total-background { /*!*/
     position: fixed;
     top: 0;

@@ -2,6 +2,10 @@
     var tasksList = document.getElementById("tasks-list");
     var newTask = document.getElementById("input-task-text");
 
+    function isEmptyText(text) {
+        return text.replace(/\s+/g, "") === "";
+    }
+
     var addNewTaskButton = document.getElementById("input-task-button");
     addNewTaskButton.addEventListener("click", function () {
         var newTaskText = newTask.value;
@@ -13,28 +17,26 @@
 
         var li = document.createElement("li");
 
-        li.innerHTML = "<button type='button' title='Отметка о выполнении задачи' class='check-box'><img src='Images/check-box.png'></button>" +
-            "<input type='text' class='task' value=''>" +
+        li.innerHTML = "<button type='button' title='Отметка о выполнении задачи' class='done-toggle check-box'><img src='Images/check-box.png' class='check-img'></button>" +
+            "<input type='text' class='task-text task' value=''>" +
             "<button type='button' title='Сохранить изменения' class='save-correction task-button'><img src='Images/save.png'></button>" +
             "<button type='button' title='Не сохранять изменения' class='not-save-correction task-button'><img src='Images/notSave.png'></button>" +
             "<button type='button' title='Редактировать задачу' class='correct task-button'><img src='Images/pencil.png'></button>" +
             "<button type='button' title='Удалить задачу' class='delete task-button'><img src='Images/delete.png'></button>";
 
-        var input = li.getElementsByTagName("input")[0];
+        var input = li.getElementsByClassName("task-text")[0];
         input.value = newTaskText;
         input.disabled = true;
 
         tasksList.appendChild(li);
 
-        var liButtons = li.getElementsByTagName("button");
+        var checkButton = li.getElementsByClassName("done-toggle")[0];
+        var saveButton = li.getElementsByClassName("save-correction")[0];
+        var notSaveButton = li.getElementsByClassName("not-save-correction")[0];
+        var correctButton = li.getElementsByClassName("correct")[0];
+        var preDeleteButton = li.getElementsByClassName("delete")[0];
 
-        var checkButton = liButtons[0];
-        var saveButton = liButtons[1];
-        var notSaveButton = liButtons[2];
-        var correctButton = liButtons[3];
-        var preDeleteButton = liButtons[4];
-
-        var checkImg = checkButton.getElementsByTagName("img")[0];
+        var checkImg = checkButton.getElementsByClassName("check-img")[0];
         checkImg.style.display = "none";
 
         checkButton.isChecked = false;
@@ -60,6 +62,10 @@
         });
 
         saveButton.addEventListener("click", function () {
+            if (isEmptyText(input.value)) {
+                input.value = taskTextBeforeCorrection;
+            }
+
             input.disabled = true;
         });
 
@@ -84,15 +90,13 @@
                 "<button type='button' class='delete-menu-button yes-delete'>Да</button>" +
                 "<button type='button' class='delete-menu-button no-delete'>Нет</button>";
 
-            var deleteMenuButtons = deleteMenuHtml.getElementsByTagName("button");
-
-            var deleteButton = deleteMenuButtons[0];
+            var deleteButton = deleteMenuHtml.getElementsByClassName("yes-delete")[0];
             deleteButton.addEventListener("click", function () {
                 deleteMenuHtml.parentNode.removeChild(deleteMenuHtml);
                 li.parentNode.removeChild(li);
             });
 
-            var notDeleteButton = deleteMenuButtons[1];
+            var notDeleteButton = deleteMenuHtml.getElementsByClassName("no-delete")[0];
             notDeleteButton.addEventListener("click", function () {
                 var menu = notDeleteButton.parentNode;
                 menu.parentNode.removeChild(menu);
