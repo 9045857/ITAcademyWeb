@@ -171,9 +171,17 @@
             deleteMenu.modal("show");
         });
 
+        liTextInput.keydown(function (e) {
+            if (e.key === "Enter") {
+                saveButton.click();
+            } else if (e.key === "Escape") {
+                notSaveButton.click();
+            }
+        });
+
         newTaskInput.val("");
     });
-    
+
     newTaskInput.focus(function () {
         var borderDangerClass = "border-danger";
         if (newTaskInput.hasClass(borderDangerClass)) {
@@ -183,9 +191,9 @@
             toggleEmptyInputWarning(newTaskInput, borderDangerClass, warningMessage, hiddenClass);
         }
     });
-    
-    newTaskInput.keypress(function (e) {
-        if (e.which === 13) {
+
+    newTaskInput.keydown(function (e) {
+        if (e.key === "Enter") {
             addNewTaskButton.click();
         } else {
             newTaskInput.focus();
