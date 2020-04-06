@@ -13,7 +13,7 @@
 <body>
     <div id="app" v-cloak>
 
-        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteMenu" aria-hidden="true">
+        <div id="delete-modal-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteMenu" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -66,9 +66,9 @@
     </div>
 
     <script id="add-form-template" type="text/x-template">
-        <form class="input-form needs-validation" novalidate>
+        <form class="input-form needs-validation" novalidate @submit="stopSubmitAddTask">
             <div class="input-container input-group">
-                <input type="text" v-model="newTask" v-on:click="focusInput" class="form-control" v-bind:class="{'is-invalid':isEmptyInput}" placeholder="Новая задача" aria-label="Новая задача" aria-describedby="button-addon2">
+                <input type="text" v-model="newTask" @click="focusInput" class="form-control" v-bind:class="{'is-invalid':isEmptyInput}" placeholder="Новая задача" aria-label="Новая задача" aria-describedby="button-addon2">
                 <div class="input-group-append">
                     <button type="button" @click="addTask" class="btn btn-success">Добавить в список</button>
                 </div>

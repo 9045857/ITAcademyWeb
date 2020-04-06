@@ -4,11 +4,14 @@
             newId: 1,
             newTask: "",
             isEmptyInput: false
-
         };
     },
     template: "#add-form-template",
     methods: {
+        stopSubmitAddTask: function (event) {
+            event.preventDefault();
+            this.addTask();
+        },
         addTask: function () {
             if (this.newTask === "") {
                 this.isEmptyInput = true;
@@ -82,7 +85,7 @@ var n = new Vue({
                 return t !== deletingItem;
             });
 
-            $("#myModal").modal("hide");/*собственная директива*/
+            $("#delete-modal-dialog").modal("hide");
         },
         correctTodo: function (item) {
             item.isViewMode = false;
