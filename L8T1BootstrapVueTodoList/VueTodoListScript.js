@@ -13,8 +13,12 @@
             this.addTask();
         },
         addTask: function () {
-            if (this.newTask === "") {
+            var newTask = this.newTask;
+
+            if (newTask.trim() === "") {
                 this.isEmptyInput = true;
+                this.newTask = "";
+
                 return;
             }
 
@@ -25,7 +29,7 @@
                 text: this.newTask,
                 isDone: false,
                 isViewMode: true,
-                isCorrectMode: false,
+                isEditMode: false,
                 tempText: this.newTask
             });
 
@@ -87,25 +91,25 @@ var n = new Vue({
 
             $("#delete-modal-dialog").modal("hide");
         },
-        correctTodo: function (item) {
+        editTodo: function (item) {
             item.isViewMode = false;
-            item.isCorrectMode = !item.isViewMode;
+            item.isEditMode = !item.isViewMode;
             item.tempText = item.text;
         },
         saveTodo: function (item) {
             item.isViewMode = true;
-            item.isCorrectMode = !item.isViewMode;
+            item.isEditMode = !item.isViewMode;
 
-            var textWithoutSpaces = item.text.replace(" ", "");
+            var textWithoutSpaces = item.text.trim();
             if (textWithoutSpaces === "") {
                 item.text = item.tempText;
             } else {
                 item.tempText = item.text;
             }
         },
-        notSaveTodo: function (item) {
+        cancel: function (item) {
             item.isViewMode = true;
-            item.isCorrectMode = !item.isViewMode;
+            item.isEditMode = !item.isViewMode;
             item.text = item.tempText;
         }
     }

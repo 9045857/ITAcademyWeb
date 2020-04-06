@@ -1,8 +1,8 @@
-﻿﻿[v-cloak] { /*!*/
+﻿[v-cloak] {
     display: none;
 }
 
-.total-background { 
+.total-background {
     position: fixed;
     top: 0;
     left: 0;

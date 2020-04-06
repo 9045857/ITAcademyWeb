@@ -12,7 +12,6 @@
 </head>
 <body>
     <div id="app" v-cloak>
-
         <div id="delete-modal-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteMenu" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -55,11 +54,10 @@
                     <todo-item v-for="item in items"
                                :item="item"
                                @show-delete-item-menu="showDeleteTodoMenu"
-                               @edit-item="correctTodo"
+                               @edit-item="editTodo"
                                @save-corrections="saveTodo"
-                               @not-save-corrections="notSaveTodo"
+                               @not-save-corrections="cancel"
                                :key="item.id" />
-
                 </ul>
             </div>
         </div>
@@ -68,18 +66,18 @@
     <script id="add-form-template" type="text/x-template">
         <form class="input-form needs-validation" novalidate @submit="stopSubmitAddTask">
             <div class="input-container input-group">
-                <input type="text" v-model="newTask" @click="focusInput" class="form-control" v-bind:class="{'is-invalid':isEmptyInput}" placeholder="Новая задача" aria-label="Новая задача" aria-describedby="button-addon2">
+                <input type="text" v-model="newTask" @click="focusInput" class="form-control" :class="{'is-invalid':isEmptyInput}" placeholder="Новая задача" aria-label="Новая задача" aria-describedby="button-addon2">
                 <div class="input-group-append">
                     <button type="button" @click="addTask" class="btn btn-success">Добавить в список</button>
                 </div>
             </div>
-            <div class="text-danger warning-empty-task" v-bind:class="{'hidden':isEmptyInput}">
+            <div class="text-danger warning-empty-task" :class="{'hidden':isEmptyInput}">
                 Нельзя добавлять пустую задачу! Введите текст в поле ввода.
             </div>
         </form>
     </script>
 
-    <script type="text/x-template" id="todo-item-template" v-bind:key="item.id">
+    <script type="text/x-template" id="todo-item-template" :key="item.id">
         <li class="d-flex bd-highlight">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -87,11 +85,11 @@
                         <input type="checkbox" v-model="item.isDone" data-toggle="tooltip" title="Отметить выполнение задачи">
                     </div>
                 </div>
-                <input type="text" v-model="item.text" class="form-control" v-bind:class="{'done':item.isDone}" v-bind:disabled="item.isViewMode">
+                <input type="text" v-model="item.text" class="form-control" :class="{'done':item.isDone}" :disabled="item.isViewMode">
                 <div class="input-group-append">
-                    <button type="button" @click="notSaveCorrections" class="btn btn-outline-secondary btn-light" v-bind:class="{'display-none':item.isViewMode}" data-toggle="tooltip" title="Отменить редактирование"><i class="mdi mdi-pencil-off"></i></button>
-                    <button type="button" @click="saveCorrections" class="btn btn-outline-secondary btn-light" v-bind:class="{'display-none':item.isViewMode}" data-toggle="tooltip" title="Сохранить редактирование"><i class="mdi mdi-content-save-edit-outline"></i></button>
-                    <button type="button" @click="editItem" class="btn btn-outline-secondary btn-light" v-bind:disabled="item.isCorrectMode" data-toggle="tooltip" title="Редактировать"><i class="mdi mdi-pencil"></i></button>
+                    <button type="button" @click="notSaveCorrections" class="btn btn-outline-secondary btn-light" :class="{'display-none':item.isViewMode}" data-toggle="tooltip" title="Отменить редактирование"><i class="mdi mdi-pencil-off"></i></button>
+                    <button type="button" @click="saveCorrections" class="btn btn-outline-secondary btn-light" :class="{'display-none':item.isViewMode}" data-toggle="tooltip" title="Сохранить редактирование"><i class="mdi mdi-content-save-edit-outline"></i></button>
+                    <button type="button" @click="editItem" class="btn btn-outline-secondary btn-light" :disabled="item.isEditMode" data-toggle="tooltip" title="Редактировать"><i class="mdi mdi-pencil"></i></button>
                     <button type="button" @click="showDeleteItemMenu" class="btn btn-outline-danger btn-light" data-toggle="modal" data-target="#myModal" title="Удалить"><i class="mdi mdi-delete-forever"></i></button>
                 </div>
             </div>
