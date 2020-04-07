@@ -10,25 +10,41 @@
     <link rel="SHORTCUT ICON" href="Images/phoneBook.ico" type="image/x-icon">
 </head>
 <body class="common-area">
-    <div class="header-fixed-area"> </div>
+    <!-- <div class="header-fixed-area"> </div>-->
     <div class="header-area">
         <div class="header-logo">
             <img src="Images/phoneBook.png" class="phone-image">
             <h1 class="header-name">Задача <br />«PhoneBook»</h1>
-        </div>
-        <div class="input-phone-data-area">
-            <h2>Ввод данных</h2>
-            <p id="warningSurname" class="warning"><span>Введите фамилию.</span></p>
-            <label class="input-surname"><span>Фамилия</span> <input type="text" id="input-surname"></label>
-            <p id="warningName" class="warning"><span>Введите имя.</span></p>
-            <label class="input-name"><span>Имя</span><input type="text" id="input-name"></label>
-            <p id="warningPhone" class="warning"><span>Введите телефон.</span></p>
-            <label class="input-phone"><span>Номер телефона</span> <input type="text" id="input-phone" value="+7 "></label>
-            <button type="button" id="input-button"><img src="Images/add-user.png"><span>Добавить контакт</span></button>
-        </div>
-    </div>
 
-    <div class="white-middle-area">
+            <div class="input-phone-data-area clearfix">
+                <h2>Ввод данных</h2>
+                <label class="input-surname">
+                    <span class="caption">Фамилия</span>
+                    <input type="text" id="input-surname">
+                    <span id="sign-surname" class="warning-sign hidden">!</span>
+                    <span id="warning-surname" class="warning-message hidden">Введите фамилию!</span>
+                </label>
+
+                <label class="input-name">
+                    <span class="caption">Имя</span>
+                    <input type="text" id="input-name">
+                    <span id="sign-name" class="warning-sign hidden">!</span>
+                    <span id="warning-name" class="warning-message hidden">Введите имя!</span>
+                </label>
+
+                <label class="input-phone">
+                    <span class="caption">Номер телефона</span>
+                    <input type="text" id="input-phone" value="+7 ">
+                    <span id="sign-phone" class="warning-sign hidden">!</span>
+                    <span id="warning-phone" class="warning-message hidden">Введите телефон!</span>
+                </label>
+
+                <button type="button" id="input-button">
+                    <img src="Images/add-user.png">
+                    <span>Добавить контакт</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <div class="middle-container">

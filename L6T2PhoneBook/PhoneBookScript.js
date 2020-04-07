@@ -247,11 +247,56 @@
         return phonesCells.indexOf(phoneNumber) !== -1;
     }
 
-    function showWarning(element) {
-        element.css("display", "block");
-        setTimeout(function () {
-            element.css("display", "none");
-        }, 1000);
+    function toggleShowWarning(input, text, sign, flag) {
+        var warningBorder = "warning-border";
+        var hiddenWarningMessage = "hidden";
+
+        text.toggleClass(hiddenWarningMessage, !flag);
+        sign.toggleClass(hiddenWarningMessage, !flag);
+        input.toggleClass(warningBorder, flag);
+    }
+
+    function checkPhoneReady(input, message, sign, table) {
+        var arePhoneReady = true;
+
+        var warningEmptyPhoneInput = "Введите телефон!";
+        var warningContactInPhoneList = "Этот телефон уже в базе!";
+        var warningLessNumbers = "Введите все цифры!";
+
+        var phoneNumber = input.val();
+
+        if (!isEnteredAnyNumbers(phoneNumber)) {
+            message.text(warningEmptyPhoneInput);
+
+            toggleShowWarning(input, message, sign, true);
+            arePhoneReady = false;
+        } else if (isEnteredAnyNumbers(phoneNumber) && !isPhoneNumberCorrect(phoneNumber)) {
+            message.text(warningLessNumbers);
+
+            toggleShowWarning(input, message, sign, true);
+            arePhoneReady = false;
+        } else if (isPhoneNumberInList(phoneNumber, table)) {
+            message.text(warningContactInPhoneList);
+
+            toggleShowWarning(input, message, sign, true);
+            arePhoneReady = false;
+        } else {
+            toggleShowWarning(input, message, sign, false);
+        }
+
+        return arePhoneReady;
+    }
+
+    function checkNameReady(input, message, sign) {
+        var name = input.val();
+
+        if (name.trim() === "") {
+            toggleShowWarning(input, message, sign, true);
+            return false;
+        }
+
+        toggleShowWarning(input, message, sign, false);
+        return true;
     }
 
     var phonesTable = $("#contact-table");
@@ -265,50 +310,43 @@
         colorizeTable(phonesTable);
     });
 
-    var nameInput = $("#input-name");
     var surnameInput = $("#input-surname");
-    var phoneNumberInput = $("#input-phone");
+    var warningSurnameMessage = $("#warning-surname");
+    var warningSurnameSign = $("#sign-surname");
 
-    var warningSurname = $("#warningSurname");
-    var warningName = $("#warningName");
-    var warningPhone = $("#warningPhone");
-    var warningPhoneSpan = warningPhone.children("span");
+
+    var nameInput = $("#input-name");
+    var warningNameMessage = $("#warning-name");
+    var warningNameSign = $("#sign-name");
+
+
+    var phoneInput = $("#input-phone");
+    var warningPhoneMessage = $("#warning-phone");
+    var warningPhoneSign = $("#sign-phone");
 
     var contactAdditionButton = $("#input-button");
     contactAdditionButton.click(function () {
+        var areContactDataReady = true;
+
+        if (!checkNameReady(surnameInput, warningSurnameMessage, warningSurnameSign)) {
+            areContactDataReady = false;
+        }
+
+        if (!checkNameReady(nameInput, warningNameMessage, warningNameSign)) {
+            areContactDataReady = false;
+        }
+
+        if (!checkPhoneReady(phoneInput, warningPhoneMessage, warningPhoneSign, phonesTable)) {
+            areContactDataReady = false;
+        }
+
+        if (!areContactDataReady) {
+            return false;
+        }
+
         var surname = surnameInput.val();
-        if (surname.length === 0) {
-            showWarning(warningSurname);
-            return false;
-        }
-
         var name = nameInput.val();
-        if (name.length === 0) {
-            showWarning(warningName);
-            return false;
-        }
-
-        var warningEmptyPhoneInput = "Введите телефон.";
-        var warningContactInPhoneList = "Этот телефон уже в базе.";
-        var warningFewNumbers = "Введите все цифры.";
-
-        var phoneNumber = phoneNumberInput.val();
-
-        if (!isEnteredAnyNumbers(phoneNumber)) {
-            warningPhoneSpan.text(warningEmptyPhoneInput);
-            showWarning(warningPhone);
-            return false;
-        } else if (isEnteredAnyNumbers(phoneNumber) && !isPhoneNumberCorrect(phoneNumber)) {
-            warningPhoneSpan.text(warningFewNumbers);
-            showWarning(warningPhone);
-            return false;
-        }
-
-        if (isPhoneNumberInList(phoneNumber, phonesTable)) {
-            warningPhoneSpan.text(warningContactInPhoneList);
-            showWarning(warningPhone);
-            return false;
-        }
+        var phoneNumber = phoneInput.val();
 
         var contact = new Contact(name, surname, phoneNumber);
 
@@ -317,9 +355,21 @@
 
         nameInput.val("");
         surnameInput.val("");
-        phoneNumberInput.val("+7 ");
+        phoneInput.val("+7 ");
 
         return true;
+    });
+
+    surnameInput.focusin(function () {
+        toggleShowWarning(surnameInput, warningSurnameMessage, warningSurnameSign, false);
+    });
+
+    nameInput.focusin(function () {
+        toggleShowWarning(nameInput, warningNameMessage, warningNameSign, false);
+    });
+
+    phoneInput.focusin(function () {
+        toggleShowWarning(phoneInput, warningPhoneMessage, warningPhoneSign, false);
     });
 
     var deleteAllCheckedButton = $("#delete-all-checked-button");
@@ -346,7 +396,7 @@
         colorizeTable(phonesTable);
     });
 
-    phoneNumberInput.click(function () {
+    phoneInput.click(function () {
         var fixedNumberPart = "+7 ";
         var positionNextNumber = fixedNumberPart.length;
 
@@ -355,7 +405,7 @@
         }
     });
 
-    phoneNumberInput.keydown(function (e) {
+    phoneInput.keydown(function (e) {
         if (e.which !== 8 && e.which !== 46 &&
             e.which !== 37 && e.which !== 39 &&
             (e.which < 48 || e.which > 57) &&
