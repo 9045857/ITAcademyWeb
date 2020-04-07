@@ -110,7 +110,7 @@
         return (shownRowCount === checkedCellsCount) && (shownRowCount !== emptyTableTrCount);
     }
 
-    function addContactInTable(table, contact, commonCheckbox) {
+    function addContactToTable(table, contact, commonCheckbox) {
         var newRow = createNewRow();
         var cells = newRow.children("td");
 
@@ -140,9 +140,12 @@
 
     function deleteCheckedRows(table, commonCheckbox) {
         var tbody = table.children("tbody").eq(0);
-        var checkedRows = tbody.find("input:checkbox:checked").closest("tr");
+        var checkedVisibleRows = tbody
+            .find("input:checkbox:checked")
+            .closest("tr")
+            .not(".hidden");
 
-        showDeleteMenu(table, checkedRows, commonCheckbox);
+        showDeleteMenu(table, checkedVisibleRows, commonCheckbox);
     }
 
     function clearSearch(input, table, commonCheckbox) {
@@ -169,7 +172,7 @@
         });
     }
 
-    function showSearchedRow(searchedText, table) {
+    function showSearchedRow(searchedText, table, commonCheckbox) {
         var hiddenClassName = "hidden";
 
         table.children("tbody").eq(0).children("tr").map(function () {
@@ -178,23 +181,20 @@
             }
             return $(this).addClass(hiddenClassName);
         });
+
+        setCommonCheckboxChecked(table, commonCheckbox);
     }
 
     function colorizeTable(table) {
         var colorClass = "grey-background";
         var hiddenClassName = "hidden";
 
-        var showedRow = table.children("tbody").eq(0).children("tr").filter(function () {
+        var visibleRow = table.children("tbody").eq(0).children("tr").filter(function () {
             return !$(this).hasClass(hiddenClassName);
         });
 
-        showedRow.each(function (index) {
-            if (index % 2 === 0) {
-                return $(this).addClass(colorClass);
-            }
-            else {
-                return $(this).removeClass(colorClass);
-            }
+        visibleRow.each(function (index) {
+            $(this).toggleClass(colorClass, index % 2 === 0);
         });
     }
 
@@ -254,132 +254,130 @@
         }, 1000);
     }
 
-    (function () {
-        var table = $("#contact-table");
+    var phonesTable = $("#contact-table");
 
-        colorizeTable(table);
+    colorizeTable(phonesTable);
 
-        var commonCheckbox = $("#check-uncheck");
-        commonCheckbox.click(function () {
-            setAllCheck(table, $(this).prop("checked"));
+    var commonDeleteCheckbox = $("#check-uncheck");
+    commonDeleteCheckbox.click(function () {
+        setAllCheck(phonesTable, $(this).prop("checked"));
 
-            colorizeTable(table);
-        });
+        colorizeTable(phonesTable);
+    });
 
-        var nameInput = $("#input-name");
-        var surnameInput = $("#input-surname");
-        var phoneNumberInput = $("#input-phone");
+    var nameInput = $("#input-name");
+    var surnameInput = $("#input-surname");
+    var phoneNumberInput = $("#input-phone");
 
-        var warningSurname = $("#warningSurname");
-        var warningName = $("#warningName");
-        var warningPhone = $("#warningPhone");
-        var warningPhoneSpan = $("#warningPhone").children("span");
+    var warningSurname = $("#warningSurname");
+    var warningName = $("#warningName");
+    var warningPhone = $("#warningPhone");
+    var warningPhoneSpan = warningPhone.children("span");
 
-        var contactAdditionButton = $("#input-button");
-        contactAdditionButton.click(function () {
-            var surname = surnameInput.val();
-            if (surname.length === 0) {
-                showWarning(warningSurname);
-                return false;
+    var contactAdditionButton = $("#input-button");
+    contactAdditionButton.click(function () {
+        var surname = surnameInput.val();
+        if (surname.length === 0) {
+            showWarning(warningSurname);
+            return false;
+        }
+
+        var name = nameInput.val();
+        if (name.length === 0) {
+            showWarning(warningName);
+            return false;
+        }
+
+        var warningEmptyPhoneInput = "Введите телефон.";
+        var warningContactInPhoneList = "Этот телефон уже в базе.";
+        var warningFewNumbers = "Введите все цифры.";
+
+        var phoneNumber = phoneNumberInput.val();
+
+        if (!isEnteredAnyNumbers(phoneNumber)) {
+            warningPhoneSpan.text(warningEmptyPhoneInput);
+            showWarning(warningPhone);
+            return false;
+        } else if (isEnteredAnyNumbers(phoneNumber) && !isPhoneNumberCorrect(phoneNumber)) {
+            warningPhoneSpan.text(warningFewNumbers);
+            showWarning(warningPhone);
+            return false;
+        }
+
+        if (isPhoneNumberInList(phoneNumber, phonesTable)) {
+            warningPhoneSpan.text(warningContactInPhoneList);
+            showWarning(warningPhone);
+            return false;
+        }
+
+        var contact = new Contact(name, surname, phoneNumber);
+
+        addContactToTable(phonesTable, contact, commonDeleteCheckbox);
+        colorizeTable(phonesTable);
+
+        nameInput.val("");
+        surnameInput.val("");
+        phoneNumberInput.val("+7 ");
+
+        return true;
+    });
+
+    var deleteAllCheckedButton = $("#delete-all-checked-button");
+    deleteAllCheckedButton.click(function () {
+        deleteCheckedRows(phonesTable, commonDeleteCheckbox);
+    });
+
+    var searchInput = $("#search-input");
+
+    var inputClearingButton = $("#clear-input-button");
+    inputClearingButton.click(function () {
+        clearSearch(searchInput, phonesTable, commonDeleteCheckbox);
+
+        setRowOrder(phonesTable);
+        colorizeTable(phonesTable);
+    });
+
+    var searchButton = $("#search-input-button");
+    searchButton.click(function () {
+        var searchingInputText = $("#search-input").val().toString();
+        showSearchedRow(searchingInputText, phonesTable, commonDeleteCheckbox);
+
+        setRowOrder(phonesTable);
+        colorizeTable(phonesTable);
+    });
+
+    phoneNumberInput.click(function () {
+        var fixedNumberPart = "+7 ";
+        var positionNextNumber = fixedNumberPart.length;
+
+        if (this.selectionStart < positionNextNumber) {
+            this.setSelectionRange(positionNextNumber, positionNextNumber);
+        }
+    });
+
+    phoneNumberInput.keydown(function (e) {
+        if (e.which !== 8 && e.which !== 46 &&
+            e.which !== 37 && e.which !== 39 &&
+            (e.which < 48 || e.which > 57) &&
+            (e.which < 96 || e.which > 105)) {
+            return false;
+        }
+
+        var fixedNumberPart = "+7 ";
+        var positionNextNumber = fixedNumberPart.length + 1;
+
+        if ((e.which === 37 || e.which === 39 || e.which === 8) && (this.selectionStart < positionNextNumber)) {
+            if (this.value.length <= positionNextNumber) {
+                $(this).val(fixedNumberPart + " ");
             }
+            this.setSelectionRange(positionNextNumber, positionNextNumber);
+        }
 
-            var name = nameInput.val();
-            if (name.length === 0) {
-                showWarning(warningName);
-                return false;
-            }
-
-            var warningEmptyPhoneInput = "Введите телефон.";
-            var warningContactInPhoneList = "Этот телефон уже в базе.";
-            var warningFewNumbers = "Введите все цифры.";
-
-            var phoneNumber = phoneNumberInput.val();
-
-            if (!isEnteredAnyNumbers(phoneNumber)) {
-                warningPhoneSpan.text(warningEmptyPhoneInput);
-                showWarning(warningPhone);
-                return false;
-            } else if (isEnteredAnyNumbers(phoneNumber) && !isPhoneNumberCorrect(phoneNumber)) {
-                warningPhoneSpan.text(warningFewNumbers);
-                showWarning(warningPhone);
-                return false;
-            }
-
-            if (isPhoneNumberInList(phoneNumber, table)) {
-                warningPhoneSpan.text(warningContactInPhoneList);
-                showWarning(warningPhone);
-                return false;
-            }
-
-            var contact = new Contact(name, surname, phoneNumber);
-
-            addContactInTable(table, contact, commonCheckbox);
-            colorizeTable(table);
-
-            nameInput.val("");
-            surnameInput.val("");
-            phoneNumberInput.val("+7 ");
-
-            return true;
-        });
-
-        var deleteAllCheckedButton = $("#delete-all-checked-button");
-        deleteAllCheckedButton.click(function () {
-            deleteCheckedRows(table, commonCheckbox);
-        });
-
-        var searchInput = $("#search-input");
-
-        var inputClearingButton = $("#clear-input-button");
-        inputClearingButton.click(function () {
-            clearSearch(searchInput, table, commonCheckbox);
-
-            setRowOrder(table);
-            colorizeTable(table);
-        });
-
-        var searchButton = $("#search-input-button");
-        searchButton.click(function () {
-            var searchingInputText = $("#search-input").val().toString();
-            showSearchedRow(searchingInputText, table);
-
-            setRowOrder(table);
-            colorizeTable(table);
-        });
-
-        phoneNumberInput.click(function () {
-            var fixedNumberPart = "+7 ";
-            var positionNextNumber = fixedNumberPart.length;// + 1;
-
-            if (this.selectionStart < positionNextNumber) {
-                this.setSelectionRange(positionNextNumber, positionNextNumber);
-            }
-        });
-
-        phoneNumberInput.keydown(function (e) {
-            if (e.which !== 8 && e.which !== 46 &&
-                e.which !== 37 && e.which !== 39 &&
-                (e.which < 48 || e.which > 57) &&
-                (e.which < 96 || e.which > 105)) {
-                return false;
-            }
-
-            var fixedNumberPart = "+7 ";
-            var positionNextNumber = fixedNumberPart.length + 1;
-
-            if ((e.which === 37 || e.which === 39 || e.which === 8) && (this.selectionStart < positionNextNumber)) {
-                if (this.value.length <= positionNextNumber) {
-                    $(this).val(fixedNumberPart + " ");
-                }
-                this.setSelectionRange(positionNextNumber, positionNextNumber);
-            }
-
-            if ((e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105)) {
-                var inputText = $(this).val();
-                inputText = normalizePhoneNumber(inputText);
-                $(this).val(inputText);
-            }
-            return true;
-        });
-    }());
+        if ((e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105)) {
+            var inputText = $(this).val();
+            inputText = normalizePhoneNumber(inputText);
+            $(this).val(inputText);
+        }
+        return true;
+    });
 });
