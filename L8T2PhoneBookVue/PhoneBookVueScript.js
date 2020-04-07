@@ -3,63 +3,87 @@
         data: function () {
             return {
                 newId: 1,
-                newTodoText: "",
+                id: this.newId,
+                newSurname: "",
+                newName: "",
+                newPhone: "",
                 errorMessage: null
             };
         },
         template: "#add-form-template",
         methods: {
-            addTodo: function () {
+            addNewContact: function () {
                 this.errorMessage = null;
 
-                if (this.newTodoText === "") {
-                    this.errorMessage = "Please Enter TODO text.";
-                    return;
-                }
+                //if (this.newTodoText === "") {
+                //    this.errorMessage = "Please Enter TODO text.";
+                //    return;
+                //}
 
-                this.$emit("add-todo",
+                this.$emit("add-new-contact",
                     {
                         id: this.newId,
-                        text: this.newTodoText
+                        surname: this.newSurname,
+                        name: this.newName,
+                        phone: this.newPhone
                     });
 
-                this.newTodoText = "";
                 this.newId++;
+                this.newSurname = "";
+                this.newName = "";
+                this.newPhone = "";
             }
         }
     });
 
-Vue.component("todo-item",
+Vue.component("contact-item",
     {
         props: {
-            item: {
+            contact: {
                 type: Object,
                 required: true
             }
         },
-        template: "#todo-item-template",
+        template: "#contact-item-template",
         methods: {
             deleteItem: function () {
-                this.$emit("delete-item", this.item);
+                this.$emit("delete-item", this.contact);
             }
         }
     });
 
 var n = new Vue({
-    el: "#my-form",
+    el: "#phone-book",
     data: {
-        items: []
+        contacts: [
+            {
+                id: 1,
+                surname: "Иванов",
+                name: "Семен",
+                phone: +79139045857
+            },
+            {
+                id: 2,
+                surname: "Петров",
+                name: "Ивано",
+                phone: +79139045657
+            },
+            {
+                id: 3,
+                surname: "Васичкин",
+                name: "Семен",
+                phone: +79139045857
+            }
+
+            ]
     },
     methods: {
-        addItem: function (item) {
-            this.items.push(item);
-            console.log(this.items);
-
-
+        addNewContact: function (contact) {
+            this.contacts.push(contact);
         },
-        deleteTodo: function (item) {
-            this.items = this.items.filter(function (x) {
-                return x !== item;
+        deleteTodo: function (contact) {
+            this.contacts = this.contacts.filter(function (x) {
+                return x !== contact;
             });
         }
 

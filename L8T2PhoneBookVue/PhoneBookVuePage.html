@@ -10,36 +10,71 @@
     <link rel="stylesheet" type="text/css" href="PhoneBookVueStyle.css">
 </head>
 <body>
-    <div v-cloak id="my-form">
-        <div class="container">
-            <h1>TODO List</h1>
+    <div v-cloak id="phone-book">
+        <div class="container pt-3 mt-2">
+            <h3 class="mb-4">Задача "Phonebook с Voe & Bootstrap" </h3>
 
-            <add-form @add-todo="addItem" />
+            <add-form @add-new-contact="addNewContact" class="mb-2"></add-form>
 
-            <ul>
-                <todo-item v-for="item in items"
-                           :item="item"
-                           @delete-item="deleteTodo"
-                           :key="item.id" />
-            </ul>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr class="row">
+                        <th scope="col" class="col-md-1 col-sm-1 col-xs-1">
+                            <input type="checkbox" class="check-box">
+                        </th>
+                        <th scope="col" class="col-md-1 col-sm-1 col-xs-1">№</th>
+                        <th scope="col" class="col-md-4 col-sm-4 col-xs-4">Фамилия</th>
+                        <th scope="col" class="col-md-3 col-sm-3 col-xs-3">Имя</th>
+                        <th scope="col" class="col-md-3 col-sm-3 col-xs-3">Телефон</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <contact-item v-for="contact in contacts"
+                                  :contact="contact"
+                                  :key="contact.id">
+                    </contact-item>
+                </tbody>
+            </table>
         </div>
     </div>
 
     <script id="add-form-template" type="text/x-template">
         <div>
-            <form class="form-inline">
-                <input type="text" v-model="newTodoText" class="form-control mb-2 mr-sm-2" placeholder="Enter TODO">
-                <button class="btn btn-primary mb-2" @click="addTodo" type="button">Add</button>
-            </form>
-            <div v-if="errorMessage" v-text="errorMessage" class="error-message"></div>
+            <h5>Ввод данных</h5>
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <input type="text" class="form-control" id="new-surname" placeholder="Введите фамилию">
+                    <span class="warning hidden" id="surname-waring">ошибка</span>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" class="form-control" id="new-name" placeholder="Введите имя">
+                    <span class="warning hidden" id="name-waring">ошибка</span>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <input type="text" class="form-control" id="new-phone" placeholder="Введите телефон">
+                    <span class="warning hidden" id="phone-waring">ошибка</span>
+                </div>
+                <div class="form-group col-md-3">
+                    <button class="btn btn-primary col-md-12" @click="addNewContact" type="button">Добавить</button>
+                </div>
+            </div>
         </div>
     </script>
 
-    <script id="todo-item-template" type="text/x-template">
-        <li class="mb-2">
-            <span v-text="item.text"></span>
-            <button @click="deleteItem" class="ml-2 btn btn-danger" type="button">&times;</button>
-        </li>
+    <script id="contact-item-template" type="text/x-template">
+        <tr>
+            <td>
+                <input type="checkbox" class="check-box">
+            </td>
+            <td v-text="contact.id"></td>
+            <td v-text="contact.surname"></td>
+            <td v-text="contact.name"></td>
+            <td v-text="contact.phone"></td>
+        </tr>
+
     </script>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
