@@ -90,7 +90,7 @@
                     <button type="button" @click="notSaveCorrections" class="btn btn-outline-secondary btn-light" :class="{'display-none':item.isViewMode}" data-toggle="tooltip" title="Отменить редактирование"><i class="mdi mdi-pencil-off"></i></button>
                     <button type="button" @click="saveCorrections" class="btn btn-outline-secondary btn-light" :class="{'display-none':item.isViewMode}" data-toggle="tooltip" title="Сохранить редактирование"><i class="mdi mdi-content-save-edit-outline"></i></button>
                     <button type="button" @click="editItem" class="btn btn-outline-secondary btn-light" :disabled="item.isEditMode" data-toggle="tooltip" title="Редактировать"><i class="mdi mdi-pencil"></i></button>
-                    <button type="button" @click="showDeleteItemMenu" class="btn btn-outline-danger btn-light" data-toggle="modal" data-target="#myModal" title="Удалить"><i class="mdi mdi-delete-forever"></i></button>
+                    <button type="button" @click="showDeleteItemMenu" class="btn btn-outline-danger btn-light" data-toggle="modal" data-target="#delete-modal-dialog" title="Удалить"><i class="mdi mdi-delete-forever"></i></button>
                 </div>
             </div>
         </li>

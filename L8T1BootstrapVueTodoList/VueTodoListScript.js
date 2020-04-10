@@ -70,10 +70,7 @@ var n = new Vue({
     el: "#app",
     data: {
         items: [],
-        item: {
-            type: Object,
-            required: true
-        }
+        item: {}
     },
     methods: {
         addTask: function (item) {

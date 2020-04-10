@@ -7,37 +7,51 @@
     <!--<link rel="stylesheet" type="text/css" href="Reset.css">-->
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="SHORTCUT ICON" href="Images/phoneBook.ico" type="image/x-icon">
+    <link href="node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" rel="stylesheet">
+    <link href="node_modules/@fortawesome/fontawesome-free/css/solid.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="PhoneBookVueStyle.css">
 </head>
 <body>
     <div v-cloak id="phone-book">
-        <div class="container pt-3 mt-2">
-            <h3 class="mb-4">Задача "Phonebook с Voe & Bootstrap" </h3>
+        <div id="delete-modal-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteMenu" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">
+                            <span class="text-danger mr-3 mdi mdi-delete-forever"></span>
+                            Удаление записи
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Удалить без возможности восстановления?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-danger" @click="deleteContacts">Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <add-form @add-new-contact="addNewContact" class="mb-2"></add-form>
+        <div class="container working-area pt-3 mt-2">
+            <h3 class="mb-4"><span class="badge badge-secondary">L8T2</span> Задача "Phonebook с Vue & Bootstrap" </h3>
 
+            <add-form @add-new-contact="addNewContact" class="mb-3"></add-form>
+            <search class="mb-3"></search>
+            <table-form @show-delete-modal="setDeletingContact"
+                        :contacts="contacts"
+                        @check-contact="checkContact"
+                        :is-all-check="isAllContactsChecked"
+                        @check-all="checkTotal">
 
-            <table class="table table-striped">
-                <thead>
-                    <tr class="row">
-                        <th scope="col" class="col-md-1 col-sm-1 col-xs-1">
-                            <input type="checkbox" class="check-box">
-                        </th>
-                        <th scope="col" class="col-md-1 col-sm-1 col-xs-1">№</th>
-                        <th scope="col" class="col-md-4 col-sm-4 col-xs-4">Фамилия</th>
-                        <th scope="col" class="col-md-3 col-sm-3 col-xs-3">Имя</th>
-                        <th scope="col" class="col-md-3 col-sm-3 col-xs-3">Телефон</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <contact-item v-for="contact in contacts"
-                                  :contact="contact"
-                                  :key="contact.id">
-                    </contact-item>
-                </tbody>
-            </table>
+            </table-form>
         </div>
     </div>
+
+
 
     <script id="add-form-template" type="text/x-template">
         <div>
@@ -45,36 +59,113 @@
 
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <input type="text" class="form-control" id="new-surname" placeholder="Введите фамилию">
-                    <span class="warning hidden" id="surname-waring">ошибка</span>
+                    <input type="text"
+                           v-model="newSurname"
+                           class="form-control"
+                           :class="{'warning-input':isErrorSurname}"
+                           placeholder="Введите фамилию"
+                           @change="checkNewSurname">
+                    <span class="warning" v-text="errorSurnameMessage"></span>
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="text" class="form-control" id="new-name" placeholder="Введите имя">
-                    <span class="warning hidden" id="name-waring">ошибка</span>
+                    <input type="text"
+                           v-model="newName"
+                           class="form-control"
+                           :class="{'warning-input':isErrorName}"
+                           placeholder="Введите имя"
+                           @change="checkNewName">
+                    <span class="warning" v-text="errorNameMessage"></span>
                 </div>
 
                 <div class="form-group col-md-3">
-                    <input type="text" class="form-control" id="new-phone" placeholder="Введите телефон">
-                    <span class="warning hidden" id="phone-waring">ошибка</span>
+                    <input type="text"
+                           v-model="newPhone"
+                           class="form-control"
+                           :class="{'warning-input':isErrorPhone}"
+                           placeholder="Введите телефон"
+                           @change="checkNewPhone">
+                    <span class="warning" v-text="errorPhoneMessage"></span>
                 </div>
                 <div class="form-group col-md-3">
-                    <button class="btn btn-primary col-md-12" @click="addNewContact" type="button">Добавить</button>
+                    <button class="btn btn-primary " @click="addNewContact" type="button">Добавить</button>
                 </div>
             </div>
         </div>
     </script>
 
-    <script id="contact-item-template" type="text/x-template">
-        <tr>
-            <td>
-                <input type="checkbox" class="check-box">
-            </td>
-            <td v-text="contact.id"></td>
-            <td v-text="contact.surname"></td>
-            <td v-text="contact.name"></td>
-            <td v-text="contact.phone"></td>
-        </tr>
+    <script id="search-template" type="text/x-template">
+        <div>
+            <div class="form-row">
+                <div class="input-group mb-3 col-md-6 col-sm-6 col-xs-6">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" v-model="text">
+                </div>
 
+                <div class="form-group">
+                    <button class="btn btn-primary" type="button" @click="search">Найти</button>
+                    <button class="btn btn-danger" @click="clearSearch" type="button">Очистить</button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="table-form-template" type="text/x-template">
+        <div class="container">
+            <button type="button"
+                    class="btn btn-danger btn-icon mb-2 delete-checked-btn"
+                    @click="deleteCheckedContacts"
+                    data-toggle="modal"
+                    data-target="#delete-modal-dialog">
+                <span class="icon">
+                    <i class="fas fa-user-times"></i>
+                </span>Удалить
+            </button>
+            <div>
+                <table class="phone-table table table-sm">
+                    <thead>
+                        <tr class="table-info row">
+                            <th scope="col" class="col-md-1 col-sm-1 col-xs-1">
+                                <input type="checkbox" class="check-box" v-model="isAllCheck" @click="check">
+                            </th>
+                            <th scope="col" class="col-md-1 col-sm-1 col-xs-1">№</th>
+                            <th scope="col" class="col-md-3 col-sm-3 col-xs-3">Фамилия</th>
+                            <th scope="col" class="col-md-3 col-sm-3 col-xs-3">Имя</th>
+                            <th scope="col" class="col-md-3 col-sm-3 col-xs-3">Телефон</th>
+                            <th scope="col" class="col-md-1 col-sm-1 col-xs-1"> <i class="fas fa-user-times"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row"
+                            v-for="(contact,index) in contacts"
+                            :key="contact.id">
+                            <td scope="col" class="align-middle col-md-1 col-sm-1 col-xs-1">
+                                <input type="checkbox"
+                                       class="check-box"
+                                       v-model="contact.checked"
+                                       @click="checkContact(contact)">
+                            </td>
+                            <td scope="col" class="align-middle col-md-1 col-sm-1 col-xs-1" v-text="index+1"></td>
+                            <td scope="col" class="align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.surname"></td>
+                            <td scope="col" class="align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.name"></td>
+                            <td scope="col" class="align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.phone"></td>
+                            <td scope="col" class="align-middle col-md-1 col-sm-1 col-xs-1 delete-btn">
+                                <button class="btn btn-danger "
+                                        type="button"
+                                        @click="showDeleteModal(contact)"
+                                        data-toggle="modal"
+                                        data-target="#delete-modal-dialog">
+                                    &times;
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </script>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
