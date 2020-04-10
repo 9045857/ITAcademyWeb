@@ -2,7 +2,7 @@
     {
         data: function () {
             return {
-                newId: 4,
+                newId: 7,
                 newSurname: "",
                 newName: "",
                 newPhone: "",
@@ -86,7 +86,8 @@
                         surname: this.newSurname,
                         name: this.newName,
                         phone: this.newPhone,
-                        checked: false
+                        checked: false,
+                        isVisible: true
                     });
 
                 this.newId++;
@@ -130,7 +131,7 @@ Vue.component("table-form",
             check: function () {
                 this.$emit("check-all");
             },
-            deleteCheckedContacts: function() {
+            deleteCheckedContacts: function () {
                 this.$emit("show-delete-modal", null);
             }
         }
@@ -156,8 +157,9 @@ Vue.component("search",
             clearSearch: function () {
                 this.text = "";
             },
-            search: function() {
-
+            search: function () {
+                var searchText = this.text.toLowerCase();
+                this.$emit("search-contacts", searchText);
             }
         }
     });
@@ -172,35 +174,77 @@ var n = new Vue({
                 surname: "Иванов",
                 name: "Семен",
                 phone: +79139045857,
-                checked: false
+                checked: false,
+                isVisible: true
             },
             {
                 id: 5,
                 surname: "Петров",
                 name: "Ивано",
                 phone: +79139045657,
-                checked: false
+                checked: false,
+                isVisible: true
             },
             {
                 id: 6,
                 surname: "Васичкин",
                 name: "Семен",
                 phone: +79139045857,
-                checked: false
+                checked: false,
+                isVisible: true
             }],
+
+        dBContacts: [
+            {
+                id: 4,
+                surname: "Иванов",
+                name: "Семен",
+                phone: +79139045857,
+                checked: false,
+                isVisible: true
+            },
+            {
+                id: 5,
+                surname: "Петров",
+                name: "Ивано",
+                phone: +79139045657,
+                checked: false,
+                isVisible: true
+            },
+            {
+                id: 6,
+                surname: "Васичкин",
+                name: "Семен",
+                phone: +79139045857,
+                checked: false,
+                isVisible: true
+            }],
+
         deletingContacts: null,
         isAllContactsChecked: false
     },
 
     methods: {
+        loadVisibleContacts: function () {
+            this.contacts = this.dBContacts.filter(function (c) {
+                return c.isVisible;
+            });
+        },
         getTotalCheck: function () {
             return this.contacts.length === this.contacts.filter(function (c) {
                 return c.checked;
             }).length;
         },
         addNewContact: function (contact) {
-            this.contacts.push(contact);
-            this.isAllContactsChecked = this.getTotalCheck();
+
+            //this.contacts.push(contact);
+            //this.isAllContactsChecked = this.getTotalCheck();
+
+            this.dBContacts.push(contact);
+            this.contacts = this.dBContacts.filter(function(c) {
+                  return c.isVisible;
+            });
+            this.isAllContactsChecked = false;
         },
         setDeletingContact: function (contact) {
             this.deletingContacts = contact;
@@ -211,15 +255,25 @@ var n = new Vue({
             var deletingContact = this.deletingContacts;
 
             if (deletingContact === null) {
-                this.contacts = this.contacts.filter(function (c) {
-                    return !c.checked;
-                });
+                this.dBContacts = this.dBContacts.filter(function (c) {
+                    return !c.isVisible||!c.checked;
+                    });
+
+                console.log(this.dBContacts);
+
+                this.loadVisibleContacts();
+
+                //this.contacts = this.contacts.filter(function (c) {
+                //    return !c.checked && c.visible;
+                //});
 
                 this.isAllContactsChecked = false;
             } else {
-                this.contacts = this.contacts.filter(function (c) {
+                this.dBContacts = this.dBContacts.filter(function (c) {
                     return c !== deletingContact;
                 });
+
+                this.loadVisibleContacts();
             }
         },
         checkContact: function (contact) {
@@ -231,8 +285,26 @@ var n = new Vue({
             var checked = this.isAllContactsChecked;
 
             this.contacts.map(function (c) {
-                c.checked = checked;
+                if (c.isVisible) {
+                    c.checked = checked;
+                }
+            });
+        },
+        getSearchedContacts: function (searchText) {
+            this.contacts = this.contacts.map(function (c) {
+                var isSearchTextInSurname = c.surname.toLowerCase().indexOf(searchText) !== -1;
+                var isSearchTextInName = c.name.toLowerCase().indexOf(searchText) !== -1;
+                var isSearchTextInPhone = c.phone.toLowerCase().indexOf(searchText) !== -1;
+
+                if (isSearchTextInSurname || isSearchTextInName || isSearchTextInPhone) {
+                    c.isVisible = true;
+                } else {
+                    c.isVisible = false;
+                }
             });
         }
+    },
+    mounted: function () {
+        this.loadVisibleContacts();
     }
 });

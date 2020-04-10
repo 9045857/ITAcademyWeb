@@ -6,12 +6,13 @@
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 1px 0 #9f9f9f;
+    padding-bottom: 5px;
 }
 
 .check-box {
     width: 20px;
     height: 20px;
-    margin: 3px 0 0 0;
+    margin-top: 5px;
 }
 
 .warning {
@@ -23,16 +24,32 @@
         display: none;
     }
 
-.phone-table div div, .phone-table div div {
+.phone-table .th, .phone-table .td {
     text-align: center;
-    vertical-align: middle;
+    height: 30px;
+ }
+
+.phone-table .th {
+    font-weight: bold;
 }
+
+.phone-table thead .tr {
+    border-top: solid 1px #ced4da;
+    border-bottom: solid 1px #ced4da;
+}
+
+.phone-table tbody .tr {
+    border-bottom: solid 1px #ced4da;
+}
+
+
+
 
 .phone-table .delete-btn button {
     height: 22px;
     width: 22px;
     padding: 0;
-    margin: 0 0 3px 0;
+    margin: 0;
     font-size: 16px;
     line-height: 16px;
     font-weight: bold;
