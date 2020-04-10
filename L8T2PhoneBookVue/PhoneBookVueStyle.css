@@ -11,7 +11,7 @@
 .check-box {
     width: 20px;
     height: 20px;
-    margin: 0;
+    margin: 3px 0 0 0;
 }
 
 .warning {
@@ -32,7 +32,7 @@
     height: 22px;
     width: 22px;
     padding: 0;
-    margin: 0;
+    margin: 0 0 3px 0;
     font-size: 16px;
     line-height: 16px;
     font-weight: bold;
