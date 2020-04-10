@@ -23,7 +23,7 @@
         display: none;
     }
 
-.phone-table td, .phone-table th {
+.phone-table div div, .phone-table div div {
     text-align: center;
     vertical-align: middle;
 }

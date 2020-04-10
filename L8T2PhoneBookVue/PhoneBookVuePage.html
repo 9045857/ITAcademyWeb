@@ -127,32 +127,32 @@
             <div>
                 <table class="phone-table table table-sm">
                     <thead>
-                        <tr class="table-info row">
-                            <th scope="col" class="col-md-1 col-sm-1 col-xs-1 ">
+                        <div class="table-info row">
+                            <div scope="col" class="col-md-1 col-sm-1 col-xs-1 ">
                                 <input type="checkbox" class="check-box" v-model="isAllCheck" @click="check">
-                            </th>
-                            <th scope="col" class="col-md-1 col-sm-1 col-xs-1">№</th>
-                            <th scope="col" class="col-md-3 col-sm-3 col-xs-3">Фамилия</th>
-                            <th scope="col" class="col-md-3 col-sm-3 col-xs-3">Имя</th>
-                            <th scope="col" class="col-md-3 col-sm-3 col-xs-3">Телефон</th>
-                            <th scope="col" class="col-md-1 col-sm-1 col-xs-1"> <i class="fas fa-user-times"></i></th>
-                        </tr>
+                            </div>
+                            <div scope="col" class="col-md-1 col-sm-1 col-xs-1">№</div>
+                            <div scope="col" class="col-md-3 col-sm-3 col-xs-3">Фамилия</div>
+                            <div scope="col" class="col-md-3 col-sm-3 col-xs-3">Имя</div>
+                            <div scope="col" class="col-md-3 col-sm-3 col-xs-3">Телефон</div>
+                            <div scope="col" class="col-md-1 col-sm-1 col-xs-1"> <i class="fas fa-user-times"></i></div>
+                        </div>
                     </thead>
                     <tbody>
-                        <tr class="row"
+                        <div class="row"
                             v-for="(contact,index) in contacts"
                             :key="contact.id">
-                            <td scope="col" class="align-middle col-md-1 col-sm-1 col-xs-1">
+                            <div scope="col" class="align-middle col-md-1 col-sm-1 col-xs-1">
                                 <input type="checkbox"
                                        class="check-box"
                                        v-model="contact.checked"
                                        @click="checkContact(contact)">
-                            </td>
-                            <td scope="col" class="align-middle col-md-1 col-sm-1 col-xs-1" v-text="index+1"></td>
-                            <td scope="col" class="align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.surname"></td>
-                            <td scope="col" class="align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.name"></td>
-                            <td scope="col" class="align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.phone"></td>
-                            <td scope="col" class="align-middle col-md-1 col-sm-1 col-xs-1 delete-btn">
+                            </div>
+                            <div scope="col" class="align-middle col-md-1 col-sm-1 col-xs-1" v-text="index+1"></div>
+                            <div scope="col" class="align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.surname"></div>
+                            <div scope="col" class="align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.name"></div>
+                            <div scope="col" class="align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.phone"></div>
+                            <div scope="col" class="align-middle col-md-1 col-sm-1 col-xs-1 delete-btn">
                                 <button class="btn btn-danger "
                                         type="button"
                                         @click="showDeleteModal(contact)"
@@ -160,8 +160,8 @@
                                         data-target="#delete-modal-dialog">
                                     &times;
                                 </button>
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
                     </tbody>
                 </table>
             </div>
