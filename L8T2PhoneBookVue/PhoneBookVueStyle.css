@@ -27,7 +27,7 @@
 .phone-table .th, .phone-table .td {
     text-align: center;
     height: 30px;
- }
+}
 
 .phone-table .th {
     font-weight: bold;
@@ -41,9 +41,6 @@
 .phone-table tbody .tr {
     border-bottom: solid 1px #ced4da;
 }
-
-
-
 
 .phone-table .delete-btn button {
     height: 22px;
