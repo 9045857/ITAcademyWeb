@@ -37,10 +37,10 @@
         </div>
 
         <div class="container working-area pt-3 mt-2">
-            <h3 class="mb-4"><span class="badge badge-secondary">L8T2</span> Задача "Phonebook с Vue & Bootstrap" </h3>
+            <h3 class="mb-4"><span class="badge badge-secondary">L8T2</span> Задача "Phonebook Vue (+Bootstrap)" </h3>
 
             <add-form @add-new-contact="addNewContact" class="mb-3"></add-form>
-            <search class="mb-3"></search>
+            <search class="mb-3" @search-contacts="getSearchedContacts"></search>
             <table-form @show-delete-modal="setDeletingContact"
                         :contacts="contacts"
                         @check-contact="checkContact"

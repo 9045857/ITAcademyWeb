@@ -156,6 +156,7 @@ Vue.component("search",
         methods: {
             clearSearch: function () {
                 this.text = "";
+                this.search();
             },
             search: function () {
                 var searchText = this.text.toLowerCase();
@@ -168,38 +169,14 @@ var n = new Vue({
     el: "#phone-book",
 
     data: {
-        contacts: [
-            {
-                id: 4,
-                surname: "Иванов",
-                name: "Семен",
-                phone: +79139045857,
-                checked: false,
-                isVisible: true
-            },
-            {
-                id: 5,
-                surname: "Петров",
-                name: "Ивано",
-                phone: +79139045657,
-                checked: false,
-                isVisible: true
-            },
-            {
-                id: 6,
-                surname: "Васичкин",
-                name: "Семен",
-                phone: +79139045857,
-                checked: false,
-                isVisible: true
-            }],
+        contacts: [],
 
         dBContacts: [
             {
                 id: 4,
                 surname: "Иванов",
                 name: "Семен",
-                phone: +79139045857,
+                phone: "+79139045857",
                 checked: false,
                 isVisible: true
             },
@@ -207,7 +184,7 @@ var n = new Vue({
                 id: 5,
                 surname: "Петров",
                 name: "Ивано",
-                phone: +79139045657,
+                phone: "+79139045657",
                 checked: false,
                 isVisible: true
             },
@@ -215,9 +192,9 @@ var n = new Vue({
                 id: 6,
                 surname: "Васичкин",
                 name: "Семен",
-                phone: +79139045857,
+                phone: "+79139045857",
                 checked: false,
-                isVisible: true
+                isVisible: false
             }],
 
         deletingContacts: null,
@@ -230,19 +207,15 @@ var n = new Vue({
                 return c.isVisible;
             });
         },
-        getTotalCheck: function () {
-            return this.contacts.length === this.contacts.filter(function (c) {
+        setTotalCheck: function () {
+            this.isAllContactsChecked=(this.contacts.length === this.contacts.filter(function (c) {
                 return c.checked;
-            }).length;
+            }).length);
         },
         addNewContact: function (contact) {
-
-            //this.contacts.push(contact);
-            //this.isAllContactsChecked = this.getTotalCheck();
-
             this.dBContacts.push(contact);
-            this.contacts = this.dBContacts.filter(function(c) {
-                  return c.isVisible;
+            this.contacts = this.dBContacts.filter(function (c) {
+                return c.isVisible;
             });
             this.isAllContactsChecked = false;
         },
@@ -256,29 +229,21 @@ var n = new Vue({
 
             if (deletingContact === null) {
                 this.dBContacts = this.dBContacts.filter(function (c) {
-                    return !c.isVisible||!c.checked;
-                    });
-
-                console.log(this.dBContacts);
-
-                this.loadVisibleContacts();
-
-                //this.contacts = this.contacts.filter(function (c) {
-                //    return !c.checked && c.visible;
-                //});
+                    return !c.isVisible || !c.checked;
+                });
 
                 this.isAllContactsChecked = false;
             } else {
                 this.dBContacts = this.dBContacts.filter(function (c) {
                     return c !== deletingContact;
                 });
-
-                this.loadVisibleContacts();
             }
+
+            this.loadVisibleContacts();
         },
         checkContact: function (contact) {
             contact.checked = !contact.checked;
-            this.isAllContactsChecked = this.getTotalCheck();
+            this.setTotalCheck();
         },
         checkTotal: function () {
             this.isAllContactsChecked = !this.isAllContactsChecked;
@@ -291,10 +256,10 @@ var n = new Vue({
             });
         },
         getSearchedContacts: function (searchText) {
-            this.contacts = this.contacts.map(function (c) {
-                var isSearchTextInSurname = c.surname.toLowerCase().indexOf(searchText) !== -1;
-                var isSearchTextInName = c.name.toLowerCase().indexOf(searchText) !== -1;
-                var isSearchTextInPhone = c.phone.toLowerCase().indexOf(searchText) !== -1;
+            this.dBContacts.map(function (c) {
+                var isSearchTextInSurname = (c.surname.toLowerCase().indexOf(searchText) !== -1);
+                var isSearchTextInName = (c.name.toLowerCase().indexOf(searchText) !== -1);
+                var isSearchTextInPhone = (c.phone.toLowerCase().indexOf(searchText) !== -1);
 
                 if (isSearchTextInSurname || isSearchTextInName || isSearchTextInPhone) {
                     c.isVisible = true;
@@ -302,6 +267,8 @@ var n = new Vue({
                     c.isVisible = false;
                 }
             });
+            this.loadVisibleContacts();
+            this.setTotalCheck();
         }
     },
     mounted: function () {
