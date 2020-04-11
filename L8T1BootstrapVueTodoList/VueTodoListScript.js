@@ -8,10 +8,6 @@
     },
     template: "#add-form-template",
     methods: {
-        stopSubmitAddTask: function (event) {
-            event.preventDefault();
-            this.addTask();
-        },
         addTask: function () {
             var newTask = this.newTask;
 
@@ -28,9 +24,9 @@
                 id: this.newId,
                 text: this.newTask,
                 isDone: false,
-                isViewMode: true,
                 isEditMode: false,
-                tempText: this.newTask
+                sourceText: this.newTask,
+                hasError: null
             });
 
             this.newTask = "";
@@ -42,72 +38,72 @@
     }
 });
 
-Vue.component("todo-item", {
+Vue.component("todo-task", {
     props: {
-        item: {
+        task: {
             type: Object,
             required: true
         }
     },
-    template: "#todo-item-template",
+    template: "#todo-task-template",
     methods: {
-        showDeleteItemMenu: function () {
-            this.$emit("show-delete-item-menu", this.item);
+        showDeleteTaskMenu: function () {
+            this.$emit("show-delete-task-menu", this.task);
         },
-        editItem: function () {
-            this.$emit("edit-item", this.item);
+        editTask: function () {
+            this.$emit("edit-task", this.task);
         },
         saveCorrections: function () {
-            this.$emit("save-corrections", this.item);
+            this.$emit("save-corrections", this.task);
         },
         notSaveCorrections: function () {
-            this.$emit("not-save-corrections", this.item);
+            this.$emit("not-save-corrections", this.task);
         }
     }
 });
 
-var n = new Vue({
+new Vue({
     el: "#app",
     data: {
-        items: [],
-        item: {}
+        tasks: [],
+        task: null
     },
     methods: {
-        addTask: function (item) {
-            this.items.push(item);
+        addTask: function (task) {
+            this.tasks.push(task);
         },
-        showDeleteTodoMenu: function (item) {
-            this.item = item;
+        showDeleteTodoMenu: function (task) {
+            this.task = task;
         },
         deleteTodo: function () {
-            var deletingItem = this.item;
+            var deletingTask = this.task;
 
-            this.items = this.items.filter(function (t) {
-                return t !== deletingItem;
+            this.tasks = this.tasks.filter(function (t) {
+                return t !== deletingTask;
             });
 
             $("#delete-modal-dialog").modal("hide");
         },
-        editTodo: function (item) {
-            item.isViewMode = false;
-            item.isEditMode = !item.isViewMode;
-            item.tempText = item.text;
+        editTodo: function (task) {
+            task.isEditMode = true;
+            task.sourceText = task.text;
         },
-        saveTodo: function (item) {
-            item.isViewMode = true;
-            item.isEditMode = !item.isViewMode;
+        saveTodo: function (task) {
+            var textWithoutSpaces = task.text.trim();
 
-            var textWithoutSpaces = item.text.trim();
             if (textWithoutSpaces === "") {
-                item.text = item.tempText;
+                //task.text = task.sourceText;
+                task.hasError = "Нельзя сохранять пустую задачу!";
             } else {
-                item.tempText = item.text;
+                task.sourceText = task.text;
+                task.isEditMode = false;
+                task.hasError = null;
             }
         },
-        cancel: function (item) {
-            item.isViewMode = true;
-            item.isEditMode = !item.isViewMode;
-            item.text = item.tempText;
+        cancel: function (task) {
+            task.isEditMode = false;
+            task.text = task.sourceText;
+            task.hasError = null;
         }
     }
 });

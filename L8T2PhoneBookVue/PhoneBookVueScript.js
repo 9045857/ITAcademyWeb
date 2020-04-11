@@ -214,7 +214,7 @@ new Vue({
                 name: "Семен",
                 phone: "89139045857",
                 checked: false,
-                isVisible: false
+                isVisible: true
             }],
         deletingContacts: null,
         isAllContactsChecked: false,
