@@ -149,7 +149,6 @@ Vue.component("table-form",
                 }
             }
         },
-
         template: "#table-form-template",
         methods: {
             showDeleteModal: function (contact) {
@@ -166,7 +165,6 @@ Vue.component("table-form",
             }
         }
     });
-
 
 Vue.component("search",
     {
@@ -188,12 +186,11 @@ Vue.component("search",
         }
     });
 
-var n = new Vue({
+new Vue({
     el: "#phone-book",
 
     data: {
         contacts: [],
-
         dBContacts: [
             {
                 id: 4,
@@ -219,12 +216,10 @@ var n = new Vue({
                 checked: false,
                 isVisible: false
             }],
-
         deletingContacts: null,
         isAllContactsChecked: false,
         hasPhoneNumber: false
     },
-
     methods: {
         loadVisibleContacts: function () {
             this.contacts = this.dBContacts.filter(function (c) {
