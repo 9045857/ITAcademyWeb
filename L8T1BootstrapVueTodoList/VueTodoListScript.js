@@ -92,7 +92,6 @@ new Vue({
             var textWithoutSpaces = task.text.trim();
 
             if (textWithoutSpaces === "") {
-                //task.text = task.sourceText;
                 task.hasError = "Нельзя сохранять пустую задачу!";
             } else {
                 task.sourceText = task.text;
