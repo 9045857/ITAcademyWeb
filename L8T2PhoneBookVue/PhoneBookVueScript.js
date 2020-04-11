@@ -208,9 +208,13 @@ var n = new Vue({
             });
         },
         setTotalCheck: function () {
-            this.isAllContactsChecked=(this.contacts.length === this.contacts.filter(function (c) {
-                return c.checked;
-            }).length);
+            var isAllChecked = (this.contacts.length ===
+                this.contacts.filter(function(c) {
+                    return c.checked;
+                }).length);
+            var hasContacts = this.contacts.length > 0;
+
+            this.isAllContactsChecked = (isAllChecked && hasContacts);
         },
         addNewContact: function (contact) {
             this.dBContacts.push(contact);
