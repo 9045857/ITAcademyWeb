@@ -16,6 +16,11 @@
                 isErrorPhone: false
             };
         },
+        props: {
+            hasPhoneNumber: {
+                type: Boolean
+            }
+        },
         template: "#add-form-template",
         methods: {
             removeSurnameWarning: function () {
@@ -55,9 +60,28 @@
 
                 return true;
             },
+            isNumberExist: function () {
+                this.$emit("check-exist-phone", this.newPhone);
+
+                return this.hasPhoneNumber;
+            },
             checkNewPhone: function () {
                 if (this.newPhone.trim() === "") {
                     this.errorPhoneMessage = "Введите телефон!";
+                    this.isErrorPhone = true;
+
+                    return false;
+                }
+
+                if (!this.newPhone.trim().match(/^\d+$/)) {
+                    this.errorPhoneMessage = "Используйте только цифры!";
+                    this.isErrorPhone = true;
+
+                    return false;
+                }
+
+                if (this.isNumberExist()) {
+                    this.errorPhoneMessage = "Такой номер уже есть!";
                     this.isErrorPhone = true;
 
                     return false;
@@ -94,21 +118,27 @@
                 this.newSurname = "";
                 this.newName = "";
                 this.newPhone = "";
+            },
+            newContactClear: function () {
+                this.newSurname = "";
+                this.newName = "";
+                this.newPhone = "";
+
+                this.errorSurnameMessage = null;
+                this.isErrorSurname = false;
+
+                this.errorNameMessage = null;
+                this.isErrorName = false;
+
+                this.errorPhoneMessage = null;
+                this.isErrorPhone = false;
             }
         }
     });
 
 Vue.component("table-form",
     {
-        //data: function () {
-        //    return {
-        //        allChecked: false
-        //    };
-        //},
         props: {
-            //contact: {
-            //    type: Object
-            //},
             isAllCheck: {
                 type: Boolean
             },
@@ -140,13 +170,6 @@ Vue.component("table-form",
 
 Vue.component("search",
     {
-        //props: {
-        //    contact: {
-        //        type: Object,
-        //        required: true
-        //    }
-        //},
-
         data: function () {
             return {
                 text: ""
@@ -176,7 +199,7 @@ var n = new Vue({
                 id: 4,
                 surname: "Иванов",
                 name: "Семен",
-                phone: "+79139045857",
+                phone: "89139045857",
                 checked: false,
                 isVisible: true
             },
@@ -184,7 +207,7 @@ var n = new Vue({
                 id: 5,
                 surname: "Петров",
                 name: "Ивано",
-                phone: "+79139045657",
+                phone: "89139045657",
                 checked: false,
                 isVisible: true
             },
@@ -192,13 +215,14 @@ var n = new Vue({
                 id: 6,
                 surname: "Васичкин",
                 name: "Семен",
-                phone: "+79139045857",
+                phone: "89139045857",
                 checked: false,
                 isVisible: false
             }],
 
         deletingContacts: null,
-        isAllContactsChecked: false
+        isAllContactsChecked: false,
+        hasPhoneNumber: false
     },
 
     methods: {
@@ -209,7 +233,7 @@ var n = new Vue({
         },
         setTotalCheck: function () {
             var isAllChecked = (this.contacts.length ===
-                this.contacts.filter(function(c) {
+                this.contacts.filter(function (c) {
                     return c.checked;
                 }).length);
             var hasContacts = this.contacts.length > 0;
@@ -273,6 +297,11 @@ var n = new Vue({
             });
             this.loadVisibleContacts();
             this.setTotalCheck();
+        },
+        hasPhone: function (number) {
+            this.hasPhoneNumber = (this.dBContacts.filter(function (c) {
+                return c.phone === number;
+            }).length > 0);
         }
     },
     mounted: function () {

@@ -39,7 +39,11 @@
         <div class="container working-area pt-3 mt-2">
             <h3 class="mb-4"><span class="badge badge-secondary">L8T2</span> Задача "Phonebook Vue" + Bootstrap </h3>
 
-            <add-form @add-new-contact="addNewContact" class="mb-3"></add-form>
+            <add-form class="mb-3"
+                      @add-new-contact="addNewContact"
+                      @check-exist-phone="hasPhone"
+                      :has-phone-number="hasPhoneNumber">
+            </add-form>
             <search class="mb-3" @search-contacts="getSearchedContacts"></search>
             <table-form @show-delete-modal="setDeletingContact"
                         :contacts="contacts"
@@ -60,7 +64,7 @@
                 <div class="form-group col-md-3">
                     <input type="text"
                            v-model="newSurname"
-                           class="form-control"
+                           class="form-control mt-2"
                            :class="{'warning-input':isErrorSurname}"
                            placeholder="Введите фамилию"
                            @change="checkNewSurname">
@@ -69,7 +73,7 @@
                 <div class="form-group col-md-3">
                     <input type="text"
                            v-model="newName"
-                           class="form-control"
+                           class="form-control mt-2"
                            :class="{'warning-input':isErrorName}"
                            placeholder="Введите имя"
                            @change="checkNewName">
@@ -80,7 +84,7 @@
                 <div class="form-group col-md-3">
                     <input type="text"
                            v-model="newPhone"
-                           class="form-control"
+                           class="form-control mt-2"
                            :class="{'warning-input':isErrorPhone}"
                            placeholder="Введите телефон"
                            @change="checkNewPhone">
@@ -88,12 +92,13 @@
                 </div>
                 <div class="form-group col-md-3">
                     <button type="button"
-                            class="btn btn-primary btn-icon"
+                            class="btn btn-primary btn-icon mt-2"
                             @click="addNewContact">
                         <span class="icon">
                             <i class="fas fa-user-plus"></i>
                         </span>Добавить
                     </button>
+                    <button class="btn btn-outline-primary mt-2" @click="newContactClear" type="button">Очистить</button>
                 </div>
             </div>
         </div>
