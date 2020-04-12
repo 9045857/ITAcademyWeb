@@ -1,0 +1,75 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+	{% verbatim %}
+	<div id="app" v-cloak class="container">
+		<h1 class="my-3">
+			<span class="badge badge-secondary">L9T1</span> Задача "PhoneBookServer"
+		</h1>
+
+		<div class="row mb-4">
+			<div class="col-lg-4 col-md-6">				
+				<div class="form-group">
+					<label>Name</label>
+					<input type="text"
+							v-model="name"
+							class="form-control">				
+				</div>
+
+				<div class="form-group">
+					<label >Phone</label>
+					<input type="text" 
+							v-model="phone"
+							class="form-control">
+				</div>
+
+				<button type="button"
+						@click="addContact"
+						class="btn btn-primary">Add
+				</button>		
+			</div>
+		</div>
+
+		<div class="form-row align-items-center mb-3">			
+			<div class="col-lg-4 col-md-6">
+				<div class="form-group">
+					<label>Search</label>
+					<input type="text"
+							v-model="term"
+							class="form-control">
+				</div>	
+				<button type="button"
+						@click="search"
+						class="btn btn-primary">Search
+				</button>	
+			</div>
+		</div>
+
+		<div>
+			<table class="table table-striped">
+			  <thead>
+				<tr>
+				  <th>#</th>
+				  <th>Name</th>
+				  <th>Phone</th>
+				  <th>&times;</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr :key="c.id" v-for="(c,index) in contacts">
+				  <td>{{index+1}}.</td>
+				  <td v-text="c.name"></td>
+				  <td v-text="c.phone"></td>
+				  <td>
+					<button type="button" 
+							class="btn btn-danger"
+							@click="deleteContact(c)">&times;</button>
+				  </td>
+				</tr>				
+			  </tbody>
+			</table>
+		</div>
+	</div>
+
+	{% endverbatim %}
+{% endblock %}
