@@ -2,24 +2,21 @@ var express = require('express');
 var router = express.Router();
 
 var contacts = [{
-    id: 1,
-    surname:"Petrov",
-    name: "Ivan",
-    phone: "87687600"
-},
-{
-    id: 2,
-    surname: "Smirnov",
-    name: "Oleg",
-    phone: "876234876"
-},
-{
-    id: 3,
-    surname: "Orlov",
-    name: "Nike",
-    phone: "1876111876"
-}];
-//{id:1, surname: "Orlov", name:"Ivan", phone: "876876" }
+        id: 1,
+        name: "Ivan",
+        phone: "87687600"
+    },
+    {
+        id: 2,
+        name: "Oleg",
+        phone: "876234876"
+    },
+    {
+        id: 3,
+        name: "Nike",
+        phone: "1876111876"
+    }];
+//{id:1, name:"Ivan", phone: "876876" }
 
 var newId = 4;
 

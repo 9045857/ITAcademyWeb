@@ -33,18 +33,18 @@ new Vue({
         phone: "",
         term: ""
     },
-    created: function() {
+    created: function () {
         this.getContacts();
     },
     methods: {
         getContacts: function () {
             var self = this;
 
-            this.service.getContacts(this.term).done(function(contacts) {
+            this.service.getContacts(this.term).done(function (contacts) {
                 self.contacts = contacts;
             }).fail(function () {
-                    alert("Can't load contacts.");
-                });
+                alert("Can't load contacts.");
+            });
         },
         deleteContact: function (c) {
             var self = this;
@@ -66,7 +66,7 @@ new Vue({
             this.service.addContact({
                 name: this.name,
                 phone: this.phone
-            }).done(function(response) {
+            }).done(function (response) {
                 if (!response.success) {
                     alert(response.message);
                     return;
@@ -75,38 +75,13 @@ new Vue({
                 self.name = "";
                 self.phone = "";
                 self.getContacts();
-                }).fail(function () {
+            }).fail(function () {
                 alert("Can't add contact.");
             });;
         },
-        clearSearch: function() {
+        clearSearch: function () {
             this.term = "";
             this.search();
         }
     }
 });
-
-
-
-//<table class="table table-striped">
-//    <thead>
-//    <tr>
-//    <th>#</th>
-//    <th>Name</th>
-//    <th>Phone</th>
-//    <th>&times;</th>
-//    </tr>
-//    </thead>
-//    <tbody>
-//    <tr : key="c.id" v-for="(c,index) in contacts">
-//    <td>{{ index+1 }}.</td>
-//    <td v-text="c.name"></td>
-//    <td v-text="c.phone"></td>
-//    <td>
-//    <button type="button"
-//class="btn btn-danger"
-//@click="deleteContact(c)">&times;</button>
-//    </td>
-//    </tr>				
-//    </tbody >
-//    </table >
