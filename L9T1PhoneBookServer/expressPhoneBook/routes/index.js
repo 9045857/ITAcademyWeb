@@ -63,13 +63,13 @@ router.post("/addContact", function (req, res) {
     var contact = req.body.request;
 
     var hasContactWithPhone = contacts.some(function (c) {
-        return c.phone.toUpperCase() === contact.phone.toUpperCase;
+        return c.phone.toUpperCase() === contact.phone.toUpperCase();
     });
 
     if (hasContactWithPhone) {
         res.send({
             success: false,
-            message: "Contact with phone " + contact.phone + " already exists."
+            message: "Contact with phone (" + contact.phone + ") already exists."
         });
 
         return;
