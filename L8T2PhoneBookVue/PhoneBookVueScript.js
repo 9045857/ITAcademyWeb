@@ -1,4 +1,4 @@
-﻿Vue.component("add-form",
+﻿﻿Vue.component("add-form",
     {
         data: function () {
             return {

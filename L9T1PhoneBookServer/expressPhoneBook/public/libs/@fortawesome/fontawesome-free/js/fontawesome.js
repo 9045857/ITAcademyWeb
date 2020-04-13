@@ -1598,8 +1598,8 @@
 
   function attributesParser (node) {
     var extraAttributes = toArray(node.attributes).reduce(function (acc, attr) {
-      if (acc.name !== 'class' && acc.name !== 'style') {
-        acc[attr.name] = attr.value;
+      if (acc.id !== 'class' && acc.id !== 'style') {
+        acc[attr.id] = attr.value;
       }
 
       return acc;
@@ -1677,7 +1677,7 @@
   }
 
   function MissingIcon(error) {
-    this.name = 'MissingIcon';
+    this.id = 'MissingIcon';
     this.message = error || 'Icon unavailable';
     this.stack = new Error().stack;
   }
@@ -1825,7 +1825,7 @@
       }
 
       if (iconName && prefix && !config.showMissingIcons) {
-        reject(new MissingIcon("Icon is missing for prefix ".concat(prefix, " with icon name ").concat(iconName)));
+        reject(new MissingIcon("Icon is missing for prefix ".concat(prefix, " with icon id ").concat(iconName)));
       } else {
         resolve(val);
       }
@@ -2007,7 +2007,7 @@
 
       if (alreadyProcessedPseudoElement && !fontFamily) {
         // If we've already processed it but the current computed style does not result in a font-family,
-        // that probably means that a class name that was previously present to make the icon has been
+        // that probably means that a class id that was previously present to make the icon has been
         // removed. So we now should delete the icon.
         node.removeChild(alreadyProcessedPseudoElement);
         return resolve();

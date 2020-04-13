@@ -20,9 +20,9 @@
     color: #dc3545;
 }
 
-    .warning.hidden {
-        display: none;
-    }
+.warning.hidden {
+    display: none;
+}
 
 .phone-table .th, .phone-table .td {
     text-align: center;

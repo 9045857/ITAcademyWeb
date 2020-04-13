@@ -1,25 +1,25 @@
 ﻿function PhoneBookService() {
-    function post(url,data) {
-         return $.post({
-             url: url,
-            contentType:"application/json",
-             data: JSON.stringify(data)
-        }); 
+    function post(url, data) {
+        return $.post({
+            url: url,
+            contentType: "application/json",
+            data: JSON.stringify(data)
+        });
     }
 
-    this.getContacts = function(term) {
+    this.getContacts = function (term) {
         return $.get("/getContacts",
             {
-                term:term
+                term: term
             });
     };
 
     this.addContact = function (contact) {
-        return post("/addContact",{ request: contact});
+        return post("/addContact", { request: contact });
     };
 
     this.deleteContact = function (id) {
-        return post("/deleteContact",{id:id});
+        return post("/deleteContact", { id: id });
     };
 }
 
@@ -85,3 +85,28 @@ new Vue({
         }
     }
 });
+
+
+
+//<table class="table table-striped">
+//    <thead>
+//    <tr>
+//    <th>#</th>
+//    <th>Name</th>
+//    <th>Phone</th>
+//    <th>&times;</th>
+//    </tr>
+//    </thead>
+//    <tbody>
+//    <tr : key="c.id" v-for="(c,index) in contacts">
+//    <td>{{ index+1 }}.</td>
+//    <td v-text="c.name"></td>
+//    <td v-text="c.phone"></td>
+//    <td>
+//    <button type="button"
+//class="btn btn-danger"
+//@click="deleteContact(c)">&times;</button>
+//    </td>
+//    </tr>				
+//    </tbody >
+//    </table >

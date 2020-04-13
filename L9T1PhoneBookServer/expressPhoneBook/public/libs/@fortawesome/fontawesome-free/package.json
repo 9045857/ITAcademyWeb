@@ -9,7 +9,7 @@
     "type": "tag",
     "registry": true,
     "raw": "@fortawesome/fontawesome-free",
-    "name": "@fortawesome/fontawesome-free",
+    "id": "@fortawesome/fontawesome-free",
     "escapedName": "@fortawesome%2ffontawesome-free",
     "scope": "@fortawesome",
     "rawSpec": "",
@@ -25,7 +25,7 @@
   "_spec": "@fortawesome/fontawesome-free",
   "_where": "C:\\Users\\cherepanov\\source\\repos\\L1T1WebPages\\L9T1PhoneBookServer\\expressPhoneBook",
   "author": {
-    "name": "Dave Gandy",
+    "id": "Dave Gandy",
     "email": "dave@fontawesome.com",
     "url": "http://twitter.com/davegandy"
   },
@@ -35,23 +35,23 @@
   "bundleDependencies": false,
   "contributors": [
     {
-      "name": "Brian Talbot",
+      "id": "Brian Talbot",
       "url": "http://twitter.com/talbs"
     },
     {
-      "name": "Travis Chase",
+      "id": "Travis Chase",
       "url": "http://twitter.com/supercodepoet"
     },
     {
-      "name": "Rob Madole",
+      "id": "Rob Madole",
       "url": "http://twitter.com/robmadole"
     },
     {
-      "name": "Geremia Taglialatela",
+      "id": "Geremia Taglialatela",
       "url": "http://twitter.com/gtagliala"
     },
     {
-      "name": "Mike Wilkerson",
+      "id": "Mike Wilkerson",
       "url": "http://twitter.com/mw77"
     }
   ],
@@ -72,7 +72,7 @@
   ],
   "license": "(CC-BY-4.0 AND OFL-1.1 AND MIT)",
   "main": "js/fontawesome.js",
-  "name": "@fortawesome/fontawesome-free",
+  "id": "@fortawesome/fontawesome-free",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FortAwesome/Font-Awesome.git"
