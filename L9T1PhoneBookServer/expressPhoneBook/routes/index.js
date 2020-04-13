@@ -1,9 +1,24 @@
 var express = require('express');
 var router = express.Router();
 
-var contacts = [];
+var contacts = [{
+    id: 1,
+    name: "Ivan",
+    phone: "87687600"
+},
+{
+    id: 2,
+    name: "Oleg",
+    phone: "876234876"
+},
+{
+    id: 3,
+    name: "Nike",
+    phone: "1876111876"
+}];
 //{id:1, name:"Ivan", phone: "876876" }
-var newId = 1;
+
+var newId = 4;
 
 router.get('/getContacts', function (req, res) {
     var term = (req.query.term || "").toUpperCase();
@@ -18,7 +33,7 @@ router.get('/getContacts', function (req, res) {
     res.send(filteredContacts);
 });
 
-router.post('/deleteContact', function(req, res) {
+router.post('/deleteContact', function (req, res) {
     var id = req.body.id;
 
     var contact = contacts.find(function (c) {
@@ -34,27 +49,27 @@ router.post('/deleteContact', function(req, res) {
         return;
     }
 
-    contacts = contacts.filter(function(c) {
+    contacts = contacts.filter(function (c) {
         return c.id !== id;
     });
 
     res.send({
         success: true,
-        message:null
+        message: null
     });
 });
 
-router.post("/addContact", function(req,res) {
+router.post("/addContact", function (req, res) {
     var contact = req.body.request;
 
-    var hasContactWithPhone = contacts.some(function(c) {
+    var hasContactWithPhone = contacts.some(function (c) {
         return c.phone.toUpperCase() === contact.phone.toUpperCase;
     });
 
     if (hasContactWithPhone) {
         res.send({
             success: false,
-            message: "Contact with phone " + contact.phone+" already exists."
+            message: "Contact with phone " + contact.phone + " already exists."
         });
 
         return;
