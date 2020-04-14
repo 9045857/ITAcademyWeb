@@ -42,19 +42,13 @@ var n = new Vue({
         nameError: "Введите имя!",
         isNameChecked: false,
 
-
         phone: "",
         hasErrorPhone: false,
         phoneError: "Введите телефон!",
         isPhoneChecked: false,
 
-
-
-
         term: "",
-        checked: false
-
-
+        areAllChecked: false
     },
     created: function () {
         this.getContacts();
@@ -97,11 +91,30 @@ var n = new Vue({
 
             this.hasErrorPhone = false;
         },
-        checkContact: function (contact, checked) {
-            console.log(contact.name + " : " + checked);
+        setAllChecked: function () {
+            this.areAllChecked = (this.checkedIds.length === this.contacts.length);
         },
-        checkAll: function (checked) {
-            //TODO
+        checkContact: function (id) {
+            var index = this.checkedIds.indexOf(id);
+
+            if (index === -1) {
+                this.checkedIds.push(id);
+            } else {
+                this.checkedIds.splice(index, 1);
+            }
+
+            this.setAllChecked();
+        },
+        checkAll: function () {
+            this.checkedIds = [];
+            var self = this;
+
+            self.areAllChecked = !self.areAllChecked;
+
+            this.contacts.map(function (c) {
+                self.checkedIds.push(c.id);
+                c.checked = self.areAllChecked;
+            });
         },
         clearInputs: function () {
             this.surname = "";
@@ -116,15 +129,26 @@ var n = new Vue({
             this.hasErrorName = false;
             this.hasErrorPhone = false;
         },
-        deleteCheckedContacts: function () {
-            //TODO
-        },
         getContacts: function () {
             var self = this;
 
+            var previousIds = this.checkedIds;
+            this.checkedIds = [];
+
+            console.log("term '" + this.term + "'");
+
             this.service.getContacts(this.term).done(function (contacts) {
+                contacts.map(function (c) {
+                    c.checked = (previousIds.indexOf(c.id) >= 0);
+
+                    if (c.checked) {
+                        self.checkedIds.push(c.id);
+                    }
+                });
+
                 self.contacts = contacts;
 
+                self.setAllChecked();
             }).fail(function () {
                 alert("Can't load contacts.");
             });
@@ -166,20 +190,21 @@ var n = new Vue({
                 phone: this.phone
             }).done(function (response) {
                 if (!response.success) {
-                    alert(response.message);
+                    self.hasErrorPhone = true;
+                    self.phoneError = "Контакт с таким телефоном уже есть.";
+
                     return;
                 }
 
                 self.clearInputs();
-
                 self.getContacts();
             }).fail(function () {
                 alert("Can't add contact.");
-            });;
+            });
         },
         clearSearch: function () {
             this.term = "";
-            this.search();
+            this.getContacts();
         }
     }
 });

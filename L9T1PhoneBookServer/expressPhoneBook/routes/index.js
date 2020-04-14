@@ -19,7 +19,6 @@ var contacts = [{
     name: "Olga",
     phone: "1876111876"
 }];
-//{id:1, name:"Ivan", phone: "876876" }
 
 var newId = 4;
 
@@ -29,9 +28,9 @@ router.get('/getContacts', function (req, res) {
     var filteredContacts = term.length === 0
         ? contacts
         : contacts.filter(function (c) {
-            return c.surname.indexOf(term) >= 0
-                || c.name.indexOf(term) >= 0
-                || c.phone.indexOf(term) >= 0;
+            return c.surname.toUpperCase().indexOf(term) >= 0
+                || c.name.toUpperCase().indexOf(term) >= 0
+                || c.phone.toUpperCase().indexOf(term) >= 0;
         });
 
     res.send(filteredContacts);
@@ -62,7 +61,7 @@ router.post("/addContact", function (req, res) {
     if (hasContactWithPhone) {
         res.send({
             success: false,
-            message: "Contact with phone (" + contact.phone + ") already exists."
+            message: "Contact with this phone already exist."
         });
 
         return;

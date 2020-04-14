@@ -103,7 +103,7 @@
 					</span>
 
                     <button type="button"
-                            class="btn btn-primary btn-icon mt-2"
+                            class="btn btn-primary btn-icon mt-2 mr-2"
                             @click="addContact">
                         <span class="icon">
                             <i class="fas fa-user-plus"></i>
@@ -130,7 +130,7 @@
 				</button>
 			</div>
 
-			<div class="float-right col-lg-8 col-md-6">					
+			<div class="float-right col-lg-8 col-md-6 search-container">					
 					<div class="input-group ">
 						<div class="input-group-prepend">
 							<span class="input-group-text my-2">
@@ -156,7 +156,7 @@
 			  <thead>
 				<tr>
 				  <th>
-					<input type="checkbox" @click="checkAll(checked)"/>
+					<input type="checkbox" @click="checkAll" v-model="areAllChecked"/>
 				  </th>
 				  <th>№</th>
 				  <th>Фамилия</th>
@@ -168,7 +168,7 @@
 			  <tbody>
 				<tr :key="c.id" v-for="(c,index) in contacts">
 				  <td>
-					<input type="checkbox" @click="checkContact(c,checked)"/>
+					<input type="checkbox" @click="checkContact(c.id)" v-model="c.checked"/>
 				  </td>
 				  <td>{{index+1}}.</td>
 				  <td v-text="c.surname"></td>
