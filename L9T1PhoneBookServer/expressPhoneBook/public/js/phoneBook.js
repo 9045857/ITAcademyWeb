@@ -125,17 +125,16 @@ var n = new Vue({
             this.service.getContacts(this.term).done(function (contacts) {
                 self.contacts = contacts;
 
-
             }).fail(function () {
                 alert("Can't load contacts.");
             });
         },
-        setDeletingContact: function (c) {
-            this.deletingContacts = [];
-            this.deletingContacts.push(c);
+        setDeletingContact: function (id) {
+            this.deletingIds = [];
+            this.deletingIds.push(id);
         },
         setDeletingContacts: function () {
-            this.deletingContacts = this.checkedContacts;
+            this.deletingIds = this.checkedIds;
         },
         deleteContacts: function () {
             var self = this;
@@ -146,7 +145,7 @@ var n = new Vue({
                 alert("Can't delete contact.");
             });
 
-            this.deletingContacts = [];
+            this.deletingIds = [];
 
             $("#delete-modal-dialog").modal("hide");
         },

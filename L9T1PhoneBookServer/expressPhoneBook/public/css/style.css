@@ -59,6 +59,12 @@ body {
         color: #28a745;
     }
 
+.input-area {
+    border-radius: .25rem;
+    box-shadow: 0 0 0 1px #edeef0;
+    background-color: #f7f7f7;
+}
+
 .input-area .form-group .input-group input {
     border-bottom-right-radius: .25rem;
     border-top-right-radius: .25rem;
@@ -91,6 +97,14 @@ body {
     border-left: solid 1px #28a745;
     background-color: #d4edda;
     color: #28a745;
+}
+
+.search-container .search-btn, .search-container .search-input {
+    border-radius: 0;
+}
+.search-container .clear-search-btn {
+    border-top-left-radius:  0;
+    border-bottom-left-radius:  0;
 }
 
 .phone-book-area {
