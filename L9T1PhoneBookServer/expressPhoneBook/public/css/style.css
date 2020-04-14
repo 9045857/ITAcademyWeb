@@ -1,0 +1,100 @@
+[v-cloak] {
+    display: none;
+}
+
+body {
+    background-color: #edeef0;
+    padding: 5px;
+}
+
+.phone-table button {
+    box-sizing: border-box;
+    width: 22px;
+    height: 22px;
+    padding: 0 0 2px 0;
+    line-height: 16px;
+    font-weight: bold;
+    margin-top: -5px;
+}
+
+.phone-table thead tr {
+    background-color: #343a40;
+    color: #f7f7f8;
+}
+
+.phone-table th, .phone-table td {
+    text-align: center;
+}
+
+.input-area .input-group span {
+    width: 40px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+    display: block;
+}
+
+.warning-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: -5px;
+    display: block;
+}
+
+.status-sign {
+    float: right;
+    font-size: 20px;
+    z-index: 10;
+    display: inline-block;
+    width: 30px;
+    margin-top: 3px;
+    margin-left: -30px;
+}
+
+    .status-sign .warning-sign {
+        color: #dc3545;
+    }
+
+    .status-sign .ok-sign {
+        color: #28a745;
+    }
+
+.input-area .form-group .input-group input {
+    border-bottom-right-radius: .25rem;
+    border-top-right-radius: .25rem;
+    padding-right: 40px;
+}
+
+    .input-area .form-group .input-group input.warning-border {
+        border-bottom: solid 1px #dc3545;
+        border-top: solid 1px #dc3545;
+        border-right: solid 1px #dc3545;
+    }
+
+.input-area .form-group .input-group .input-group-prepend span.warning-border {
+    border-bottom: solid 1px #dc3545;
+    border-top: solid 1px #dc3545;
+    border-left: solid 1px #dc3545;
+    background-color: #f8d7da;
+    color: #dc3545;
+}
+
+.input-area .form-group .input-group input.ok-border {
+    border-bottom: solid 1px #28a745;
+    border-top: solid 1px #28a745;
+    border-right: solid 1px #28a745;
+}
+
+.input-area .form-group .input-group .input-group-prepend span.ok-border {
+    border-bottom: solid 1px #28a745;
+    border-top: solid 1px #28a745;
+    border-left: solid 1px #28a745;
+    background-color: #d4edda;
+    color: #28a745;
+}
+
+.phone-book-area {
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: solid 1px #d7d8db;
+}

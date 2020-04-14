@@ -2,20 +2,23 @@ var express = require('express');
 var router = express.Router();
 
 var contacts = [{
-        id: 1,
-        name: "Ivan",
-        phone: "87687600"
-    },
-    {
-        id: 2,
-        name: "Oleg",
-        phone: "876234876"
-    },
-    {
-        id: 3,
-        name: "Nike",
-        phone: "1876111876"
-    }];
+    id: 1,
+    surname: "Orlov",
+    name: "Ivan",
+    phone: "87687600"
+},
+{
+    id: 2,
+    surname: "Petrov",
+    name: "Semen",
+    phone: "876234876"
+},
+{
+    id: 3,
+    surname: "Skvortsova",
+    name: "Olga",
+    phone: "1876111876"
+}];
 //{id:1, name:"Ivan", phone: "876876" }
 
 var newId = 4;
@@ -26,31 +29,21 @@ router.get('/getContacts', function (req, res) {
     var filteredContacts = term.length === 0
         ? contacts
         : contacts.filter(function (c) {
-            return c.name.indexOf(term) >= 0
+            return c.surname.indexOf(term) >= 0
+                || c.name.indexOf(term) >= 0
                 || c.phone.indexOf(term) >= 0;
         });
 
     res.send(filteredContacts);
 });
 
-router.post('/deleteContact', function (req, res) {
-    var id = req.body.id;
+router.post('/deleteContacts', function (req, res) {
+    var deletingContactsIds = req.body.ids;
 
-    var contact = contacts.find(function (c) {
-        return c.id === id;
-    });
-
-    if (contact === undefined) {
-        res.send({
-            success: true,
-            message: "Contact with id=" + id + " not found."
+    deletingContactsIds.forEach(function (id) {
+        contacts = contacts.filter(function (c) {
+            return c.id !== id;
         });
-
-        return;
-    }
-
-    contacts = contacts.filter(function (c) {
-        return c.id !== id;
     });
 
     res.send({
