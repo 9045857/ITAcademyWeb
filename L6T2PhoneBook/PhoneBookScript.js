@@ -7,10 +7,8 @@
 
         if (penultimateDigit === 1) {
             return "контактов";
-
         } else if (lastDigit === 1) {
             return "контакта";
-
         } else {
             return "контактов";
         }
@@ -23,7 +21,7 @@
             return;
         }
 
-        var newTitle = "Удаление " + deletedContactsCount.toString() + " " + getDeletePhrase(deletedContactsCount);
+        var newTitle = "Удаление " + deletedContactsCount + " " + getDeletePhrase(deletedContactsCount);
 
         $("#dialog-confirm").dialog({
             resizable: false,
@@ -175,11 +173,8 @@
     function showSearchedRow(searchedText, table, commonCheckbox) {
         var hiddenClassName = "hidden";
 
-        table.children("tbody").eq(0).children("tr").map(function () {
-            if (isTextInRow($(this), searchedText)) {
-                return $(this).removeClass(hiddenClassName);
-            }
-            return $(this).addClass(hiddenClassName);
+        table.children("tbody").eq(0).children("tr").each(function () {
+            $(this).toggleClass(hiddenClassName, !isTextInRow($(this), searchedText));
         });
 
         setCommonCheckboxChecked(table, commonCheckbox);
@@ -247,7 +242,7 @@
         return phonesCells.indexOf(phoneNumber) !== -1;
     }
 
-    function toggleShowWarning(input, text, sign, flag) {
+    function toggleNewContactInputWarning(input, text, sign, flag) {
         var warningBorder = "warning-border";
         var hiddenWarningMessage = "hidden";
 
@@ -268,20 +263,20 @@
         if (!isEnteredAnyNumbers(phoneNumber)) {
             message.text(warningEmptyPhoneInput);
 
-            toggleShowWarning(input, message, sign, true);
+            toggleNewContactInputWarning(input, message, sign, true);
             arePhoneReady = false;
         } else if (isEnteredAnyNumbers(phoneNumber) && !isPhoneNumberCorrect(phoneNumber)) {
             message.text(warningLessNumbers);
 
-            toggleShowWarning(input, message, sign, true);
+            toggleNewContactInputWarning(input, message, sign, true);
             arePhoneReady = false;
         } else if (isPhoneNumberInList(phoneNumber, table)) {
             message.text(warningContactInPhoneList);
 
-            toggleShowWarning(input, message, sign, true);
+            toggleNewContactInputWarning(input, message, sign, true);
             arePhoneReady = false;
         } else {
-            toggleShowWarning(input, message, sign, false);
+            toggleNewContactInputWarning(input, message, sign, false);
         }
 
         return arePhoneReady;
@@ -291,11 +286,11 @@
         var name = input.val();
 
         if (name.trim() === "") {
-            toggleShowWarning(input, message, sign, true);
+            toggleNewContactInputWarning(input, message, sign, true);
             return false;
         }
 
-        toggleShowWarning(input, message, sign, false);
+        toggleNewContactInputWarning(input, message, sign, false);
         return true;
     }
 
@@ -314,11 +309,9 @@
     var warningSurnameMessage = $("#warning-surname");
     var warningSurnameSign = $("#sign-surname");
 
-
     var nameInput = $("#input-name");
     var warningNameMessage = $("#warning-name");
     var warningNameSign = $("#sign-name");
-
 
     var phoneInput = $("#input-phone");
     var warningPhoneMessage = $("#warning-phone");
@@ -361,15 +354,15 @@
     });
 
     surnameInput.focusin(function () {
-        toggleShowWarning(surnameInput, warningSurnameMessage, warningSurnameSign, false);
+        toggleNewContactInputWarning(surnameInput, warningSurnameMessage, warningSurnameSign, false);
     });
 
     nameInput.focusin(function () {
-        toggleShowWarning(nameInput, warningNameMessage, warningNameSign, false);
+        toggleNewContactInputWarning(nameInput, warningNameMessage, warningNameSign, false);
     });
 
     phoneInput.focusin(function () {
-        toggleShowWarning(phoneInput, warningPhoneMessage, warningPhoneSign, false);
+        toggleNewContactInputWarning(phoneInput, warningPhoneMessage, warningPhoneSign, false);
     });
 
     var deleteAllCheckedButton = $("#delete-all-checked-button");
