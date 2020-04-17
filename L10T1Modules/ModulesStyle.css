@@ -89,6 +89,7 @@
         line-height: 40px;
         cursor: pointer;
         box-shadow: 0 0 0 1px #ffc924;
+        font-size: 16px;
     }
 
         .input-task button:active {
@@ -125,7 +126,6 @@
     top: 50%;
     transform: translateY(-50%);
 }
-
 
 .check-box, .correct, .delete {
     box-sizing: border-box;
