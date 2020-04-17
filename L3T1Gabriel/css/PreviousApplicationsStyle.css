@@ -10,13 +10,11 @@
 }
 
 .cell {
-    padding-left: 12px;
+    padding: 7px 0 7px 12px;
     text-align: left;
     vertical-align: middle;
     font-family: Arial,Franklin Gothic Medium, Arial Narrow,Century Gothic;
     font-size: 12px;
-    height: 30px;
-    border-width: 2px;
 }
 
 .previous-applications-head {
@@ -38,19 +36,27 @@
         }
 
 .previous-applications-body-area {
-    height: 130px;
+    max-height: 130px;
     overflow-y: scroll;
     color: #626263;
 }
 
-.previous-applications-body td {
-    border-left: 1px dotted #f4f5f5;
-    border-bottom: 1px dotted #f4f5f5;
+.previous-applications-body {
+    border-collapse: inherit;
 }
 
-    .previous-applications-body td:nth-child(2) {
-        border-left: none;
-        border-bottom: 1px dotted #f4f5f5;
+    .previous-applications-body td {
+        border-top: 1px dotted #ffffff;
+        border-left: 1px dotted #f4f5f5;
+        border-bottom: 1px dotted #bfc0c0;
+    }
+
+        .previous-applications-body td:nth-child(2) {
+            border-left: none;
+        }
+
+    .previous-applications-body tr:first-child td {
+        border-top: none;
     }
 
     .previous-applications-body td:last-child, .previous-applications-body td:first-child {
@@ -84,6 +90,7 @@
 
 .column-6 {
     width: 43px;
+    padding: 0;
 }
 
 .previous-applications-body button {
@@ -111,10 +118,10 @@
         height: 95%;
     }
 
-.previous-applications-body tr[review-status="not-ready"] {
+.previous-applications-body .application.not-ready {
     background-color: #b3d2f7;
 }
 
-.previous-applications-body button[review-status="accepted"] {
+.previous-applications-body .application.accepted button {
     display: none;
 }

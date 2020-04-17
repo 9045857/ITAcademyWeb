@@ -1,23 +1,10 @@
 ﻿.total-background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #cfeafb, #6fadfa);
-    z-index: -3;
-
-/*html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-}
-#fixed {
-    background-color: #f60;
-    width: 100%;
-    height: 100%;
     position: fixed;
-    overflow: auto;
-}*/
-
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #cfeafb, #6fadfa);
 }
 
 .working-area {
@@ -25,16 +12,16 @@
     margin: 0 auto;
     position: relative;
     padding-top: 42px;
-    z-index: -2;
 }
 
 .form-area {
     margin-left: 58px;
     width: 889px;
-    height: 632px;
+    max-height: 632px;
     box-shadow: 0 0 0 1px #8eacb9;
     border: 1px solid #ffffff;
     border-radius: 4px;
+    margin-bottom: 20px;
 }
 
 .upper-header {
@@ -45,11 +32,13 @@
     border-top-right-radius: 4px;
 }
 
+.small-word {
+    font-family: Franklin Gothic Medium, Century Gothic, Arial Narrow;
+    font-size: 12px;
+}
+
 .sections.sec-1 {
     width: 129px;
-    color: #df370e;
-    text-decoration: underline;
-    font-weight: bold;
 }
 
 .sections.sec-2 {
@@ -66,16 +55,25 @@
 
 .sections.sec-5 {
     width: 130px;
-    color: #d4b214;
 }
 
 .sections.sec-6 {
     width: 124px;
-    color: #d4b214;
 }
 
 .sections.sec-7 {
     width: 122px;
+}
+
+.sections .opened-sec {
+    color: #df370e;
+    font-weight: bold;
+    border-bottom: 1.5px solid #df370e;
+    cursor: default;
+}
+
+.sections .disabled {
+    color: #d4b214;
 }
 
 .sections {
@@ -95,20 +93,19 @@
         border-right: 0;
     }
 
-    .sections:hover {
-        font-weight: bold;
-        text-decoration: underline;
+    .sections .inner-section:not(.opened-sec):hover {
+        border-bottom: 1.5px solid #846f0d;
         cursor: pointer;
     }
 
-.small-word {
-    font-family: Franklin Gothic Medium, Century Gothic, Arial Narrow;
-    font-size: 12px;
-}
+    .sections .inner-section.disabled:hover {
+        border-bottom: none;
+        cursor: default;
+    }
 
 .main-area {
     width: 100%;
-    height: 572px;
+    max-height: 572px;
     background: linear-gradient(to bottom, #fcfdfd, #dbdbdd);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -172,7 +169,7 @@
 }
 
 .applications {
-    height: 230px;
+    max-height: 230px;
     overflow-y: scroll;
     margin: 2px 9px 0 10px;
 }
@@ -185,7 +182,7 @@
     .app-table td {
         height: 32.5px;
         box-sizing: border-box;
-        font-family: Trebuchet MS;
+        font-family: Trebuchet MS,Arial, Arial Narrow;
         color: #6e6e6e;
     }
 
@@ -220,7 +217,6 @@
     width: 223px;
     font-size: 12px;
     padding-left: 11px;
-    /*vertical-align: bottom;*/
     vertical-align: text-bottom;
 }
 
@@ -239,7 +235,7 @@
         font-size: 9px;
         padding-left: 2px;
         color: #6e6e6e;
-        font-family: Ebrima;
+        font-family: Ebrima,Arial, Arial Narrow;
         vertical-align: middle;
         font-weight: bold;
     }
@@ -278,7 +274,6 @@
     height: 40px;
     width: 168px;
     font-size: 16px;
-    font-weight: bold;
     letter-spacing: -0.06em;
 }
 
@@ -297,19 +292,19 @@
     margin-right: 20px;
 }
 
-.button[available="available"] {
+.button.available {
     background: linear-gradient(to bottom, #90bc3a, #7ca930);
     outline: 1px solid #628428;
     border-top: 1px solid #bad685;
     border-left: 1px solid #96bd4f;
     border-bottom: 1px solid #7ca92f;
     border-right: 1px solid #83b034;
-    /*background: transparent;*/
     color: #ffffff;
     text-shadow: 1px 1px 2px #6e932b;
+    cursor: pointer;
 }
 
-.button[available="not-available"] {
+.button.not-available {
     background: linear-gradient(to bottom, #fcfcfc, #c8c8c8);
     outline: 1px solid #afafaf;
     border-top: 1px solid #ffffff;
@@ -319,16 +314,8 @@
     color: #979797;
 }
 
-.button[available="available"]:hover {
-    outline: 1px solid #76ad13;
-    background: linear-gradient(to bottom, #c2f65c, #87cd0e);
-    cursor: pointer;
-}
-
-.button[available="available"]:active {
-    outline: 1px solid #3c5c05;
-    background: linear-gradient(to bottom, #709528, #497700);
-    cursor: pointer;
+.button.available:active {
+    background: linear-gradient(to bottom,#7ca930,#90bc3a);
 }
 
 .clearfix::after {

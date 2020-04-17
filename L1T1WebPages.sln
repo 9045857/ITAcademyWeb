@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L8T1BootstrapVueTodoList", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L8T2PhoneBookVue", "L8T2PhoneBookVue\L8T2PhoneBookVue.csproj", "{06544CFC-7CEE-4AA8-BC0B-9E45C2AD4068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L9T1PhoneBookServer", "L9T1PhoneBookServer\L9T1PhoneBookServer.csproj", "{45B754B4-CB8D-476E-BB82-4BD2F53F0725}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L9T1PhoneBookServer", "L9T1PhoneBookServer\L9T1PhoneBookServer.csproj", "{45B754B4-CB8D-476E-BB82-4BD2F53F0725}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L10T1Modules", "L10T1Modules\L10T1Modules.csproj", "{5C9B8277-1A42-4032-8A7F-392C8C65A4CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{45B754B4-CB8D-476E-BB82-4BD2F53F0725}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45B754B4-CB8D-476E-BB82-4BD2F53F0725}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45B754B4-CB8D-476E-BB82-4BD2F53F0725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9B8277-1A42-4032-8A7F-392C8C65A4CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C9B8277-1A42-4032-8A7F-392C8C65A4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C9B8277-1A42-4032-8A7F-392C8C65A4CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C9B8277-1A42-4032-8A7F-392C8C65A4CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
