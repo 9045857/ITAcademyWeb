@@ -1,23 +1,19 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    var tasksList = document.getElementById("tasks-list");
-    var newTask = document.getElementById("input-task-text");
-
-    function isEmptyText(text) {
-        return text.replace(/\s+/g, "") === "";
-    }
-
-    var addNewTaskButton = document.getElementById("input-task-button");
-    addNewTaskButton.addEventListener("click", function () {
-        var newTaskText = newTask.value;
+    function addNewTask(tasks, taskInput) {
+        var newTaskText = taskInput.value;
 
         if (newTaskText === "") {
-            newTask.classList.add("try-input-empty");
+            taskInput.classList.add("try-input-empty");
             return;
         }
 
         var li = document.createElement("li");
 
-        li.innerHTML = "<button type='button' title='Отметка о выполнении задачи' class='done-toggle check-box'><img src='Images/check-box.png' class='check-img'></button>" +
+        li.innerHTML = "<button type='button' " +
+            "title='Отметка о выполнении задачи' " +
+            "class='done-toggle check-box'>" +
+            "<img src='Images/check-box.png' class='check-img'>" +
+            "</button>" +
             "<input type='text' class='task-text task' value=''>" +
             "<button type='button' title='Сохранить изменения' class='save-correction task-button'><img src='Images/save.png'></button>" +
             "<button type='button' title='Не сохранять изменения' class='not-save-correction task-button'><img src='Images/notSave.png'></button>" +
@@ -28,7 +24,7 @@
         input.value = newTaskText;
         input.disabled = true;
 
-        tasksList.appendChild(li);
+        tasks.appendChild(li);
 
         var checkButton = li.getElementsByClassName("done-toggle")[0];
         var saveButton = li.getElementsByClassName("save-correction")[0];
@@ -109,10 +105,28 @@
             li.parentNode.insertBefore(deleteMenuHtml, li.nextSibling);
         });
 
-        newTask.value = "";
+        taskInput.value = "";
+    }
+
+    function isEmptyText(text) {
+        return text.replace(/\s+/g, "") === "";
+    }
+
+    var tasksList = document.getElementById("tasks-list");
+    var newTask = document.getElementById("input-task-text");
+
+    var addNewTaskButton = document.getElementById("input-task-button");
+    addNewTaskButton.addEventListener("click", function () {
+        addNewTask(tasksList, newTask);
     });
 
     newTask.addEventListener("focus", function () {
         newTask.classList.remove("try-input-empty");
+    });
+
+    newTask.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            addNewTask(tasksList, newTask);
+        }
     });
 });

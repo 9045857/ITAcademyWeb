@@ -60,36 +60,38 @@
         box-sizing: border-box;
         padding-left: 10px;
         padding-right: 10px;
-        height: 30px;
-        border-radius: 15px;
+        height: 40px;
+        border-radius: 5px;
         background-color: #f1f3f4;
         color: #505050;
         font-size: 16px;
+        box-shadow: 0 0 0 1px #e3e3e3;
     }
 
-        .input-task input:focus {
-            box-shadow: 0 0 2px 1px #82b3ea;
-            background-color: #fff;
+        .input-task input.try-input-empty {
+            box-shadow: 0 0 0 1px #dc3545;
         }
+
+.input-task input:focus {
+    box-shadow: 0 0 0 2px #1d69cf;
+    background-color: #fff;
+}
 
     .input-task button {
         margin-left: 600px;
         width: 180px;
         box-sizing: border-box;
-        height: 30px;
-        border-radius: 15px;
+        height: 40px;
+        border-radius: 5px;
         background: linear-gradient(#fff614,#ffc924);
         font-weight: bold;
         color: #5c3613;
-        line-height: 30px;
+        line-height: 40px;
+        cursor: pointer;
+        box-shadow: 0 0 0 1px #ffc924;
     }
 
-        .input-task button:hover {
-            cursor: pointer;
-        }
-
         .input-task button:active {
-            box-shadow: 0 0 0 1px #ffc924;
             background: linear-gradient(#ffc924,#fff614);
         }
 
@@ -275,19 +277,19 @@
 }
 
 .try-input-empty::-webkit-input-placeholder {
-    color: #ff0e07;
+    color: #dc3545;
 }
 
 .try-input-empty::-moz-placeholder {
-    color: #ff0e07;
+    color: #dc3545;
 }
 
 .try-input-empty:-moz-placeholder {
-    color: #ff0e07;
+    color: #dc3545;
 }
 
 .try-input-empty:-ms-input-placeholder {
-    color: #ff0e07;
+    color: #dc3545;
 }
 
 .working-area input::-ms-clear {
