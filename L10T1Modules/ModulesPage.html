@@ -1,28 +1,7 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Задача «Modules»</title>
-    <link rel="stylesheet" type="text/css" href="Reset.css">
-    <link rel="stylesheet" type="text/css" href="ModulesStyle.css">
-    <link rel="SHORTCUT ICON" href="Images/m.ico" type="image/x-icon">
-</head>
+﻿<!doctype html>
 <body>
-    <div class="working-area">
-        <div class="header-container">
-           <span class="number">L10T1</span> <h1>Задача «Modules»</h1>
-        </div>
-
-        <div class="input-task">
-            <input type="text" id="input-task-text" placeholder="введите задачу">
-            <button type="button" id="input-task-button">Добавить в список</button>
-        </div>
-
-        <div class="tasks-list">
-            <h2>ToDo List</h2>
-            <ul id="tasks-list"></ul>
-        </div>
-    </div>
-    <script src="ModulesScript.js"></script>
+    <script type="module">
+        import {example} from "./ModulesScript.js";
+        example();
+    </script>
 </body>
-</html>
