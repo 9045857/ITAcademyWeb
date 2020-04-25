@@ -88,7 +88,6 @@
                 this.errorPhoneMessage = null;
                 this.isErrorPhone = false;
             },
-
             checkNewSurname() {
                 if (this.newSurname.trim() === "") {
                     this.errorSurnameMessage = "Введите фамилию!";

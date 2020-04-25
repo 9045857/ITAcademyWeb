@@ -16,7 +16,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <!--<button type="button" class="btn btn-danger" @click="deleteContacts">Удалить</button>-->
                     <button type="button" class="btn btn-danger" @click="approveDeleting">Удалить</button>
                 </div>
             </div>
@@ -32,5 +31,4 @@
             }
         }
     }
-
 </script>

@@ -55,18 +55,7 @@
 
 <script>
     export default {
-        //props: {
-        //    isAllCheck: {
-        //        type: Boolean
-        //    },
-        //    contacts: {
-        //        type: Array,
-        //        default: function () {
-        //            return [];
-        //        }
-        //    }
-        //},
-        props:["isAllCheck","contacts"],
+        props: ["isAllCheck", "contacts"],
 
         methods: {
             showDeleteModal: function (contact) {

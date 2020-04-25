@@ -67,12 +67,14 @@
                 hasPhoneNumber: false
             }
         },
+
         components: {
             addForm: AddForm,
             searchForm: SearchForm,
             tableForm: TableForm,
             deleteModal: DeleteModal
         },
+
         methods: {
             loadVisibleContacts() {
                 this.contacts = this.dBContacts.filter(function (c) {
@@ -152,6 +154,7 @@
                 }).length > 0);
             }
         },
+
         mounted() {
             this.loadVisibleContacts();
         }

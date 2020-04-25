@@ -26,6 +26,7 @@
                 text
             }
         },
+
         methods: {
             clearSearch: function () {
                 this.text = "";
