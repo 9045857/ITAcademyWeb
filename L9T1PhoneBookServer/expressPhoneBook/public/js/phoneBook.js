@@ -8,18 +8,21 @@
     }
 
     this.getContacts = function (term) {
-        return $.get("/getContacts",
-            {
-                term: term
-            });
+        return $.get("/getContacts", {
+            term: term
+        });
     };
 
     this.addContact = function (contact) {
-        return post("/addContact", { request: contact });
+        return post("/addContact", {
+            request: contact
+        });
     };
 
     this.deleteContacts = function (ids) {
-        return post("/deleteContacts", { ids: ids });
+        return post("/deleteContacts", {
+            ids: ids
+        });
     };
 }
 
@@ -54,7 +57,7 @@ var n = new Vue({
         this.getContacts();
     },
     methods: {
-        checkNameInput() {
+        checkNameInput: function () {
             this.isNameChecked = true;
 
             if (this.name.trim() === "") {
@@ -64,7 +67,7 @@ var n = new Vue({
 
             this.hasErrorName = false;
         },
-        checkSurnameInput() {
+        checkSurnameInput: function () {
             this.isSurnameChecked = true;
 
             if (this.surname.trim() === "") {
@@ -74,7 +77,7 @@ var n = new Vue({
 
             this.hasErrorSurname = false;
         },
-        checkPhoneInput() {
+        checkPhoneInput: function () {
             this.isPhoneChecked = true;
 
             if (this.phone.trim() === "") {
@@ -135,7 +138,7 @@ var n = new Vue({
             var previousIds = this.checkedIds;
             this.checkedIds = [];
 
-            console.log("term '" + this.term + "'");
+           
 
             this.service.getContacts(this.term).done(function (contacts) {
                 contacts.map(function (c) {
@@ -144,6 +147,14 @@ var n = new Vue({
                     if (c.checked) {
                         self.checkedIds.push(c.id);
                     }
+
+                //contacts.each(function (c) {
+                //    c.checked = (previousIds.indexOf(c.id) >= 0);
+
+                //    if (c.checked) {
+                //        self.checkedIds.push(c.id);
+                //    }
+
                 });
 
                 self.contacts = contacts;

@@ -37,16 +37,16 @@
 
 				<div class="form-group">
 					<div class="input-group mb-1">
-						<div class="input-group-prepend"								>
+						<div class="input-group-prepend">
 							<span class="input-group-text"
-								:class="{'warning-border':hasErrorSurname,'ok-border':(!hasErrorSurname&&isSurnameChecked)}">
+								:class="{'warning-border': hasErrorSurname, 'ok-border': (!hasErrorSurname && isSurnameChecked)}">
 								<i class="fas fa-users"></i>
 							</span>
 						</div>
 						<input type="text" 
 								v-model="surname"
 								class="form-control"
-								:class="{'warning-border':hasErrorSurname,'ok-border':(!hasErrorSurname&&isSurnameChecked)}"
+								:class="{'warning-border': hasErrorSurname, 'ok-border': (!hasErrorSurname && isSurnameChecked)}"
 								@keyup="checkSurnameInput"
 								placeholder="Введите фамилию">
 						<div class="status-sign"  v-show="isSurnameChecked">
@@ -59,16 +59,16 @@
 					</span>
 
 					<div class="input-group mb-1">
-						<div class="input-group-prepend"								>
+						<div class="input-group-prepend">
 							<span class="input-group-text"
-								:class="{'warning-border':hasErrorName,'ok-border':(!hasErrorName&&isNameChecked)}">
+								:class="{'warning-border': hasErrorName, 'ok-border': (!hasErrorName && isNameChecked)}">
 								<i class="fas fa-user"></i>
 							</span>
 						</div>
 						<input type="text" 
 								v-model="name"
 								class="form-control"
-								:class="{'warning-border':hasErrorName,'ok-border':(!hasErrorName&&isNameChecked)}"
+								:class="{'warning-border': hasErrorName, 'ok-border': (!hasErrorName && isNameChecked)}"
 								@keyup="checkNameInput"
 								placeholder="Введите имя">
 						<div class="status-sign"  v-show="isNameChecked">
@@ -81,16 +81,16 @@
 					</span>
 
 					<div class="input-group mb-1">
-						<div class="input-group-prepend"								>
+						<div class="input-group-prepend">
 							<span class="input-group-text"
-								:class="{'warning-border':hasErrorPhone,'ok-border':(!hasErrorPhone&&isPhoneChecked)}">
+								:class="{'warning-border': hasErrorPhone, 'ok-border': (!hasErrorPhone && isPhoneChecked)}">
 								<i class="fas fa-phone"></i>
 							</span>
 						</div>
 						<input type="text" 
 								v-model="phone"
 								class="form-control"
-								:class="{'warning-border':hasErrorPhone,'ok-border':(!hasErrorPhone&&isPhoneChecked)}"
+								:class="{'warning-border': hasErrorPhone, 'ok-border': (!hasErrorPhone && isPhoneChecked)}"
 								@keyup="checkPhoneInput"
 								placeholder="Введите телефон">
 						<div class="status-sign"  v-show="isPhoneChecked">
