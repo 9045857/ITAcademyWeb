@@ -1,5 +1,75 @@
-﻿$rrr: red;
+﻿body {
+    background-color: #edeef0;
+}
 
-h2 {
-    color: $rrr;
+.working-area {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 0 #9f9f9f;
+    padding-bottom: 5px;
+}
+
+.check-box {
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+}
+
+.warning {
+    font-size: 12px;
+    color: #dc3545;
+}
+
+.warning.hidden {
+    display: none;
+}
+
+.phone-table .th, .phone-table .td {
+    text-align: center;
+    height: 30px;
+}
+
+.phone-table .th {
+    font-weight: bold;
+}
+
+.phone-table thead .tr {
+    border-top: solid 1px #ced4da;
+    border-bottom: solid 1px #ced4da;
+}
+
+.phone-table tbody .tr {
+    border-bottom: solid 1px #ced4da;
+}
+
+.phone-table .delete-btn button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: bold;
+}
+
+.delete-checked-btn {
+    margin-left: -15px;
+}
+
+.btn-icon {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.btn > .icon {
+    position: relative;
+    left: -.75rem;
+    display: inline-block;
+    padding: .375rem .75rem;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: .25rem 0 0 .25rem;
+}
+
+.warning-input {
+    border-color: #dc3545;
 }

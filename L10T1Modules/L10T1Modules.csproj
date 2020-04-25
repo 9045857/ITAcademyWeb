@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="modulesExpress\public\js\" />
+    <Folder Include="modulesExpress\public\libs\" />
+    <Folder Include="modulesExpress\public\webfonts\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
