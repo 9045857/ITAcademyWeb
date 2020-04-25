@@ -44,158 +44,148 @@
 </template>
 
 <script>
+    var newId = 7;
+    var newSurname = "";
+    var newName = "";
+    var newPhone = "";
+    var errorSurnameMessage = null;
+    var isErrorSurname = false;
+    var errorNameMessage = null;
+    var isErrorName = false;
+    var errorPhoneMessage = null;
+    var isErrorPhone = false;
+
     export default {
         data: function () {
             return {
-                newId: 7,
-                newSurname: "",
-                newName: "",
-                newPhone: "",
-                errorSurnameMessage: null,
-                isErrorSurname: false,
+                newId,
+                newSurname,
+                newName,
+                newPhone,
+                errorSurnameMessage,
+                isErrorSurname,
 
-                errorNameMessage: null,
-                isErrorName: false,
+                errorNameMessage,
+                isErrorName,
 
-                errorPhoneMessage: null,
-                isErrorPhone: false
+                errorPhoneMessage,
+                isErrorPhone
             };
         },
 
-        props: {
-            hasPhoneNumber:
-            {
-                type: Boolean
-            }
-        },
+        props: ["hasPhoneNumber"],
+
         methods: {
-            removeSurnameWarning:
-                function () {
-                    this.errorSurnameMessage = null;
-                    this.isErrorSurname = false;
-                },
-            removeNameWarning:
-                function () {
-                    this.errorNameMessage = null;
-                    this.isErrorName = false;
-                },
-            removePhoneWarning:
-                function () {
-                    this.errorPhoneMessage = null;
-                    this.isErrorPhone = false;
-                },
+            removeSurnameWarning() {
+                this.errorSurnameMessage = null;
+                this.isErrorSurname = false;
+            },
+            removeNameWarning() {
+                this.errorNameMessage = null;
+                this.isErrorName = false;
+            },
+            removePhoneWarning() {
+                this.errorPhoneMessage = null;
+                this.isErrorPhone = false;
+            },
 
-            checkNewSurname:
-                function () {
-                    if (this.newSurname.trim() === "")
-                    {
-                        this.errorSurnameMessage = "Введите фамилию!";
-                        this.isErrorSurname = true;
+            checkNewSurname() {
+                if (this.newSurname.trim() === "") {
+                    this.errorSurnameMessage = "Введите фамилию!";
+                    this.isErrorSurname = true;
 
-                        return false;
-                    }
-
-                    this.removeSurnameWarning();
-
-                    return true;
-                },
-            checkNewName:
-                function () {
-                    if (this.newName.trim() === "")
-                    {
-                        this.errorNameMessage = "Введите имя!";
-                        this.isErrorName = true;
-
-                        return false;
-                    }
-
-                    this.removeNameWarning();
-
-                    return true;
-                },
-            isNumberExist:
-                function () {
-                    this.$emit("check-exist-phone", this.newPhone);
-
-                    return this.hasPhoneNumber;
-                },
-            checkNewPhone:
-                function () {
-                    if (this.newPhone.trim() === "")
-                    {
-                        this.errorPhoneMessage = "Введите телефон!";
-                        this.isErrorPhone = true;
-
-                        return false;
-                    }
-
-                    if (!this.newPhone.trim().match(/ ^\d +$/)) {
-                        this.errorPhoneMessage = "Используйте только цифры!";
-                        this.isErrorPhone = true;
-
-                        return false;
-                    }
-
-                    if (this.isNumberExist()) {
-                        this.errorPhoneMessage = "Такой номер уже есть!";
-                        this.isErrorPhone = true;
-
-                        return false;
-                    }
-
-                    this.removePhoneWarning();
-
-                    return true;
-                },
-            addNewContact:
-                function () {
-                    this.errorNameMessage = null;
-                    this.errorSurnameMessage = null;
-                    this.errorPhoneMessage = null;
-
-                    this.isErrorSurname = false;
-
-                    var areNewDataReady = this.checkNewSurname() & this.checkNewName() & this.checkNewPhone();
-
-                    if (!areNewDataReady) {
-                        return;
-                    }
-
-                    this.$emit("add-new-contact",
-                        {
-                            id:
-                                this.newId,
-                            surname:
-                                this.newSurname,
-                            name:
-                                this.newName,
-                            phone:
-                                this.newPhone,
-                            checked: false,
-                            isVisible:
-                                true
-                        });
-
-                    this.newId++;
-                    this.newSurname = "";
-                    this.newName = "";
-                    this.newPhone = "";
-                },
-            newContactClear:
-                function () {
-                    this.newSurname = "";
-                    this.newName = "";
-                    this.newPhone = "";
-
-                    this.errorSurnameMessage = null;
-                    this.isErrorSurname = false;
-
-                    this.errorNameMessage = null;
-                    this.isErrorName = false;
-
-                    this.errorPhoneMessage = null;
-                    this.isErrorPhone = false;
+                    return false;
                 }
+
+                this.removeSurnameWarning();
+
+                return true;
+            },
+            checkNewName() {
+                if (this.newName.trim() === "") {
+                    this.errorNameMessage = "Введите имя!";
+                    this.isErrorName = true;
+
+                    return false;
+                }
+
+                this.removeNameWarning();
+
+                return true;
+            },
+            isNumberExist() {
+                this.$emit("check-exist-phone", this.newPhone);
+
+                return this.hasPhoneNumber;
+            },
+            checkNewPhone() {
+                if (this.newPhone.trim() === "") {
+                    this.errorPhoneMessage = "Введите телефон!";
+                    this.isErrorPhone = true;
+
+                    return false;
+                }
+
+                if (!this.newPhone.trim().match(/^\d+$/)) {
+                    this.errorPhoneMessage = "Используйте только цифры!";
+                    this.isErrorPhone = true;
+
+                    return false;
+                }
+
+                if (this.isNumberExist()) {
+                    this.errorPhoneMessage = "Такой номер уже есть!";
+                    this.isErrorPhone = true;
+
+                    return false;
+                }
+
+                this.removePhoneWarning();
+
+                return true;
+            },
+            addNewContact() {
+                this.errorNameMessage = null;
+                this.errorSurnameMessage = null;
+                this.errorPhoneMessage = null;
+
+                this.isErrorSurname = false;
+
+                var areNewDataReady = this.checkNewSurname() & this.checkNewName() & this.checkNewPhone();
+
+                if (!areNewDataReady) {
+                    return;
+                }
+
+                this.$emit("add-new-contact",
+                    {
+                        id: this.newId,
+                        surname: this.newSurname,
+                        name: this.newName,
+                        phone: this.newPhone,
+                        checked: false,
+                        isVisible: true
+                    });
+
+                this.newId++;
+                this.newSurname = "";
+                this.newName = "";
+                this.newPhone = "";
+            },
+            newContactClear() {
+                this.newSurname = "";
+                this.newName = "";
+                this.newPhone = "";
+
+                this.errorSurnameMessage = null;
+                this.isErrorSurname = false;
+
+                this.errorNameMessage = null;
+                this.isErrorName = false;
+
+                this.errorPhoneMessage = null;
+                this.isErrorPhone = false;
+            }
         }
     }
 </script>

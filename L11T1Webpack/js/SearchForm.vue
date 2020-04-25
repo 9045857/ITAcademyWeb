@@ -18,10 +18,12 @@
 </template>
 
 <script>
+    var text = "";
+
     export default {
         data: function () {
             return {
-                text: ""
+                text
             }
         },
         methods: {
