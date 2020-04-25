@@ -451,30 +451,58 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _css_phoneBook_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/phoneBook.scss */ "./css/phoneBook.scss");
-/* harmony import */ var _css_phoneBook_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_css_phoneBook_scss__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _AppPhoneBook_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AppPhoneBook.vue */ "./js/AppPhoneBook.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _css_phoneBook_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css/phoneBook.scss */ "./css/phoneBook.scss");
+/* harmony import */ var _css_phoneBook_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_phoneBook_scss__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _fortawesome_fontawesome_free_css_fontawesome_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/fontawesome-free/css/fontawesome.min.css */ "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css");
+/* harmony import */ var _fortawesome_fontawesome_free_css_fontawesome_min_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_css_fontawesome_min_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _fortawesome_fontawesome_free_css_solid_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/fontawesome-free/css/solid.min.css */ "./node_modules/@fortawesome/fontawesome-free/css/solid.min.css");
+/* harmony import */ var _fortawesome_fontawesome_free_css_solid_min_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_css_solid_min_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _AppPhoneBook_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AppPhoneBook.vue */ "./js/AppPhoneBook.vue");
 
 
+
+ //import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
+//import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"
+//import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
 
 
 
  //"./App1.vue";//"./AppPhoneBook.vue";//"./App.vue";
 
-var n = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
+new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   el: "#phone-book",
   components: {
-    app: _AppPhoneBook_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    app: _AppPhoneBook_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   template: "<app></app>"
 });
+
+/***/ }),
+
+/***/ "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./node_modules/@fortawesome/fontawesome-free/css/solid.min.css":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@fortawesome/fontawesome-free/css/solid.min.css ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
