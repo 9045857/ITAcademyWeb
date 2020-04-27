@@ -3,7 +3,7 @@ var router = express.Router();
 
 var contacts = [{
     id: 1,
-    surname: "Orlov",
+    surname: "Олег",
     name: "Ivan",
     phone: "87687600"
 },
@@ -51,31 +51,71 @@ router.post('/deleteContacts', function (req, res) {
     });
 });
 
-router.post("/addContact", function (req, res) {
-    var contact = req.body.request;
+function getContactCheck(contact) {
+    if (contact.surname.trim() === "") {
+        return {
+            success: false,
+            field: "surname",
+            message: "Введите фамилию!"
+        };
+    }
+
+    if (contact.name.trim() === "") {
+        return {
+            success: false,
+            field: "name",
+            message: "Введите имя!"
+        };
+    }
+
+    if (contact.phone.trim() === "") {
+        return {
+            success: false,
+            field: "phone",
+            message: "Введите номер телефона!"
+        };
+    }
+
+    if (!contact.phone.trim().match(/^\d+$/)) {
+        return {
+            success: false,
+            field: "phone",
+            message: "Используйте только цифры!"
+        };
+    }
 
     var hasContactWithPhone = contacts.some(function (c) {
         return c.phone.toUpperCase() === contact.phone.toUpperCase();
     });
 
     if (hasContactWithPhone) {
-        res.send({
+        return {
             success: false,
-            message: "Contact with this phone already exist."
-        });
-
-        return;
+            field: "phone",
+            message: "Контакт с таким телефоном уже существует."
+        };
     }
 
-    contact.id = newId;
-    newId++;
-
-    contacts.push(contact);
-
-    res.send({
+    return {
         success: true,
+        field: null,
         message: null
-    });
+    }
+}
+
+router.post("/addContact", function (req, res) {
+    var contact = req.body.request;
+
+    var responseLetter = getContactCheck(contact);
+
+    if (responseLetter.success) {
+        contact.id = newId;
+        newId++;
+
+        contacts.push(contact);
+    }
+
+    res.send(responseLetter);
 });
 
 /* GET home page. */

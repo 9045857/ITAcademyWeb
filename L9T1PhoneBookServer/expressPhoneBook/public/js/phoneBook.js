@@ -26,7 +26,7 @@
     };
 }
 
-var n = new Vue({
+new Vue({
     el: "#app",
     data: {
         service: new PhoneBookService(),
@@ -112,10 +112,11 @@ var n = new Vue({
             this.checkedIds = [];
             var self = this;
 
-            self.areAllChecked = !self.areAllChecked;
-
             this.contacts.map(function (c) {
-                self.checkedIds.push(c.id);
+                if (self.areAllChecked) {
+                    self.checkedIds.push(c.id);
+                }
+
                 c.checked = self.areAllChecked;
             });
         },
@@ -138,22 +139,13 @@ var n = new Vue({
             var previousIds = this.checkedIds;
             this.checkedIds = [];
 
-           
-
             this.service.getContacts(this.term).done(function (contacts) {
-                contacts.map(function (c) {
+                contacts.forEach(function (c) {
                     c.checked = (previousIds.indexOf(c.id) >= 0);
 
                     if (c.checked) {
                         self.checkedIds.push(c.id);
                     }
-
-                //contacts.each(function (c) {
-                //    c.checked = (previousIds.indexOf(c.id) >= 0);
-
-                //    if (c.checked) {
-                //        self.checkedIds.push(c.id);
-                //    }
 
                 });
 
@@ -201,8 +193,20 @@ var n = new Vue({
                 phone: this.phone
             }).done(function (response) {
                 if (!response.success) {
-                    self.hasErrorPhone = true;
-                    self.phoneError = "Контакт с таким телефоном уже есть.";
+                    if (response.field === "surname") {
+                        self.hasErrorSurname = true;
+                        self.surnameError = response.message;
+                    }
+
+                    if (response.field === "name") {
+                        self.hasErrorName = true;
+                        self.nameError = response.message;
+                    }
+
+                    if (response.field === "phone") {
+                        self.hasErrorPhone = true;
+                        self.phoneError = response.message;
+                    }
 
                     return;
                 }

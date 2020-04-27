@@ -156,7 +156,7 @@
 			  <thead>
 				<tr>
 				  <th>
-					<input type="checkbox" @click="checkAll" v-model="areAllChecked"/>
+					<input type="checkbox" v-model="areAllChecked" @change="checkAll"/>
 				  </th>
 				  <th>№</th>
 				  <th>Фамилия</th>
@@ -168,7 +168,7 @@
 			  <tbody>
 				<tr :key="c.id" v-for="(c,index) in contacts">
 				  <td>
-					<input type="checkbox" @click="checkContact(c.id)" v-model="c.checked"/>
+					<input type="checkbox" @change="checkContact(c.id)" v-model="c.checked"/>
 				  </td>
 				  <td>{{index+1}}.</td>
 				  <td v-text="c.surname"></td>
