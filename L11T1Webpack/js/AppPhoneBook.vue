@@ -119,18 +119,15 @@
 
                 this.loadVisibleContacts();
             },
-            checkContact(contact) {
-                contact.checked = !contact.checked;
+            checkContact() {
                 this.setTotalCheck();
             },
-            checkTotal() {
-                this.isAllContactsChecked = !this.isAllContactsChecked;
-                var checked = this.isAllContactsChecked;
+            checkTotal(totalChecked) {
+                this.isAllContactsChecked = totalChecked;
+                var checked = this.isAllContactsChecked;               
 
-                this.contacts.map(function (c) {
-                    if (c.isVisible) {
-                        c.checked = checked;
-                    }
+                this.contacts.forEach(function (c) {
+                    c.checked = checked;
                 });
             },
             getSearchedContacts(searchText) {

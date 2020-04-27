@@ -466,13 +466,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- //import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
-//import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"
-//import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
 
 
 
- //"./App1.vue";//"./AppPhoneBook.vue";//"./App.vue";
 
 new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   el: "#phone-book",
@@ -600,7 +596,7 @@ var isErrorPhone = false;
       this.isErrorPhone = false;
     },
     checkNewSurname: function checkNewSurname() {
-      if (this.newSurname.trim() === "") {
+      if (this.newSurname === "") {
         this.errorSurnameMessage = "Введите фамилию!";
         this.isErrorSurname = true;
         return false;
@@ -610,7 +606,7 @@ var isErrorPhone = false;
       return true;
     },
     checkNewName: function checkNewName() {
-      if (this.newName.trim() === "") {
+      if (this.newName === "") {
         this.errorNameMessage = "Введите имя!";
         this.isErrorName = true;
         return false;
@@ -624,13 +620,13 @@ var isErrorPhone = false;
       return this.hasPhoneNumber;
     },
     checkNewPhone: function checkNewPhone() {
-      if (this.newPhone.trim() === "") {
+      if (this.newPhone === "") {
         this.errorPhoneMessage = "Введите телефон!";
         this.isErrorPhone = true;
         return false;
       }
 
-      if (!this.newPhone.trim().match(/^\d+$/)) {
+      if (!this.newPhone.match(/^\d+$/)) {
         this.errorPhoneMessage = "Используйте только цифры!";
         this.isErrorPhone = true;
         return false;
@@ -809,17 +805,16 @@ __webpack_require__.r(__webpack_exports__);
 
       this.loadVisibleContacts();
     },
-    checkContact: function checkContact(contact) {
-      contact.checked = !contact.checked;
+    checkContact: function checkContact() {
+      // contact.checked = !contact.checked;
       this.setTotalCheck();
     },
-    checkTotal: function checkTotal() {
-      this.isAllContactsChecked = !this.isAllContactsChecked;
+    checkTotal: function checkTotal(totalChecked) {
+      //  this.isAllContactsChecked = !this.isAllContactsChecked;
+      this.isAllContactsChecked = totalChecked;
       var checked = this.isAllContactsChecked;
-      this.contacts.map(function (c) {
-        if (c.isVisible) {
-          c.checked = checked;
-        }
+      this.contacts.forEach(function (c) {
+        c.checked = checked;
       });
     },
     getSearchedContacts: function getSearchedContacts(searchText) {
@@ -884,7 +879,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     approveDeleting: function approveDeleting() {
@@ -923,21 +917,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-var text = "";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var term = "";
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      text: text
+      term: term
     };
   },
   methods: {
     clearSearch: function clearSearch() {
-      this.text = "";
+      this.term = "";
       this.search();
     },
     search: function search() {
-      var searchText = this.text.toLowerCase();
-      this.$emit("search-contacts", searchText);
+      var lowerCaseTerm = this.term.toLowerCase();
+      this.$emit("search-contacts", lowerCaseTerm);
     }
   }
 });
@@ -1008,28 +1012,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var totalChecked = false;
 /* harmony default export */ __webpack_exports__["default"] = ({
-  //props: {
-  //    isAllCheck: {
-  //        type: Boolean
-  //    },
-  //    contacts: {
-  //        type: Array,
-  //        default: function () {
-  //            return [];
-  //        }
-  //    }
-  //},
   props: ["isAllCheck", "contacts"],
+  data: function data() {
+    return {
+      totalChecked: totalChecked
+    };
+  },
+  watch: {
+    isAllCheck: function isAllCheck() {
+      if (this.isAllCheck !== this.totalChecked) {
+        this.totalChecked = this.isAllCheck;
+      }
+    }
+  },
   methods: {
     showDeleteModal: function showDeleteModal(contact) {
       this.$emit("show-delete-modal", contact);
     },
-    checkContact: function checkContact(contact) {
-      this.$emit("check-contact", contact);
+    checkContact: function checkContact() {
+      this.$emit("check-contact");
     },
     check: function check() {
-      this.$emit("check-all");
+      this.$emit("check-all", this.totalChecked);
     },
     deleteCheckedContacts: function deleteCheckedContacts() {
       this.$emit("show-delete-modal", null);
@@ -19587,9 +19615,10 @@ var render = function() {
           directives: [
             {
               name: "model",
-              rawName: "v-model",
+              rawName: "v-model.trim",
               value: _vm.newSurname,
-              expression: "newSurname"
+              expression: "newSurname",
+              modifiers: { trim: true }
             }
           ],
           staticClass: "form-control mt-2",
@@ -19602,7 +19631,10 @@ var render = function() {
               if ($event.target.composing) {
                 return
               }
-              _vm.newSurname = $event.target.value
+              _vm.newSurname = $event.target.value.trim()
+            },
+            blur: function($event) {
+              return _vm.$forceUpdate()
             }
           }
         }),
@@ -19618,9 +19650,10 @@ var render = function() {
           directives: [
             {
               name: "model",
-              rawName: "v-model",
+              rawName: "v-model.trim",
               value: _vm.newName,
-              expression: "newName"
+              expression: "newName",
+              modifiers: { trim: true }
             }
           ],
           staticClass: "form-control mt-2",
@@ -19633,7 +19666,10 @@ var render = function() {
               if ($event.target.composing) {
                 return
               }
-              _vm.newName = $event.target.value
+              _vm.newName = $event.target.value.trim()
+            },
+            blur: function($event) {
+              return _vm.$forceUpdate()
             }
           }
         }),
@@ -19649,9 +19685,10 @@ var render = function() {
           directives: [
             {
               name: "model",
-              rawName: "v-model",
+              rawName: "v-model.trim",
               value: _vm.newPhone,
-              expression: "newPhone"
+              expression: "newPhone",
+              modifiers: { trim: true }
             }
           ],
           staticClass: "form-control mt-2",
@@ -19664,7 +19701,10 @@ var render = function() {
               if ($event.target.composing) {
                 return
               }
-              _vm.newPhone = $event.target.value
+              _vm.newPhone = $event.target.value.trim()
+            },
+            blur: function($event) {
+              return _vm.$forceUpdate()
             }
           }
         }),
@@ -19929,19 +19969,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.text,
-                expression: "text"
+                value: _vm.term,
+                expression: "term"
               }
             ],
             staticClass: "form-control",
             attrs: { type: "text" },
-            domProps: { value: _vm.text },
+            domProps: { value: _vm.term },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.text = $event.target.value
+                _vm.term = $event.target.value
               }
             }
           })
@@ -19956,7 +19996,7 @@ var render = function() {
             attrs: { type: "button" },
             on: { click: _vm.search }
           },
-          [_vm._v("Найти")]
+          [_vm._v("\n                Найти\n            ")]
         ),
         _vm._v(" "),
         _c(
@@ -19966,7 +20006,7 @@ var render = function() {
             attrs: { type: "button" },
             on: { click: _vm.clearSearch }
           },
-          [_vm._v("Очистить")]
+          [_vm._v("\n                Очистить\n            ")]
         )
       ])
     ])
@@ -20021,13 +20061,13 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", [
-      _c("table", { staticClass: "phone-table table table-sm" }, [
-        _c("thead", [
-          _c("div", { staticClass: " tr table-info row" }, [
+      _c("div", { staticClass: "phone-table table table-sm" }, [
+        _c("div", { staticClass: "thead" }, [
+          _c("div", { staticClass: "tr table-info row" }, [
             _c(
               "div",
               {
-                staticClass: "col-md-1 col-sm-1 col-xs-1 ",
+                staticClass: "col-md-1 col-sm-1 col-xs-1",
                 attrs: { scope: "col" }
               },
               [
@@ -20036,38 +20076,40 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.isAllCheck,
-                      expression: "isAllCheck"
+                      value: _vm.totalChecked,
+                      expression: "totalChecked"
                     }
                   ],
                   staticClass: "check-box",
                   attrs: { type: "checkbox" },
                   domProps: {
-                    checked: Array.isArray(_vm.isAllCheck)
-                      ? _vm._i(_vm.isAllCheck, null) > -1
-                      : _vm.isAllCheck
+                    checked: Array.isArray(_vm.totalChecked)
+                      ? _vm._i(_vm.totalChecked, null) > -1
+                      : _vm.totalChecked
                   },
                   on: {
-                    click: _vm.check,
-                    change: function($event) {
-                      var $$a = _vm.isAllCheck,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.isAllCheck = $$a.concat([$$v]))
+                    change: [
+                      function($event) {
+                        var $$a = _vm.totalChecked,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.totalChecked = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.totalChecked = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
                         } else {
-                          $$i > -1 &&
-                            (_vm.isAllCheck = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
+                          _vm.totalChecked = $$c
                         }
-                      } else {
-                        _vm.isAllCheck = $$c
-                      }
-                    }
+                      },
+                      _vm.check
+                    ]
                   }
                 })
               ]
@@ -20114,7 +20156,8 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c(
-          "tbody",
+          "div",
+          { staticClass: "tbody" },
           _vm._l(_vm.contacts, function(contact, index) {
             return _c("div", { key: contact.id, staticClass: "row tr" }, [
               _c(
@@ -20141,41 +20184,50 @@ var render = function() {
                         : contact.checked
                     },
                     on: {
-                      click: function($event) {
-                        return _vm.checkContact(contact)
-                      },
-                      change: function($event) {
-                        var $$a = contact.checked,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(contact, "checked", $$a.concat([$$v]))
+                      change: [
+                        function($event) {
+                          var $$a = contact.checked,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(contact, "checked", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  contact,
+                                  "checked",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
                           } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                contact,
-                                "checked",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
+                            _vm.$set(contact, "checked", $$c)
                           }
-                        } else {
-                          _vm.$set(contact, "checked", $$c)
-                        }
-                      }
+                        },
+                        _vm.checkContact
+                      ]
                     }
                   })
                 ]
               ),
               _vm._v(" "),
-              _c("div", {
-                staticClass: "td align-middle col-md-1 col-sm-1 col-xs-1",
-                attrs: { scope: "col" },
-                domProps: { textContent: _vm._s(index + 1) }
-              }),
+              _c(
+                "div",
+                {
+                  staticClass: "td align-middle col-md-1 col-sm-1 col-xs-1",
+                  attrs: { scope: "col" }
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(index + 1) +
+                      ".\n                    "
+                  )
+                ]
+              ),
               _vm._v(" "),
               _c("div", {
                 staticClass: "td  align-middle col-md-3 col-sm-3 col-xs-3",
@@ -20190,7 +20242,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("div", {
-                staticClass: "td  align-middle col-md-3 col-sm-3 col-xs-3",
+                staticClass: "td align-middle col-md-3 col-sm-3 col-xs-3",
                 attrs: { scope: "col" },
                 domProps: { textContent: _vm._s(contact.phone) }
               }),
@@ -20199,7 +20251,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "td  align-middle col-md-1 col-sm-1 col-xs-1 delete-btn",
+                    "td align-middle col-md-1 col-sm-1 col-xs-1 delete-btn",
                   attrs: { scope: "col" }
                 },
                 [

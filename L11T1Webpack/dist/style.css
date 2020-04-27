@@ -10249,11 +10249,11 @@ body {
 .phone-table .th {
   font-weight: bold; }
 
-.phone-table thead .tr {
+.phone-table .thead .tr {
   border-top: solid 1px #ced4da;
   border-bottom: solid 1px #ced4da; }
 
-.phone-table tbody .tr {
+.phone-table .tbody .tr {
   border-bottom: solid 1px #ced4da; }
 
 .phone-table .delete-btn button {

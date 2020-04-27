@@ -4,7 +4,7 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <input type="text"
-                       v-model="newSurname"
+                       v-model.trim="newSurname"
                        class="form-control mt-2"
                        :class="{'warning-input':isErrorSurname}"
                        placeholder="Введите фамилию"
@@ -13,7 +13,7 @@
             </div>
             <div class="form-group col-md-3">
                 <input type="text"
-                       v-model="newName"
+                       v-model.trim="newName"
                        class="form-control mt-2"
                        :class="{'warning-input':isErrorName}"
                        placeholder="Введите имя"
@@ -22,7 +22,7 @@
             </div>
             <div class="form-group col-md-3">
                 <input type="text"
-                       v-model="newPhone"
+                       v-model.trim="newPhone"
                        class="form-control mt-2"
                        :class="{'warning-input':isErrorPhone}"
                        placeholder="Введите телефон"
@@ -89,7 +89,7 @@
                 this.isErrorPhone = false;
             },
             checkNewSurname() {
-                if (this.newSurname.trim() === "") {
+                if (this.newSurname === "") {
                     this.errorSurnameMessage = "Введите фамилию!";
                     this.isErrorSurname = true;
 
@@ -101,7 +101,7 @@
                 return true;
             },
             checkNewName() {
-                if (this.newName.trim() === "") {
+                if (this.newName === "") {
                     this.errorNameMessage = "Введите имя!";
                     this.isErrorName = true;
 
@@ -118,14 +118,14 @@
                 return this.hasPhoneNumber;
             },
             checkNewPhone() {
-                if (this.newPhone.trim() === "") {
+                if (this.newPhone === "") {
                     this.errorPhoneMessage = "Введите телефон!";
                     this.isErrorPhone = true;
 
                     return false;
                 }
 
-                if (!this.newPhone.trim().match(/^\d+$/)) {
+                if (!this.newPhone.match(/^\d+$/)) {
                     this.errorPhoneMessage = "Используйте только цифры!";
                     this.isErrorPhone = true;
 

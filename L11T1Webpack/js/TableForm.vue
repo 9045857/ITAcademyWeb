@@ -10,20 +10,26 @@
             </span>Удалить
         </button>
         <div>
-            <table class="phone-table table table-sm">
-                <thead>
-                    <div class=" tr table-info row">
-                        <div scope="col" class="col-md-1 col-sm-1 col-xs-1 ">
-                            <input type="checkbox" class="check-box" v-model="isAllCheck" @click="check">
+            <div class="phone-table table table-sm">
+                <div class="thead">
+                    <div class="tr table-info row">
+                        <div scope="col"
+                             class="col-md-1 col-sm-1 col-xs-1">
+                            <input type="checkbox"
+                                   class="check-box"
+                                   v-model="totalChecked"
+                                   @change="check">
                         </div>
                         <div scope="col" class="th col-md-1 col-sm-1 col-xs-1">№</div>
                         <div scope="col" class="th col-md-3 col-sm-3 col-xs-3">Фамилия</div>
                         <div scope="col" class="th col-md-3 col-sm-3 col-xs-3">Имя</div>
                         <div scope="col" class="th col-md-3 col-sm-3 col-xs-3">Телефон</div>
-                        <div scope="col" class="th col-md-1 col-sm-1 col-xs-1"> <i class="fas fa-user-times"></i></div>
+                        <div scope="col" class="th col-md-1 col-sm-1 col-xs-1">
+                            <i class="fas fa-user-times"></i>
+                        </div>
                     </div>
-                </thead>
-                <tbody>
+                </div>
+                <div class="tbody">
                     <div class="row tr"
                          v-for="(contact,index) in contacts"
                          :key="contact.id">
@@ -31,13 +37,29 @@
                             <input type="checkbox"
                                    class="check-box"
                                    v-model="contact.checked"
-                                   @click="checkContact(contact)">
+                                   @change="checkContact">
                         </div>
-                        <div scope="col" class="td align-middle col-md-1 col-sm-1 col-xs-1" v-text="index+1"></div>
-                        <div scope="col" class="td  align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.surname"></div>
-                        <div scope="col" class="td  align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.name"></div>
-                        <div scope="col" class="td  align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.phone"></div>
-                        <div scope="col" class="td  align-middle col-md-1 col-sm-1 col-xs-1 delete-btn">
+                        <div scope="col"
+                             class="td align-middle col-md-1 col-sm-1 col-xs-1">
+                            {{index+1}}.
+                        </div>
+                        <div scope="col" 
+                             class="td  align-middle col-md-3 col-sm-3 col-xs-3" 
+                             v-text="contact.surname">
+
+                        </div>
+                        <div scope="col" 
+                             class="td  align-middle col-md-3 col-sm-3 col-xs-3"
+                             v-text="contact.name">
+
+                        </div>
+                        <div scope="col" 
+                             class="td align-middle col-md-3 col-sm-3 col-xs-3"
+                             v-text="contact.phone">
+
+                        </div>
+                        <div scope="col" 
+                             class="td align-middle col-md-1 col-sm-1 col-xs-1 delete-btn">
                             <button class="btn btn-danger "
                                     type="button"
                                     @click="showDeleteModal(contact)"
@@ -47,25 +69,41 @@
                             </button>
                         </div>
                     </div>
-                </tbody>
-            </table>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    var totalChecked = false;
+
     export default {
         props: ["isAllCheck", "contacts"],
+
+        data() {
+            return {
+                totalChecked
+            }
+        },
+
+        watch: {
+            isAllCheck: function () {
+                if (this.isAllCheck !== this.totalChecked) {
+                    this.totalChecked = this.isAllCheck;
+                }
+            }
+        },
 
         methods: {
             showDeleteModal: function (contact) {
                 this.$emit("show-delete-modal", contact);
             },
-            checkContact: function (contact) {
-                this.$emit("check-contact", contact);
+            checkContact: function () {
+                this.$emit("check-contact");
             },
             check: function () {
-                this.$emit("check-all");
+                this.$emit("check-all", this.totalChecked);
             },
             deleteCheckedContacts: function () {
                 this.$emit("show-delete-modal", null);

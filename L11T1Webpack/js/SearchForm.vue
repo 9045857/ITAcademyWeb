@@ -7,34 +7,44 @@
                         <i class="fas fa-search"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" v-model="text">
+                <input type="text"
+                       class="form-control"
+                       v-model="term">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="button" @click="search">Найти</button>
-                <button class="btn btn-outline-primary" @click="clearSearch" type="button">Очистить</button>
+                <button class="btn btn-primary"
+                        type="button"
+                        @click="search">
+                    Найти
+                </button>
+                <button class="btn btn-outline-primary"
+                        @click="clearSearch"
+                        type="button">
+                    Очистить
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    var text = "";
+    var term = "";
 
     export default {
         data: function () {
             return {
-                text
+                term
             }
         },
 
         methods: {
             clearSearch: function () {
-                this.text = "";
+                this.term = "";
                 this.search();
             },
             search: function () {
-                var searchText = this.text.toLowerCase();
-                this.$emit("search-contacts", searchText);
+                var lowerCaseTerm = this.term.toLowerCase();
+                this.$emit("search-contacts", lowerCaseTerm);
             }
         }
     }
