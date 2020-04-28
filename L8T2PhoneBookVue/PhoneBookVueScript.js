@@ -5,7 +5,7 @@
         confirmDeleting: function () {
             this.$emit("confirm-deleting");
         },
-        refuseDeleting: function() {
+        refuseDeleting: function () {
             this.$emit("refuse-deleting");
         }
     }
@@ -148,55 +148,53 @@ Vue.component("add-form", {
     }
 });
 
-Vue.component("table-form",
-    {
-        props: {
-            isAllCheck: {
-                type: Boolean
-            },
-            contacts: {
-                type: Array,
-                default: function () {
-                    return [];
-                }
-            }
+Vue.component("table-form", {
+    props: {
+        isAllCheck: {
+            type: Boolean
         },
-        template: "#table-form-template",
-        methods: {
-            showDeleteModal: function (contact) {
-                this.$emit("show-delete-modal", contact);
-            },
-            checkContact: function (contact) {
-                this.$emit("check-contact", contact);
-            },
-            check: function () {
-                this.$emit("check-all");
-            },
-            deleteCheckedContacts: function () {
-                this.$emit("show-delete-modal", null);
+        contacts: {
+            type: Array,
+            default: function () {
+                return [];
             }
         }
-    });
+    },
+    template: "#table-form-template",
+    methods: {
+        showDeleteModal: function (contact) {
+            this.$emit("show-delete-modal", contact);
+        },
+        checkContact: function (contact) {
+            this.$emit("check-contact", contact);
+        },
+        check: function () {
+            this.$emit("check-all");
+        },
+        deleteCheckedContacts: function () {
+            this.$emit("show-delete-modal", null);
+        }
+    }
+});
 
-Vue.component("search",
-    {
-        data: function () {
-            return {
-                term: ""
-            }
-        },
-        template: "#search-template",
-        methods: {
-            clearSearch: function () {
-                this.term = "";
-                this.search();
-            },
-            search: function () {
-                var term = this.term.toLowerCase();
-                this.$emit("search-contacts", term);
-            }
+Vue.component("search", {
+    data: function () {
+        return {
+            term: ""
         }
-    });
+    },
+    template: "#search-template",
+    methods: {
+        clearSearch: function () {
+            this.term = "";
+            this.search();
+        },
+        search: function () {
+            var term = this.term.toLowerCase();
+            this.$emit("search-contacts", term);
+        }
+    }
+});
 
 new Vue({
     el: "#phone-book",
@@ -232,6 +230,7 @@ new Vue({
         isAllContactsChecked: false,
         hasPhoneNumber: false
     },
+
     methods: {
         loadVisibleContacts: function () {
             this.contacts = this.dBContacts.filter(function (c) {
@@ -239,13 +238,14 @@ new Vue({
             });
         },
         setTotalCheck: function () {
-            var isAllChecked = (this.contacts.length ===
-                this.contacts.filter(function (c) {
-                    return c.checked;
-                }).length);
-            var hasContacts = this.contacts.length > 0;
+            if (this.contacts.length === 0) {
+                this.isAllContactsChecked = false;
+                return;
+            }
 
-            this.isAllContactsChecked = (isAllChecked && hasContacts);
+            this.isAllContactsChecked = this.contacts.every(function (c) {
+                return c.checked;
+            });
         },
         addNewContact: function (contact) {
             this.dBContacts.push(contact);
@@ -254,7 +254,7 @@ new Vue({
             });
             this.isAllContactsChecked = false;
         },
-        clearDeletingContact: function() {
+        clearDeletingContact: function () {
             this.deletingContact = null;
         },
         setDeletingContact: function (contact) {
@@ -263,8 +263,6 @@ new Vue({
         deleteContacts: function () {
             $("#delete-modal-dialog").modal("hide");
 
-            var deletingContact = this.deletingContact;
-
             if (this.deletingContact === null) {
                 this.dBContacts = this.dBContacts.filter(function (c) {
                     return !c.isVisible || !c.checked;
@@ -272,9 +270,10 @@ new Vue({
 
                 this.isAllContactsChecked = false;
             } else {
+                var deletingContact = this.deletingContact;
+
                 this.dBContacts = this.dBContacts.filter(function (c) {
                     return c !== deletingContact;
-                    //return c !== this.deletingContact;
                 });
             }
 
@@ -295,18 +294,15 @@ new Vue({
                 }
             });
         },
-        getSearchedContacts: function (searchText) {
-            this.dBContacts.map(function (c) {
-                var isSearchTextInSurname = (c.surname.toLowerCase().indexOf(searchText) !== -1);
-                var isSearchTextInName = (c.name.toLowerCase().indexOf(searchText) !== -1);
-                var isSearchTextInPhone = (c.phone.toLowerCase().indexOf(searchText) !== -1);
+        getSearchedContacts: function (term) {
+            this.dBContacts.forEach(function (c) {
+                var isSearchTermInSurname = (c.surname.toLowerCase().indexOf(term) >= 0);
+                var isSearchTermInName = (c.name.toLowerCase().indexOf(term) >= 0);
+                var isSearchTermInPhone = (c.phone.toLowerCase().indexOf(term) >= 0);
 
-                if (isSearchTextInSurname || isSearchTextInName || isSearchTextInPhone) {
-                    c.isVisible = true;
-                } else {
-                    c.isVisible = false;
-                }
+                c.isVisible = (isSearchTermInSurname || isSearchTermInName || isSearchTermInPhone);
             });
+
             this.loadVisibleContacts();
             this.setTotalCheck();
         },
@@ -316,6 +312,7 @@ new Vue({
             }).length > 0);
         }
     },
+
     mounted: function () {
         this.loadVisibleContacts();
     }

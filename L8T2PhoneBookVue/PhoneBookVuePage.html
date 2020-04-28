@@ -19,14 +19,20 @@
 
         <div class="container working-area pt-3 mt-2">
             <h3 class="mb-4">
-                <span class="badge badge-secondary">L8T2</span> Задача "PhoneBook Vue"
+                <span class="badge badge-secondary">L8T2</span> 
+                Задача "PhoneBook Vue"
             </h3>
+
             <add-form class="mb-3"
                       @add-new-contact="addNewContact"
                       @check-exist-phone="hasPhone"
                       :has-phone-number="hasPhoneNumber">
             </add-form>
-            <search class="mb-3" @search-contacts="getSearchedContacts"></search>
+            
+            <search class="mb-3"
+                    @search-contacts="getSearchedContacts">
+            </search>
+            
             <table-form @show-delete-modal="setDeletingContact"
                         :contacts="contacts"
                         @check-contact="checkContact"
@@ -37,7 +43,12 @@
     </div>
 
     <script id="delete-modal-template" type="text/x-template">
-        <div id="delete-modal-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteMenu" aria-hidden="true">
+        <div id="delete-modal-dialog"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="deleteMenu"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -72,14 +83,14 @@
 
     <script id="add-form-template" type="text/x-template">
         <div>
-            <h5>Ввод данных</h5>
+            <h5>Новый контакт</h5>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <input type="text"
                            v-model="newSurname"
                            class="form-control mt-2"
                            :class="{'warning-input':isErrorSurname}"
-                           placeholder="Введите фамилию"
+                           placeholder="Фамилия"
                            @change="checkNewSurname">
                     <span class="warning" v-text="errorSurnameMessage"></span>
                 </div>
@@ -88,7 +99,7 @@
                            v-model="newName"
                            class="form-control mt-2"
                            :class="{'warning-input':isErrorName}"
-                           placeholder="Введите имя"
+                           placeholder="Имя"
                            @change="checkNewName">
                     <span class="warning" v-text="errorNameMessage"></span>
                 </div>
@@ -97,7 +108,7 @@
                            v-model="newPhone"
                            class="form-control mt-2"
                            :class="{'warning-input':isErrorPhone}"
-                           placeholder="Введите телефон"
+                           placeholder="Телефон"
                            @change="checkNewPhone">
                     <span class="warning" v-text="errorPhoneMessage"></span>
                 </div>
@@ -176,7 +187,7 @@
                     </thead>
                     <tbody>
                         <div class="row tr"
-                             v-for="(contact,index) in contacts"
+                             v-for="(contact, index) in contacts"
                              :key="contact.id">
                             <div class="align-middle col-md-1 col-sm-1 col-xs-1">
                                 <input type="checkbox"
