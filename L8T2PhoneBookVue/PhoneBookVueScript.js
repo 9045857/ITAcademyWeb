@@ -1,140 +1,152 @@
-﻿﻿Vue.component("add-form",
-    {
-        data: function () {
-            return {
-                newId: 7,
-                newSurname: "",
-                newName: "",
-                newPhone: "",
-                errorSurnameMessage: null,
-                isErrorSurname: false,
+﻿Vue.component("delete-modal", {
+    template: "#delete-modal-template",
 
-                errorNameMessage: null,
-                isErrorName: false,
-
-                errorPhoneMessage: null,
-                isErrorPhone: false
-            };
+    methods: {
+        confirmDeleting: function () {
+            this.$emit("confirm-deleting");
         },
-        props: {
-            hasPhoneNumber: {
-                type: Boolean
-            }
-        },
-        template: "#add-form-template",
-        methods: {
-            removeSurnameWarning: function () {
-                this.errorSurnameMessage = null;
-                this.isErrorSurname = false;
-            },
-            removeNameWarning: function () {
-                this.errorNameMessage = null;
-                this.isErrorName = false;
-            },
-            removePhoneWarning: function () {
-                this.errorPhoneMessage = null;
-                this.isErrorPhone = false;
-            },
-
-            checkNewSurname: function () {
-                if (this.newSurname.trim() === "") {
-                    this.errorSurnameMessage = "Введите фамилию!";
-                    this.isErrorSurname = true;
-
-                    return false;
-                }
-
-                this.removeSurnameWarning();
-
-                return true;
-            },
-            checkNewName: function () {
-                if (this.newName.trim() === "") {
-                    this.errorNameMessage = "Введите имя!";
-                    this.isErrorName = true;
-
-                    return false;
-                }
-
-                this.removeNameWarning();
-
-                return true;
-            },
-            isNumberExist: function () {
-                this.$emit("check-exist-phone", this.newPhone);
-
-                return this.hasPhoneNumber;
-            },
-            checkNewPhone: function () {
-                if (this.newPhone.trim() === "") {
-                    this.errorPhoneMessage = "Введите телефон!";
-                    this.isErrorPhone = true;
-
-                    return false;
-                }
-
-                if (!this.newPhone.trim().match(/^\d+$/)) {
-                    this.errorPhoneMessage = "Используйте только цифры!";
-                    this.isErrorPhone = true;
-
-                    return false;
-                }
-
-                if (this.isNumberExist()) {
-                    this.errorPhoneMessage = "Такой номер уже есть!";
-                    this.isErrorPhone = true;
-
-                    return false;
-                }
-
-                this.removePhoneWarning();
-
-                return true;
-            },
-            addNewContact: function () {
-                this.errorNameMessage = null;
-                this.errorSurnameMessage = null;
-                this.errorPhoneMessage = null;
-
-                this.isErrorSurname = false;
-
-                var areNewDataReady = this.checkNewSurname() & this.checkNewName() & this.checkNewPhone();
-
-                if (!areNewDataReady) {
-                    return;
-                }
-
-                this.$emit("add-new-contact",
-                    {
-                        id: this.newId,
-                        surname: this.newSurname,
-                        name: this.newName,
-                        phone: this.newPhone,
-                        checked: false,
-                        isVisible: true
-                    });
-
-                this.newId++;
-                this.newSurname = "";
-                this.newName = "";
-                this.newPhone = "";
-            },
-            newContactClear: function () {
-                this.newSurname = "";
-                this.newName = "";
-                this.newPhone = "";
-
-                this.errorSurnameMessage = null;
-                this.isErrorSurname = false;
-
-                this.errorNameMessage = null;
-                this.isErrorName = false;
-
-                this.errorPhoneMessage = null;
-                this.isErrorPhone = false;
-            }
+        refuseDeleting: function() {
+            this.$emit("refuse-deleting");
         }
-    });
+    }
+});
+
+Vue.component("add-form", {
+    data: function () {
+        return {
+            newId: 7,
+            newSurname: "",
+            newName: "",
+            newPhone: "",
+            errorSurnameMessage: null,
+            isErrorSurname: false,
+
+            errorNameMessage: null,
+            isErrorName: false,
+
+            errorPhoneMessage: null,
+            isErrorPhone: false
+        };
+    },
+    props: {
+        hasPhoneNumber: {
+            type: Boolean
+        }
+    },
+    template: "#add-form-template",
+    methods: {
+        removeSurnameWarning: function () {
+            this.errorSurnameMessage = null;
+            this.isErrorSurname = false;
+        },
+        removeNameWarning: function () {
+            this.errorNameMessage = null;
+            this.isErrorName = false;
+        },
+        removePhoneWarning: function () {
+            this.errorPhoneMessage = null;
+            this.isErrorPhone = false;
+        },
+
+        checkNewSurname: function () {
+            if (this.newSurname.trim() === "") {
+                this.errorSurnameMessage = "Введите фамилию!";
+                this.isErrorSurname = true;
+
+                return false;
+            }
+
+            this.removeSurnameWarning();
+
+            return true;
+        },
+        checkNewName: function () {
+            if (this.newName.trim() === "") {
+                this.errorNameMessage = "Введите имя!";
+                this.isErrorName = true;
+
+                return false;
+            }
+
+            this.removeNameWarning();
+
+            return true;
+        },
+        isNumberExist: function () {
+            this.$emit("check-exist-phone", this.newPhone);
+
+            return this.hasPhoneNumber;
+        },
+        checkNewPhone: function () {
+            if (this.newPhone.trim() === "") {
+                this.errorPhoneMessage = "Введите телефон!";
+                this.isErrorPhone = true;
+
+                return false;
+            }
+
+            if (!this.newPhone.trim().match(/^\d+$/)) {
+                this.errorPhoneMessage = "Используйте только цифры!";
+                this.isErrorPhone = true;
+
+                return false;
+            }
+
+            if (this.isNumberExist()) {
+                this.errorPhoneMessage = "Такой номер уже есть!";
+                this.isErrorPhone = true;
+
+                return false;
+            }
+
+            this.removePhoneWarning();
+
+            return true;
+        },
+        addNewContact: function () {
+            this.errorNameMessage = null;
+            this.errorSurnameMessage = null;
+            this.errorPhoneMessage = null;
+
+            this.isErrorSurname = false;
+
+            var areNewDataReady = this.checkNewSurname() & this.checkNewName() & this.checkNewPhone();
+
+            if (!areNewDataReady) {
+                return;
+            }
+
+            this.$emit("add-new-contact",
+                {
+                    id: this.newId,
+                    surname: this.newSurname,
+                    name: this.newName,
+                    phone: this.newPhone,
+                    checked: false,
+                    isVisible: true
+                });
+
+            this.newId++;
+            this.newSurname = "";
+            this.newName = "";
+            this.newPhone = "";
+        },
+        newContactClear: function () {
+            this.newSurname = "";
+            this.newName = "";
+            this.newPhone = "";
+
+            this.errorSurnameMessage = null;
+            this.isErrorSurname = false;
+
+            this.errorNameMessage = null;
+            this.isErrorName = false;
+
+            this.errorPhoneMessage = null;
+            this.isErrorPhone = false;
+        }
+    }
+});
 
 Vue.component("table-form",
     {
@@ -170,18 +182,18 @@ Vue.component("search",
     {
         data: function () {
             return {
-                text: ""
+                term: ""
             }
         },
         template: "#search-template",
         methods: {
             clearSearch: function () {
-                this.text = "";
+                this.term = "";
                 this.search();
             },
             search: function () {
-                var searchText = this.text.toLowerCase();
-                this.$emit("search-contacts", searchText);
+                var term = this.term.toLowerCase();
+                this.$emit("search-contacts", term);
             }
         }
     });
@@ -216,7 +228,7 @@ new Vue({
                 checked: false,
                 isVisible: true
             }],
-        deletingContacts: null,
+        deletingContact: null,
         isAllContactsChecked: false,
         hasPhoneNumber: false
     },
@@ -242,15 +254,18 @@ new Vue({
             });
             this.isAllContactsChecked = false;
         },
+        clearDeletingContact: function() {
+            this.deletingContact = null;
+        },
         setDeletingContact: function (contact) {
-            this.deletingContacts = contact;
+            this.deletingContact = contact;
         },
         deleteContacts: function () {
             $("#delete-modal-dialog").modal("hide");
 
-            var deletingContact = this.deletingContacts;
+            var deletingContact = this.deletingContact;
 
-            if (deletingContact === null) {
+            if (this.deletingContact === null) {
                 this.dBContacts = this.dBContacts.filter(function (c) {
                     return !c.isVisible || !c.checked;
                 });
@@ -259,9 +274,11 @@ new Vue({
             } else {
                 this.dBContacts = this.dBContacts.filter(function (c) {
                     return c !== deletingContact;
+                    //return c !== this.deletingContact;
                 });
             }
 
+            this.clearDeletingContact();
             this.loadVisibleContacts();
         },
         checkContact: function (contact) {
