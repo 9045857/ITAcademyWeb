@@ -19,7 +19,7 @@
 
         <div class="container working-area pt-3 mt-2">
             <h3 class="mb-4">
-                <span class="badge badge-secondary">L8T2</span> 
+                <span class="badge badge-secondary">L8T2</span>
                 Задача "PhoneBook Vue"
             </h3>
 
@@ -28,11 +28,11 @@
                       @check-exist-phone="hasPhone"
                       :has-phone-number="hasPhoneNumber">
             </add-form>
-            
+
             <search class="mb-3"
                     @search-contacts="getSearchedContacts">
             </search>
-            
+
             <table-form @show-delete-modal="setDeletingContact"
                         :contacts="contacts"
                         @check-contact="checkContact"
@@ -169,14 +169,14 @@
                 </span>Удалить
             </button>
             <div>
-                <table class="phone-table table table-sm">
-                    <thead>
+                <div class="phone-table table table-sm">
+                    <div class="thead">
                         <div class=" tr table-info row">
                             <div class="col-md-1 col-sm-1 col-xs-1 ">
                                 <input type="checkbox"
                                        class="check-box"
-                                       v-model="isAllCheck"
-                                       @click="check">
+                                       v-model="totalChecked"
+                                       @change="check">
                             </div>
                             <div class="th col-md-1 col-sm-1 col-xs-1">№</div>
                             <div class="th col-md-3 col-sm-3 col-xs-3">Фамилия</div>
@@ -184,8 +184,8 @@
                             <div class="th col-md-3 col-sm-3 col-xs-3">Телефон</div>
                             <div class="th col-md-1 col-sm-1 col-xs-1"> <i class="fas fa-user-times"></i></div>
                         </div>
-                    </thead>
-                    <tbody>
+                    </div>
+                    <div class="tbody">
                         <div class="row tr"
                              v-for="(contact, index) in contacts"
                              :key="contact.id">
@@ -193,9 +193,9 @@
                                 <input type="checkbox"
                                        class="check-box"
                                        v-model="contact.checked"
-                                       @click="checkContact(contact)">
+                                       @change="checkContact">
                             </div>
-                            <div class="td align-middle col-md-1 col-sm-1 col-xs-1" v-text="index+1"></div>
+                            <div class="td align-middle col-md-1 col-sm-1 col-xs-1">{{index+1}}.</div>
                             <div class="td align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.surname"></div>
                             <div class="td align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.name"></div>
                             <div class="td align-middle col-md-3 col-sm-3 col-xs-3" v-text="contact.phone"></div>
@@ -209,8 +209,8 @@
                                 </button>
                             </div>
                         </div>
-                    </tbody>
-                </table>
+                    </div>
+                </div>
             </div>
         </div>
     </script>

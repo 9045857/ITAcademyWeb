@@ -28,12 +28,15 @@ Vue.component("add-form", {
             isErrorPhone: false
         };
     },
+
     props: {
         hasPhoneNumber: {
             type: Boolean
         }
     },
+
     template: "#add-form-template",
+
     methods: {
         removeSurnameWarning: function () {
             this.errorSurnameMessage = null;
@@ -160,13 +163,27 @@ Vue.component("table-form", {
             }
         }
     },
+
+    data: function () {
+        return {
+            totalChecked: false
+        }
+    },
+
+    watch: {
+        isAllCheck: function () {
+            this.totalChecked = this.isAllCheck;
+        }
+    },
+
     template: "#table-form-template",
+
     methods: {
         showDeleteModal: function (contact) {
             this.$emit("show-delete-modal", contact);
         },
-        checkContact: function (contact) {
-            this.$emit("check-contact", contact);
+        checkContact: function () {
+            this.$emit("check-contact");
         },
         check: function () {
             this.$emit("check-all");
@@ -183,7 +200,9 @@ Vue.component("search", {
             term: ""
         }
     },
+
     template: "#search-template",
+
     methods: {
         clearSearch: function () {
             this.term = "";
@@ -280,8 +299,7 @@ new Vue({
             this.clearDeletingContact();
             this.loadVisibleContacts();
         },
-        checkContact: function (contact) {
-            contact.checked = !contact.checked;
+        checkContact: function () {
             this.setTotalCheck();
         },
         checkTotal: function () {
