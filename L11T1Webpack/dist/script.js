@@ -806,11 +806,9 @@ __webpack_require__.r(__webpack_exports__);
       this.loadVisibleContacts();
     },
     checkContact: function checkContact() {
-      // contact.checked = !contact.checked;
       this.setTotalCheck();
     },
     checkTotal: function checkTotal(totalChecked) {
-      //  this.isAllContactsChecked = !this.isAllContactsChecked;
       this.isAllContactsChecked = totalChecked;
       var checked = this.isAllContactsChecked;
       this.contacts.forEach(function (c) {
@@ -957,10 +955,6 @@ var term = "";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -20064,92 +20058,65 @@ var render = function() {
       _c("div", { staticClass: "phone-table table table-sm" }, [
         _c("div", { staticClass: "thead" }, [
           _c("div", { staticClass: "tr table-info row" }, [
-            _c(
-              "div",
-              {
-                staticClass: "col-md-1 col-sm-1 col-xs-1",
-                attrs: { scope: "col" }
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.totalChecked,
-                      expression: "totalChecked"
-                    }
-                  ],
-                  staticClass: "check-box",
-                  attrs: { type: "checkbox" },
-                  domProps: {
-                    checked: Array.isArray(_vm.totalChecked)
-                      ? _vm._i(_vm.totalChecked, null) > -1
-                      : _vm.totalChecked
-                  },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$a = _vm.totalChecked,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 && (_vm.totalChecked = $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              (_vm.totalChecked = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
-                          }
-                        } else {
-                          _vm.totalChecked = $$c
-                        }
-                      },
-                      _vm.check
-                    ]
+            _c("div", { staticClass: "col-md-1 col-sm-1 col-xs-1" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.totalChecked,
+                    expression: "totalChecked"
                   }
-                })
-              ]
-            ),
+                ],
+                staticClass: "check-box",
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.totalChecked)
+                    ? _vm._i(_vm.totalChecked, null) > -1
+                    : _vm.totalChecked
+                },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$a = _vm.totalChecked,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.totalChecked = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.totalChecked = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.totalChecked = $$c
+                      }
+                    },
+                    _vm.check
+                  ]
+                }
+              })
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "th col-md-1 col-sm-1 col-xs-1",
-                attrs: { scope: "col" }
-              },
-              [_vm._v("№")]
-            ),
+            _c("div", { staticClass: "th col-md-1 col-sm-1 col-xs-1" }, [
+              _vm._v("№")
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "th col-md-3 col-sm-3 col-xs-3",
-                attrs: { scope: "col" }
-              },
-              [_vm._v("Фамилия")]
-            ),
+            _c("div", { staticClass: "th col-md-3 col-sm-3 col-xs-3" }, [
+              _vm._v("Фамилия")
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "th col-md-3 col-sm-3 col-xs-3",
-                attrs: { scope: "col" }
-              },
-              [_vm._v("Имя")]
-            ),
+            _c("div", { staticClass: "th col-md-3 col-sm-3 col-xs-3" }, [
+              _vm._v("Имя")
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "th col-md-3 col-sm-3 col-xs-3",
-                attrs: { scope: "col" }
-              },
-              [_vm._v("Телефон")]
-            ),
+            _c("div", { staticClass: "th col-md-3 col-sm-3 col-xs-3" }, [
+              _vm._v("Телефон")
+            ]),
             _vm._v(" "),
             _vm._m(1)
           ])
@@ -20162,10 +20129,7 @@ var render = function() {
             return _c("div", { key: contact.id, staticClass: "row tr" }, [
               _c(
                 "div",
-                {
-                  staticClass: "align-middle col-md-1 col-sm-1 col-xs-1",
-                  attrs: { scope: "col" }
-                },
+                { staticClass: "align-middle col-md-1 col-sm-1 col-xs-1" },
                 [
                   _c("input", {
                     directives: [
@@ -20216,10 +20180,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                {
-                  staticClass: "td align-middle col-md-1 col-sm-1 col-xs-1",
-                  attrs: { scope: "col" }
-                },
+                { staticClass: "td align-middle col-md-1 col-sm-1 col-xs-1" },
                 [
                   _vm._v(
                     "\n                        " +
@@ -20231,19 +20192,16 @@ var render = function() {
               _vm._v(" "),
               _c("div", {
                 staticClass: "td  align-middle col-md-3 col-sm-3 col-xs-3",
-                attrs: { scope: "col" },
                 domProps: { textContent: _vm._s(contact.surname) }
               }),
               _vm._v(" "),
               _c("div", {
                 staticClass: "td  align-middle col-md-3 col-sm-3 col-xs-3",
-                attrs: { scope: "col" },
                 domProps: { textContent: _vm._s(contact.name) }
               }),
               _vm._v(" "),
               _c("div", {
                 staticClass: "td align-middle col-md-3 col-sm-3 col-xs-3",
-                attrs: { scope: "col" },
                 domProps: { textContent: _vm._s(contact.phone) }
               }),
               _vm._v(" "),
@@ -20251,8 +20209,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "td align-middle col-md-1 col-sm-1 col-xs-1 delete-btn",
-                  attrs: { scope: "col" }
+                    "td align-middle col-md-1 col-sm-1 col-xs-1 delete-btn"
                 },
                 [
                   _c(
@@ -20295,11 +20252,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "th col-md-1 col-sm-1 col-xs-1", attrs: { scope: "col" } },
-      [_c("i", { staticClass: "fas fa-user-times" })]
-    )
+    return _c("div", { staticClass: "th col-md-1 col-sm-1 col-xs-1" }, [
+      _c("i", { staticClass: "fas fa-user-times" })
+    ])
   }
 ]
 render._withStripped = true

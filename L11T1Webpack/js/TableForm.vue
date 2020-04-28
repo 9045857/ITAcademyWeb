@@ -13,18 +13,17 @@
             <div class="phone-table table table-sm">
                 <div class="thead">
                     <div class="tr table-info row">
-                        <div scope="col"
-                             class="col-md-1 col-sm-1 col-xs-1">
+                        <div class="col-md-1 col-sm-1 col-xs-1">
                             <input type="checkbox"
                                    class="check-box"
                                    v-model="totalChecked"
                                    @change="check">
                         </div>
-                        <div scope="col" class="th col-md-1 col-sm-1 col-xs-1">№</div>
-                        <div scope="col" class="th col-md-3 col-sm-3 col-xs-3">Фамилия</div>
-                        <div scope="col" class="th col-md-3 col-sm-3 col-xs-3">Имя</div>
-                        <div scope="col" class="th col-md-3 col-sm-3 col-xs-3">Телефон</div>
-                        <div scope="col" class="th col-md-1 col-sm-1 col-xs-1">
+                        <div class="th col-md-1 col-sm-1 col-xs-1">№</div>
+                        <div class="th col-md-3 col-sm-3 col-xs-3">Фамилия</div>
+                        <div class="th col-md-3 col-sm-3 col-xs-3">Имя</div>
+                        <div class="th col-md-3 col-sm-3 col-xs-3">Телефон</div>
+                        <div class="th col-md-1 col-sm-1 col-xs-1">
                             <i class="fas fa-user-times"></i>
                         </div>
                     </div>
@@ -33,33 +32,25 @@
                     <div class="row tr"
                          v-for="(contact,index) in contacts"
                          :key="contact.id">
-                        <div scope="col" class="align-middle col-md-1 col-sm-1 col-xs-1">
+                        <div class="align-middle col-md-1 col-sm-1 col-xs-1">
                             <input type="checkbox"
                                    class="check-box"
                                    v-model="contact.checked"
                                    @change="checkContact">
                         </div>
-                        <div scope="col"
-                             class="td align-middle col-md-1 col-sm-1 col-xs-1">
+                        <div class="td align-middle col-md-1 col-sm-1 col-xs-1">
                             {{index+1}}.
                         </div>
-                        <div scope="col" 
-                             class="td  align-middle col-md-3 col-sm-3 col-xs-3" 
+                        <div class="td  align-middle col-md-3 col-sm-3 col-xs-3"
                              v-text="contact.surname">
-
                         </div>
-                        <div scope="col" 
-                             class="td  align-middle col-md-3 col-sm-3 col-xs-3"
+                        <div class="td  align-middle col-md-3 col-sm-3 col-xs-3"
                              v-text="contact.name">
-
                         </div>
-                        <div scope="col" 
-                             class="td align-middle col-md-3 col-sm-3 col-xs-3"
+                        <div class="td align-middle col-md-3 col-sm-3 col-xs-3"
                              v-text="contact.phone">
-
                         </div>
-                        <div scope="col" 
-                             class="td align-middle col-md-1 col-sm-1 col-xs-1 delete-btn">
+                        <div class="td align-middle col-md-1 col-sm-1 col-xs-1 delete-btn">
                             <button class="btn btn-danger "
                                     type="button"
                                     @click="showDeleteModal(contact)"
