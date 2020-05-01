@@ -1,6 +1,6 @@
 <template>
   <v-app class="app">
-    <v-container class="mt-2 mb-2 blue lighten-4" style="max-width: 800px;">
+    <v-container class="test mt-2 mb-2 blue lighten-4" style="max-width: 800px;">
       <div class="d-flex align-center">
         <v-img alt="Vuetify Logo"
                class="shrink mr-2"
