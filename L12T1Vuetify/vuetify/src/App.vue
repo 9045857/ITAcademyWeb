@@ -1,6 +1,6 @@
 <template>
-  <v-app class="app">
-    <v-container class="test mt-2 mb-2 blue lighten-4" style="max-width: 800px;">
+  <v-app class="main-container app col-12 col-sm-10 col-md-8">
+    <v-container class="border-round mb-2 blue lighten-4">
       <div class="d-flex align-center">
         <v-img alt="Vuetify Logo"
                class="shrink mr-2"
@@ -16,9 +16,8 @@
         </h1>
       </div>
     </v-container>
-    <!--<v-spacer></v-spacer>-->
 
-    <TodoList style="background-color:blue;"></TodoList>
+    <TodoList class="border-round"></TodoList>
 
     <v-footer absolute
               class="font-weight-medium">

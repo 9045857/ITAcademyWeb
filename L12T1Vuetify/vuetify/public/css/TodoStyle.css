@@ -1,9 +1,11 @@
 ﻿body {
-    background-color: aquamarine;
+    background-color: #f1f3f4;
 }
 
-.test {
-    border-radius: 10px;
+.main-container {
+    margin: 0 auto;
 }
 
-
+.border-round {
+    border-radius: 5px;
+}
