@@ -18,10 +18,8 @@
     </v-container>
     <NewTask></NewTask>
     <TodoStatus></TodoStatus>
-    <v-divider class="mb-4"></v-divider>
-
     <Tasks></Tasks>
-
+    <DeleteModal></DeleteModal>
   </v-app>
 </template>
 
@@ -29,13 +27,15 @@
 import NewTask from './../components/NewTask.vue'
 import TodoStatus from './../components/TodoStatus.vue'
 import Tasks from './../components/Tasks.vue'
+import DeleteModal from './../components/DeleteModal.vue'
 
 export default {
   name: 'App',
   components: {
     Tasks,
     NewTask,
-    TodoStatus
+    TodoStatus,
+    DeleteModal
   }
 }
 </script>

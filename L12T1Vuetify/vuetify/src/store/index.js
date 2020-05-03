@@ -10,18 +10,22 @@ export default new Vuex.Store({
         id: 1,
         done: false,
         text: 'Foobar',
-        editMode: false
+        editMode: false,
+        textCopy: null
       },
       {
         id: 2,
         done: false,
         text: 'Fizzbuzz',
-        editMode: true
+        editMode: true,
+        textCopy: 'Fizzbuzz'
       }
     ],
     task: null,
     id: 3,
-    newTaskWarning: null
+    newTaskWarning: null,
+    isDeleteModalShow: false,
+    deletingTask: null
   },
   getters: {
     completedTasks: state => {
@@ -46,10 +50,59 @@ export default new Vuex.Store({
       state.tasks.push({
         id: state.id,
         done: false,
-        text: state.task
+        text: state.task,
+        editMode: false,
+        textCopy: null
       })
+
       state.task = null
       state.id++
+    },
+    showDeleteModal (state, task) {
+      state.isDeleteModalShow = true
+      state.deletingTask = task
+    },
+    showCheckedDeleteModal (state) {
+      state.isDeleteModalShow = true
+      state.deletingTask = null
+    },
+    deleteTasks (state) {
+      if (state.deletingTask === null) {
+        state.tasks = state.tasks.filter(function (t) {
+          return !t.done
+        })
+
+        state.isDeleteModalShow = false
+        return
+      }
+
+      state.tasks = state.tasks.filter(function (t) {
+        return t !== state.deletingTask
+      })
+
+      state.isDeleteModalShow = false
+      state.deletingTask = null
+    },
+    closeDeleteModal (state) {
+      state.isDeleteModalShow = false
+      state.deletingTask = null
+    },
+    setEditMode (state, task) {
+      task.editMode = true
+      task.textCopy = task.text
+    },
+    saveEditing (state, task) {
+      if (task.text.trim() === '') {
+        return
+      }
+
+      task.textCopy = null
+      task.editMode = false
+    },
+    cancelEditing (state, task) {
+      task.text = task.textCopy
+      task.textCopy = null
+      task.editMode = false
     }
   }
 })

@@ -4,23 +4,23 @@
     Список задач
   </h2>
 
-  <v-divider class="mt-4"></v-divider>
+  <v-divider class="mt-1"></v-divider>
 
   <v-row class="my-1"
           align="center">
-    <strong class="mx-4 info--text text--darken-2">
+    <strong class="mx-4 info--text text--darken-2 font-weight-light">
       Всего: {{$store.state.tasks.length }}
     </strong>
 
     <v-divider vertical></v-divider>
 
-    <strong class="mx-4 info--text text--darken-2">
+    <strong class="mx-4 info--text text--darken-2 font-weight-light">
       В работе: {{ $store.getters.remainingTasks }}
     </strong>
 
     <v-divider vertical></v-divider>
 
-    <strong class="mx-4 success--text text--darken-2">
+    <strong class="mx-4 success--text text--darken-2 font-weight-light">
       Выполнено: {{ $store.getters.completedTasks }}
     </strong>
 
@@ -29,5 +29,6 @@
     <v-progress-circular :value="$store.getters.progress"
                           class="mr-2"></v-progress-circular>
   </v-row>
+  <v-divider class="mb-4"></v-divider>
 </div>
 </template>
