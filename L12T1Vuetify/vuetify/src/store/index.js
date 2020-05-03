@@ -17,13 +17,13 @@ export default new Vuex.Store({
         id: 2,
         done: false,
         text: 'Fizzbuzz',
-        editMode: true,
-        textCopy: 'Fizzbuzz'
+        editMode: false,
+        textCopy: null
       }
     ],
     task: null,
     id: 3,
-    newTaskWarning: null,
+    wasEmptyNewTaskAttempt: false,
     isDeleteModalShow: false,
     deletingTask: null
   },
@@ -39,13 +39,14 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    create (state) {
-      if (state.task.trim() === '') {
-        state.newTaskWarning = '¬ведите задачу!'
+    addTask (state) {
+      if (state.task === null || state.task.trim() === '') {
+        state.wasEmptyNewTaskAttempt = true
+        console.log(state.wasEmptyNewTaskAttempt)
         return
       }
 
-      state.newTaskWarning = null
+      state.wasEmptyNewTaskAttempt = false
 
       state.tasks.push({
         id: state.id,
@@ -63,6 +64,10 @@ export default new Vuex.Store({
       state.deletingTask = task
     },
     showCheckedDeleteModal (state) {
+      if (state.tasks.length === 0) {
+        return
+      }
+
       state.isDeleteModalShow = true
       state.deletingTask = null
     },

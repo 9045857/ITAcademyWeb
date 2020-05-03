@@ -1,6 +1,6 @@
 ﻿<template>
 <div>
-  <h2 class="headline secondary--text">
+  <h2 class="headline secondary--text mt-5">
     Список задач
   </h2>
 
@@ -8,7 +8,7 @@
 
   <v-row class="my-1"
           align="center">
-    <strong class="mx-4 info--text text--darken-2 font-weight-light">
+    <strong class="mx-4 info--text text--darken-2">
       Всего: {{$store.state.tasks.length }}
     </strong>
 

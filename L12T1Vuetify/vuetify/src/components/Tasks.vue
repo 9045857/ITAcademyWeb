@@ -4,11 +4,12 @@
     <template v-slot:activator="{ on }">
       <v-btn fab
              small
+             outlined
              color="pink"
              class="mb-2"
              dark
              v-on="on"
-             @click.stop="$store.state.isDeleteModalShow=true">
+             @click.stop="$store.commit('showCheckedDeleteModal')">
         <v-icon>mdi-text-box-remove-outline</v-icon>
       </v-btn>
     </template>

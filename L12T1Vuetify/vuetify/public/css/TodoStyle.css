@@ -12,22 +12,10 @@
 
 .add-button {
     float: right;
-    margin-top: -42px;
+    margin: 28px 0 0 0;
 }
 
-.warning-message {
-    color: #ff5252;
-    font-size: 12px;
-}
-
-    .warning-message.new-task {
-        margin: -20px 0 0 30px; 
-    }
 
 .grey-background {
     background-color:  #fafafa;
 }
-
-/*.v-input--selection-controls__ripple.primary--text {
-    background-color: aqua;
-}*/
