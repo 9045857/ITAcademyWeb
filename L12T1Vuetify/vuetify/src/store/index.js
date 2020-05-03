@@ -8,8 +8,8 @@ export default new Vuex.Store({
     tasks: [
       {
         id: 1,
-        done: false,
-        text: 'Foobar',
+        done: true,
+        text: 'Сделать программу TodoList на Vuetify',
         editMode: false,
         textCopy: null,
         wasEmptyTaskSaveAttempt: false
@@ -17,7 +17,7 @@ export default new Vuex.Store({
       {
         id: 2,
         done: false,
-        text: 'Fizzbuzz',
+        text: 'Найти баг первого пустого ввода',
         editMode: false,
         textCopy: null,
         wasEmptyTaskSaveAttempt: false
@@ -67,6 +67,10 @@ export default new Vuex.Store({
     },
     showCheckedDeleteModal (state) {
       if (state.tasks.length === 0) {
+        return
+      }
+
+      if (state.tasks.every(t => !t.done)) {
         return
       }
 

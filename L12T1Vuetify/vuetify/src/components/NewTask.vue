@@ -32,7 +32,6 @@
 export default {
   data: () => ({
     setRules (wasError) {
-      console.log(wasError)
       return (wasError) ? ['Введите в поле задачу.'] : [true]
     }
   })
