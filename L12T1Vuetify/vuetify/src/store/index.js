@@ -11,14 +11,16 @@ export default new Vuex.Store({
         done: false,
         text: 'Foobar',
         editMode: false,
-        textCopy: null
+        textCopy: null,
+        wasEmptyTaskSaveAttempt: false
       },
       {
         id: 2,
         done: false,
         text: 'Fizzbuzz',
         editMode: false,
-        textCopy: null
+        textCopy: null,
+        wasEmptyTaskSaveAttempt: false
       }
     ],
     task: null,
@@ -42,7 +44,6 @@ export default new Vuex.Store({
     addTask (state) {
       if (state.task === null || state.task.trim() === '') {
         state.wasEmptyNewTaskAttempt = true
-        console.log(state.wasEmptyNewTaskAttempt)
         return
       }
 
@@ -53,7 +54,8 @@ export default new Vuex.Store({
         done: false,
         text: state.task,
         editMode: false,
-        textCopy: null
+        textCopy: null,
+        wasEmptyTaskSaveAttempt: false
       })
 
       state.task = null
@@ -98,8 +100,11 @@ export default new Vuex.Store({
     },
     saveEditing (state, task) {
       if (task.text.trim() === '') {
+        task.wasEmptyTaskSaveAttempt = true
         return
       }
+
+      task.wasEmptyTaskSaveAttempt = false
 
       task.textCopy = null
       task.editMode = false

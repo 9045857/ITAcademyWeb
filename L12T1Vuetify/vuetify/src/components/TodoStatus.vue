@@ -27,7 +27,7 @@
     <v-spacer></v-spacer>
 
     <v-progress-circular :value="$store.getters.progress"
-                          class="mr-2"></v-progress-circular>
+                          class="mr-4"></v-progress-circular>
   </v-row>
   <v-divider class="mb-4"></v-divider>
 </div>
