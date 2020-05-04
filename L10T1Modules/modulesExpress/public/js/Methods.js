@@ -30,7 +30,7 @@ export function convertTemperature(kelvinSpanText, fahrenheitSpanText, inputCels
         let celsiusDegree = parseFloat(inputCelsiusTemperature.value);
 
         kelvinSpanText.textContent = converter.toKelvin(celsiusDegree);
-        fahrenheitSpanText.textContent = converter.toKelvin(celsiusDegree);
+        fahrenheitSpanText.textContent = converter.toFahrenheit(celsiusDegree);
     } else {
         warning.textContent = badSymbolsWarning;
 
