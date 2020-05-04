@@ -242,13 +242,13 @@
         return phonesCells.indexOf(phoneNumber) !== -1;
     }
 
-    function toggleNewContactInputWarning(input, text, sign, flag) {
+    function toggleShowWarning(input, text, sign, hasError) {
         var warningBorder = "warning-border";
         var hiddenWarningMessage = "hidden";
 
-        text.toggleClass(hiddenWarningMessage, !flag);
-        sign.toggleClass(hiddenWarningMessage, !flag);
-        input.toggleClass(warningBorder, flag);
+        text.toggleClass(hiddenWarningMessage, !hasError);
+        sign.toggleClass(hiddenWarningMessage, !hasError);
+        input.toggleClass(warningBorder, hasError);
     }
 
     function checkPhoneReady(input, message, sign, table) {
@@ -263,20 +263,20 @@
         if (!isEnteredAnyNumbers(phoneNumber)) {
             message.text(warningEmptyPhoneInput);
 
-            toggleNewContactInputWarning(input, message, sign, true);
+            toggleShowWarning(input, message, sign, true);
             arePhoneReady = false;
         } else if (isEnteredAnyNumbers(phoneNumber) && !isPhoneNumberCorrect(phoneNumber)) {
             message.text(warningLessNumbers);
 
-            toggleNewContactInputWarning(input, message, sign, true);
+            toggleShowWarning(input, message, sign, true);
             arePhoneReady = false;
         } else if (isPhoneNumberInList(phoneNumber, table)) {
             message.text(warningContactInPhoneList);
 
-            toggleNewContactInputWarning(input, message, sign, true);
+            toggleShowWarning(input, message, sign, true);
             arePhoneReady = false;
         } else {
-            toggleNewContactInputWarning(input, message, sign, false);
+            toggleShowWarning(input, message, sign, false);
         }
 
         return arePhoneReady;
@@ -286,11 +286,11 @@
         var name = input.val();
 
         if (name.trim() === "") {
-            toggleNewContactInputWarning(input, message, sign, true);
+            toggleShowWarning(input, message, sign, true);
             return false;
         }
 
-        toggleNewContactInputWarning(input, message, sign, false);
+        toggleShowWarning(input, message, sign, false);
         return true;
     }
 
@@ -354,15 +354,15 @@
     });
 
     surnameInput.focusin(function () {
-        toggleNewContactInputWarning(surnameInput, warningSurnameMessage, warningSurnameSign, false);
+        toggleShowWarning(surnameInput, warningSurnameMessage, warningSurnameSign, false);
     });
 
     nameInput.focusin(function () {
-        toggleNewContactInputWarning(nameInput, warningNameMessage, warningNameSign, false);
+        toggleShowWarning(nameInput, warningNameMessage, warningNameSign, false);
     });
 
     phoneInput.focusin(function () {
-        toggleNewContactInputWarning(phoneInput, warningPhoneMessage, warningPhoneSign, false);
+        toggleShowWarning(phoneInput, warningPhoneMessage, warningPhoneSign, false);
     });
 
     var deleteAllCheckedButton = $("#delete-all-checked-button");

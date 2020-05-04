@@ -112,7 +112,7 @@ new Vue({
             this.checkedIds = [];
             var self = this;
 
-            this.contacts.map(function (c) {
+            this.contacts.forEach(function (c) {
                 if (self.areAllChecked) {
                     self.checkedIds.push(c.id);
                 }
@@ -146,7 +146,6 @@ new Vue({
                     if (c.checked) {
                         self.checkedIds.push(c.id);
                     }
-
                 });
 
                 self.contacts = contacts;

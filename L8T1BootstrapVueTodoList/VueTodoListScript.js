@@ -26,7 +26,7 @@
                 isDone: false,
                 isEditMode: false,
                 sourceText: this.newTask,
-                hasError: null
+                error: null
             });
 
             this.newTask = "";
@@ -92,17 +92,17 @@ new Vue({
             var textWithoutSpaces = task.text.trim();
 
             if (textWithoutSpaces === "") {
-                task.hasError = "Нельзя сохранять пустую задачу!";
+                task.error = "Нельзя сохранять пустую задачу!";
             } else {
                 task.sourceText = task.text;
                 task.isEditMode = false;
-                task.hasError = null;
+                task.error = null;
             }
         },
         cancel: function (task) {
             task.isEditMode = false;
             task.text = task.sourceText;
-            task.hasError = null;
+            task.error = null;
         }
     }
 });

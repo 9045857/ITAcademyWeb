@@ -97,7 +97,7 @@
                     <input type="text"
                            v-model="task.text"
                            class="form-control"
-                           :class="{'done':task.isDone,'border-dark':(task.isEditMode&&!task.hasError),'warning-border': task.hasError}"
+                           :class="{'done':task.isDone,'border-dark':(task.isEditMode&&!task.error),'warning-border': task.error}"
                            :disabled="!task.isEditMode">
                     <div class="input-group-append">
                         <button type="button"
@@ -135,7 +135,7 @@
                     </div>
                 </div>
             </div>
-            <div class="warning-text" v-text="task.hasError"></div>
+            <div class="warning-text" v-text="task.error"></div>
         </li>
     </script>
 
