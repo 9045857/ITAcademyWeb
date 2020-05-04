@@ -1,11 +1,42 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
+    <div class="working-area">
+        <div class="containers-area">
+            <div class="header-container">
+			    <div class="number-task">L10T1</div>
+                <h1 class="header">Задача «Модули»</h1>
+				<span>на базе "Температурного конвертора" </span>
+            </div>
 
- <script type="module">
-  import {sayHi} from './../js/say.js';
+            <div class="input-container">
+                <h2>Ввод в градусах Цельсия (°C)</h2>
+                <div class="input-area">
+                    <div class="input">
+                        <input type="text" id="input-celsius" placeholder="значение температуры">
+                    </div>
+                    <p id="warning-message">введите температуру</p>
+                    <div class="button">
+                        <button type="button" id="convert-button"><span>Конвертировать</span><img src="./../images/convertButton.png"></button>
+                    </div>
+                </div>
+            </div>
 
-  document.body.innerHTML = sayHi('John');
-</script>
+            <div class="output-container">
+                <h2>Результат конвертации</h2>
+                <div class="output-area">
+                    <div class="caption">в Кельвинах (K):</div>
+                    <div class="output-temperature">
+                        <span id="kelvin"></span>
+                    </div>
 
+                    <div class="caption">в Фаренгейтах (°F):</div>
+                    <div class="output-temperature">
+                        <span id="fahrenheit"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./../js/TemperatureConverter.js"></script>
 {% endblock %}
