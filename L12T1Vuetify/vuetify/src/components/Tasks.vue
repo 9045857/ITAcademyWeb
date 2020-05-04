@@ -36,7 +36,7 @@
                       v-model="task.text"
                       :rules="setRules(task.wasEmptyTaskSaveAttempt)"
                       hide-details="auto"
-                      @focus="task.wasEmptyTaskSaveAttempt = false">
+                      @focus="clearWarning(task)">
         </v-text-field>
 
         <v-spacer></v-spacer>
@@ -114,6 +114,11 @@ export default {
     setRules (wasError) {
       return (!wasError) ? [true] : ['Нельзя сохранять пустую задачу!']
     }
-  })
+  }),
+  methods: {
+    clearWarning (task) {
+      task.wasEmptyTaskSaveAttempt = false
+    }
+  }
 }
 </script>

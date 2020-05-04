@@ -23,7 +23,7 @@
                 prepend-icon="mdi-fountain-pen-tip"
                 :rules="setRules($store.state.wasEmptyNewTaskAttempt)"
                 hide-details="auto"
-                @focus="$store.state.wasEmptyNewTaskAttempt = false">
+                @focus="clearWarning">
   </v-text-field>
 </div>
 </template>
@@ -34,6 +34,11 @@ export default {
     setRules (wasError) {
       return (wasError) ? ['Введите в поле задачу.'] : [true]
     }
-  })
+  }),
+  methods: {
+    clearWarning () {
+      this.$store.state.wasEmptyNewTaskAttempt = false
+    }
+  }
 }
 </script>
