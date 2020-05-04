@@ -27,7 +27,7 @@ export function convertTemperature(kelvinSpanText, fahrenheitSpanText, inputCels
     removeWarningClass(warning, inputCelsiusTemperature, warningClass);
 
     if (isNumeric(inputCelsiusTemperature.value)) {
-        var celsiusDegree = parseFloat(inputCelsiusTemperature.value);
+        let celsiusDegree = parseFloat(inputCelsiusTemperature.value);
 
         kelvinSpanText.textContent = converter.toKelvin(celsiusDegree);
         fahrenheitSpanText.textContent = converter.toKelvin(celsiusDegree);
