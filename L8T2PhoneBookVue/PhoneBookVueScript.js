@@ -119,15 +119,14 @@ Vue.component("add-form", {
                 return;
             }
 
-            this.$emit("add-new-contact",
-                {
-                    id: this.newId,
-                    surname: this.newSurname,
-                    name: this.newName,
-                    phone: this.newPhone,
-                    checked: false,
-                    isVisible: true
-                });
+            this.$emit("add-new-contact", {
+                id: this.newId,
+                surname: this.newSurname,
+                name: this.newName,
+                phone: this.newPhone,
+                checked: false,
+                isVisible: true
+            });
 
             this.newId++;
             this.newSurname = "";
@@ -167,7 +166,7 @@ Vue.component("table-form", {
     data: function () {
         return {
             totalChecked: false
-        }
+        };
     },
 
     watch: {
@@ -198,7 +197,7 @@ Vue.component("search", {
     data: function () {
         return {
             term: ""
-        }
+        };
     },
 
     template: "#search-template",
@@ -220,31 +219,30 @@ new Vue({
 
     data: {
         contacts: [],
-        dBContacts: [
-            {
-                id: 4,
-                surname: "Иванов",
-                name: "Семен",
-                phone: "89139045857",
-                checked: false,
-                isVisible: true
-            },
-            {
-                id: 5,
-                surname: "Петров",
-                name: "Ивано",
-                phone: "89139045657",
-                checked: false,
-                isVisible: true
-            },
-            {
-                id: 6,
-                surname: "Васичкин",
-                name: "Семен",
-                phone: "89139045857",
-                checked: false,
-                isVisible: true
-            }],
+        dBContacts: [{
+            id: 4,
+            surname: "Иванов",
+            name: "Семен",
+            phone: "89139045857",
+            checked: false,
+            isVisible: true
+        },
+        {
+            id: 5,
+            surname: "Петров",
+            name: "Ивано",
+            phone: "89139045657",
+            checked: false,
+            isVisible: true
+        },
+        {
+            id: 6,
+            surname: "Васичкин",
+            name: "Семен",
+            phone: "89139045857",
+            checked: false,
+            isVisible: true
+        }],
         deletingContact: null,
         isAllContactsChecked: false,
         hasPhoneNumber: false
@@ -306,7 +304,7 @@ new Vue({
             this.isAllContactsChecked = !this.isAllContactsChecked;
             var checked = this.isAllContactsChecked;
 
-            this.contacts.map(function (c) {
+            this.contacts.forEach(function (c) {
                 if (c.isVisible) {
                     c.checked = checked;
                 }
