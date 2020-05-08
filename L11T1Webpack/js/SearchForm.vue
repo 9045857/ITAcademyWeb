@@ -28,22 +28,20 @@
 </template>
 
 <script>
-    var term = "";
-
     export default {
-        data: function () {
+        data() {
             return {
-                term
+                term: ""
             }
         },
 
         methods: {
-            clearSearch: function () {
+            clearSearch() {
                 this.term = "";
                 this.search();
             },
-            search: function () {
-                var lowerCaseTerm = this.term.toLowerCase();
+            search() {
+                let lowerCaseTerm = this.term.toLowerCase();
                 this.$emit("search-contacts", lowerCaseTerm);
             }
         }

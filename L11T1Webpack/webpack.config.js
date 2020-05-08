@@ -14,36 +14,35 @@ module.exports = {
     },
 
     module: {
-        rules: [
-            {
-                test: /\.m?js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/preset-env"]
-                    }
+        rules: [{
+            test: /\.m?js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets: ["@babel/preset-env"]
                 }
-            }, {
-                test: /\.scss/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    "sass-loader"
-                ]
-            }, {
-                test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader, "css-loader"
-                ]
-            }, {
-                test: /\.(png|jpg|gif|svg|ttf|eot|woff|woff2)$/,
-                use: "file-loader?name=[path].[ext]?[hash]"
-            },
-            {
-                test: /\.vue$/,
-                use: "vue-loader"
             }
+        }, {
+            test: /\.scss/,
+            use: [
+                MiniCssExtractPlugin.loader,
+                "css-loader",
+                "sass-loader"
+            ]
+        }, {
+            test: /\.css$/,
+            use: [
+                MiniCssExtractPlugin.loader, "css-loader"
+            ]
+        }, {
+            test: /\.(png|jpg|gif|svg|ttf|eot|woff|woff2)$/,
+            use: "file-loader?name=[path].[ext]?[hash]"
+        },
+        {
+            test: /\.vue$/,
+            use: "vue-loader"
+        }
         ]
     },
 
@@ -60,5 +59,4 @@ module.exports = {
         }),
         new VueLoaderPlugin()
     ]
-
-}
+};

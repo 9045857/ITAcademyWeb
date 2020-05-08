@@ -1,26 +1,26 @@
 ﻿<template>
     <div>
-        <deleteModal @approve-deleting="deleteContacts"></deleteModal>
+        <delete-modal @approve-deleting="deleteContacts"></delete-modal>
 
         <div class="container working-area pt-3 mt-2">
             <h3 class="mb-4">
                 <span class="badge badge-info">L11T1</span> Задача "Webpack" (PhoneBook)
             </h3>
-            <addForm class="mb-3"
+            <add-form class="mb-3"
                      @add-new-contact="addNewContact"
                      @check-exist-phone="hasPhone"
                      :has-phone-number="hasPhoneNumber">
-            </addForm>
-            <searchForm class="mb-3"
+            </add-form>
+            <search-form class="mb-3"
                         @search-contacts="getSearchedContacts">
 
-            </searchForm>
-            <tableForm @show-delete-modal="setDeletingContact"
+            </search-form>
+            <table-form @show-delete-modal="setDeletingContact"
                        :contacts="contacts"
                        @check-contact="checkContact"
                        :is-all-check="isAllContactsChecked"
                        @check-all="checkTotal">
-            </tableForm>
+            </table-form>
         </div>
     </div>
 </template>
@@ -77,22 +77,22 @@
 
         methods: {
             loadVisibleContacts() {
-                this.contacts = this.dBContacts.filter(function (c) {
+                this.contacts = this.dBContacts.filter(c => {
                     return c.isVisible;
                 });
             },
             setTotalCheck() {
-                var isAllChecked = (this.contacts.length ===
-                    this.contacts.filter(function (c) {
+                let isAllChecked = (this.contacts.length ===
+                    this.contacts.filter(c => {
                         return c.checked;
                     }).length);
-                var hasContacts = this.contacts.length > 0;
+                let hasContacts = this.contacts.length > 0;
 
                 this.isAllContactsChecked = (isAllChecked && hasContacts);
             },
             addNewContact(contact) {
                 this.dBContacts.push(contact);
-                this.contacts = this.dBContacts.filter(function (c) {
+                this.contacts = this.dBContacts.filter(c => {
                     return c.isVisible;
                 });
                 this.isAllContactsChecked = false;
@@ -100,19 +100,19 @@
             setDeletingContact(contact) {
                 this.deletingContacts = contact;
             },
-            deleteContacts: function () {
+            deleteContacts() {
                 $("#delete-modal-dialog").modal("hide");
 
-                var deletingContact = this.deletingContacts;
+                let deletingContact = this.deletingContacts;
 
                 if (deletingContact === null) {
-                    this.dBContacts = this.dBContacts.filter(function (c) {
+                    this.dBContacts = this.dBContacts.filter(c => {
                         return !c.isVisible || !c.checked;
                     });
 
                     this.isAllContactsChecked = false;
                 } else {
-                    this.dBContacts = this.dBContacts.filter(function (c) {
+                    this.dBContacts = this.dBContacts.filter(c => {
                         return c !== deletingContact;
                     });
                 }
@@ -124,31 +124,28 @@
             },
             checkTotal(totalChecked) {
                 this.isAllContactsChecked = totalChecked;
-                var checked = this.isAllContactsChecked;               
+                let checked = this.isAllContactsChecked;
 
-                this.contacts.forEach(function (c) {
+                this.contacts.forEach(c => {
                     c.checked = checked;
                 });
             },
-            getSearchedContacts(searchText) {
-                this.dBContacts.map(function (c) {
-                    var isSearchTextInSurname = (c.surname.toLowerCase().indexOf(searchText) !== -1);
-                    var isSearchTextInName = (c.name.toLowerCase().indexOf(searchText) !== -1);
-                    var isSearchTextInPhone = (c.phone.toLowerCase().indexOf(searchText) !== -1);
+            getSearchedContacts(term) {
+                this.dBContacts.forEach(c => {
+                    let isSearchTextInSurname = (c.surname.toLowerCase().indexOf(term) >= 0);
+                    let isSearchTextInName = (c.name.toLowerCase().indexOf(term) >= 0);
+                    let isSearchTextInPhone = (c.phone.toLowerCase().indexOf(term) >= 0);
 
-                    if (isSearchTextInSurname || isSearchTextInName || isSearchTextInPhone) {
-                        c.isVisible = true;
-                    } else {
-                        c.isVisible = false;
-                    }
+                    c.isVisible = isSearchTextInSurname || isSearchTextInName || isSearchTextInPhone;
                 });
+
                 this.loadVisibleContacts();
                 this.setTotalCheck();
             },
             hasPhone(number) {
-                this.hasPhoneNumber = (this.dBContacts.filter(function (c) {
+                this.hasPhoneNumber = this.dBContacts.some(c => {
                     return c.phone === number;
-                }).length > 0);
+                });
             }
         },
 

@@ -44,36 +44,31 @@
 </template>
 
 <script>
-    var newId = 7;
-    var newSurname = "";
-    var newName = "";
-    var newPhone = "";
-    var errorSurnameMessage = null;
-    var isErrorSurname = false;
-    var errorNameMessage = null;
-    var isErrorName = false;
-    var errorPhoneMessage = null;
-    var isErrorPhone = false;
-
     export default {
-        data: function () {
+        data() {
             return {
-                newId,
-                newSurname,
-                newName,
-                newPhone,
-                errorSurnameMessage,
-                isErrorSurname,
+                newId: 7,
 
-                errorNameMessage,
-                isErrorName,
+                newSurname: "",
+                errorSurnameMessage: null,
+                isErrorSurname: false,
 
-                errorPhoneMessage,
-                isErrorPhone
+                newName: "",
+                errorNameMessage: null,
+                isErrorName: false,
+
+                newPhone: "",
+                errorPhoneMessage: null,
+                isErrorPhone: false
             };
         },
 
-        props: ["hasPhoneNumber"],
+        props: {
+            hasPhoneNumber: {
+                type: Boolean,
+                required: true
+            }
+        },
 
         methods: {
             removeSurnameWarning() {
@@ -156,15 +151,14 @@
                     return;
                 }
 
-                this.$emit("add-new-contact",
-                    {
-                        id: this.newId,
-                        surname: this.newSurname,
-                        name: this.newName,
-                        phone: this.newPhone,
-                        checked: false,
-                        isVisible: true
-                    });
+                this.$emit("add-new-contact", {
+                    id: this.newId,
+                    surname: this.newSurname,
+                    name: this.newName,
+                    phone: this.newPhone,
+                    checked: false,
+                    isVisible: true
+                });
 
                 this.newId++;
                 this.newSurname = "";

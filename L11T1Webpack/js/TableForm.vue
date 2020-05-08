@@ -67,19 +67,26 @@
 </template>
 
 <script>
-    var totalChecked = false;
-
     export default {
-        props: ["isAllCheck", "contacts"],
-
-        data() {
-            return {
-                totalChecked
+        props: {
+            isAllCheck: {
+                type: Boolean,
+                required: true
+            },
+            contacts: {
+                type: Array,
+                required: true
             }
         },
 
+        data() {
+            return {
+                totalChecked: false
+            };
+        },
+
         watch: {
-            isAllCheck: function () {
+            isAllCheck() {
                 if (this.isAllCheck !== this.totalChecked) {
                     this.totalChecked = this.isAllCheck;
                 }
@@ -87,16 +94,16 @@
         },
 
         methods: {
-            showDeleteModal: function (contact) {
+            showDeleteModal(contact) {
                 this.$emit("show-delete-modal", contact);
             },
-            checkContact: function () {
+            checkContact() {
                 this.$emit("check-contact");
             },
-            check: function () {
+            check() {
                 this.$emit("check-all", this.totalChecked);
             },
-            deleteCheckedContacts: function () {
+            deleteCheckedContacts() {
                 this.$emit("show-delete-modal", null);
             }
         }

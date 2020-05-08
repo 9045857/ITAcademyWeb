@@ -1,12 +1,22 @@
-﻿body {
-    background-color: #edeef0;
-}
+﻿$total-background-color: #edeef0;
+$working-area-color: #fff;
+$warning-color: #dc3545;
 
-.working-area {
-    background-color: #fff;
+$cell-border-style: solid 1px #ced4da;
+
+@mixin working-area-style {
+    background-color: $working-area-color;
     border-radius: 5px;
     box-shadow: 0 0 1px 0 #9f9f9f;
     padding-bottom: 5px;
+}
+
+body {
+    background-color: $total-background-color;
+}
+
+.working-area {
+    @include working-area-style;
 }
 
 .check-box {
@@ -17,39 +27,40 @@
 
 .warning {
     font-size: 12px;
-    color: #dc3545;
+    color: $warning-color;
 }
 
 .warning.hidden {
     display: none;
 }
 
-.phone-table .th, .phone-table .td {
-    text-align: center;
-    height: 30px;
-}
+.phone-table {
+    .th, .td {
+        text-align: center;
+        height: 30px;
+    }
 
-.phone-table .th {
-    font-weight: bold;
-}
+    .th {
+        font-weight: bold;
+    }
 
-.phone-table .thead .tr {
-    border-top: solid 1px #ced4da;
-    border-bottom: solid 1px #ced4da;
-}
+    .thead .tr {
+        border-top: $cell-border-style;
+    }
 
-.phone-table .tbody .tr {
-    border-bottom: solid 1px #ced4da;
-}
+    .tr {
+        border-bottom: $cell-border-style;
+    }
 
-.phone-table .delete-btn button {
-    height: 22px;
-    width: 22px;
-    padding: 0;
-    margin: 0;
-    font-size: 16px;
-    line-height: 16px;
-    font-weight: bold;
+    .delete-btn button {
+        height: 22px;
+        width: 22px;
+        padding: 0;
+        margin: 0;
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: bold;
+    }
 }
 
 .delete-checked-btn {
@@ -71,5 +82,5 @@
 }
 
 .warning-input {
-    border-color: #dc3545;
+    border-color: $warning-color;
 }
