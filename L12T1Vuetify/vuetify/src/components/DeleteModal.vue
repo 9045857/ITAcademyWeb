@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <v-row justify="center">
   <v-dialog v-model="$store.state.isDeleteModalShow"
             max-width="290">

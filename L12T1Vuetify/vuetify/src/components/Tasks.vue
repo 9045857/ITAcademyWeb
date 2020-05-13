@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div>
   <v-tooltip top>
     <template v-slot:activator="{ on }">

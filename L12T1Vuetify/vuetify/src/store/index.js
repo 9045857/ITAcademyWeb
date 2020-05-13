@@ -16,7 +16,7 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        done: false,
+        done: true,
         text: 'Найти баг первого пустого ввода',
         editMode: false,
         textCopy: null,

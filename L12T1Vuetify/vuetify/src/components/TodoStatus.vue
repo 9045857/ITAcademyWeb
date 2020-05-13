@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div>
   <h2 class="headline secondary--text mt-5">
     Список задач
