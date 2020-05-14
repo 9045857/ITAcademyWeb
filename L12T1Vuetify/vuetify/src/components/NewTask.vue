@@ -22,7 +22,7 @@
                   @keydown.enter="addTask"
                   prepend-icon="mdi-fountain-pen-tip"
                   :error="$store.state.wasEmptyNewTaskAttempt"
-                  :error-messages="errorMessage"
+                  :error-messages="getErrorMessage"
                   hide-details="auto"
                   @focus="clearWarning">
     </v-text-field>
@@ -30,22 +30,20 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      errorMessage: ''
-    }),
+export default {
+  computed: {
+    getErrorMessage () {
+      return this.$store.state.wasEmptyNewTaskAttempt ? 'Введите в поле задачу.' : ''
+    }
+  },
 
-    methods: {
-      addTask() {
-        this.$store.commit('addTask')
-        this.errorMessage = this.$store.state.wasEmptyNewTaskAttempt
-          ? 'Введите в поле задачу.'
-          : ''
-      },
-      clearWarning() {
-        this.$store.state.wasEmptyNewTaskAttempt = false
-        this.errorMessage = ''
-      }
+  methods: {
+    addTask () {
+      this.$store.commit('addTask')
+    },
+    clearWarning () {
+      this.$store.state.wasEmptyNewTaskAttempt = false
     }
   }
+}
 </script>
