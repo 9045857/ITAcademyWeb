@@ -22,7 +22,7 @@
                   @keydown.enter="addTask"
                   prepend-icon="mdi-fountain-pen-tip"
                   :error="$store.state.wasEmptyNewTaskAttempt"
-                  :error-messages="getErrorMessage"
+                  :error-messages="errorMessage"
                   hide-details="auto"
                   @focus="clearWarning">
     </v-text-field>
@@ -32,7 +32,7 @@
 <script>
 export default {
   computed: {
-    getErrorMessage () {
+    errorMessage () {
       return this.$store.state.wasEmptyNewTaskAttempt ? 'Введите в поле задачу.' : ''
     }
   },
